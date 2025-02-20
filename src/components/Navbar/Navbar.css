@@ -61,6 +61,12 @@
 }
 
 /* Responsive Design */
+@media (min-width: 320px) and (max-width: 480px) {
+    .hamburger{
+        display: none;
+    }
+}
+
 @media (max-width: 768px) {
     .navbar-menu {
         display: none;

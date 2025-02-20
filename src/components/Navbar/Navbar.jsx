@@ -20,14 +20,12 @@ function Navbar() {
 
   return (
     <nav className="navbar">
-      {/* Logo or Brand Name */}
       <div className="navbar-left">
         <Link to="/" onClick={() => setMenu("home")}>
           FitFare{" "}
         </Link>
       </div>
 
-      {/* Hamburger Menu for Small Screens */}
       <div className="hamburger" onClick={toggleMenu}>
         ☰
       </div>
