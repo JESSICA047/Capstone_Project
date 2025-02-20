@@ -1,0 +1,110 @@
+.hero-main {
+    display: flex;
+    margin-top: 7rem;
+}
+
+.hero-left h1 {
+    width: 90%;
+    font-size: 3.5rem;
+    font-weight: 700;
+    font-family: "Montserrat", serif;
+}
+
+.hero-left #text {
+    font-family: "Lato", serif;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    font-size: 20px;
+    width: 80%;
+}
+
+.hero-left .hero-card p {
+    font-size: 10px
+}
+
+.hero-main button {
+    font-family: "Roboto", serif;
+    padding: 0.8rem;
+    margin-right: 0.5rem;
+    border-radius: 50px;
+    width: 10rem;
+}
+
+.hero-left button#get {
+    background-color: black;
+    color: white;
+    box-shadow: 0px 0px 10px 0px #FFDE21;
+    /* transition: 1s ease-in-out; */
+}
+
+.hero-left button#get:hover {
+    background: transparent;
+    /* background-color: black; */
+    color: black;
+    transition: 0.5s;
+}
+
+@keyframes borderAnimation {
+    0% {
+        border-color: #a88218;
+    }
+
+    25% {
+        border-color: #ff0000;
+    }
+
+    50% {
+        border-color: #00ff00;
+    }
+
+    75% {
+        border-color: #0000ff;
+    }
+
+    100% {
+        border-color: #a88218;
+    }
+}
+
+.hero-left button#learn {
+    border: 2px solid;
+    animation: borderAnimation 3s infinite;
+}
+
+.hero-left button#learn:hover {
+    background: transparent;
+    /* background-color: black; */
+    color: black;
+    transition: 0.5s;
+
+}
+
+.hero-card {
+    background-color: #252525;
+    display: flex;
+    margin-top: 3rem;
+    width: 70%;
+    padding: 2.5rem 1rem;
+    border-radius: 30px 30px 0 0;
+    box-shadow: 0, 0, 0, 0 0.2;
+}
+
+.hero-card .left,
+.hero-card .right {
+    display: flex;
+}
+
+.hero-card .left .text,
+.hero-card .right .text {
+    color: white;
+    font-family: "Roboto", serif;
+    margin-top: 6%;
+    margin-left: 2%;
+    /* margin-right: 2.3%; */
+}
+
+.hero-card .left .text p,
+.hero-card .right .text p {
+    margin-top: 10px;
+    font-size: 0.7rem;
+}

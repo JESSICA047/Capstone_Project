@@ -1,0 +1,100 @@
+/* Default Styles */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 35px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: white;
+    z-index: 1000;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+}
+
+.navbar-menu {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    gap: 30px;
+    color: black;
+    font-size: 18px;
+}
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-left{
+    font-size: 1.5rem;
+    font-weight: 900;
+}
+
+.navbar button {
+    background: black;
+    color: white;
+    border: 1px solid black;
+    font-size: 16px;
+    padding: 8px 24px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.navbar button:hover {
+    background: transparent;
+    color: black;
+}
+
+.navbar a:hover {
+    padding: 5px;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+    letter-spacing: 5px;
+    transition: 1s;
+}
+
+.navbar li {
+    cursor: pointer;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .navbar-menu {
+        display: none;
+        /* Hide the menu by default on small screens */
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: white;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        z-index: 999;
+    }
+
+    .navbar-menu.active {
+        display: flex;
+        /* Show the menu when active */
+    }
+
+    .navbar-menu li {
+        margin: 10px 0;
+    }
+
+    .hamburger {
+        display: block;
+        cursor: pointer;
+        font-size: 24px;
+    }
+}
+
+@media (min-width: 769px) {
+    .hamburger {
+        display: none;
+        /* Hide hamburger on larger screens */
+    }
+}
