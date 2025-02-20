@@ -2,7 +2,7 @@ import React from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import Hero from "../../components/Hero/Hero";
 import Nutrition from "../../components/Nutrition/Nutrition";
-import "./home.css"
+import "./Home.css"
 
 function Home() {
   return (
