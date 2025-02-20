@@ -26,10 +26,6 @@ function Navbar() {
         </Link>
       </div>
 
-      <div className="hamburger" onClick={toggleMenu}>
-        ☰
-      </div>
-
       {/* Navigation Menu */}
       <ul className={`navbar-menu ${isMenuOpen ? "active" : ""}`}>
         <li>
@@ -97,6 +93,9 @@ function Navbar() {
       {/* Right Side Actions */}
       <div className="navbar-right">
         <button onClick={handleLinkClick}>Get Started</button>
+      </div>
+      <div className="hamburger" onClick={toggleMenu}>
+        ☰
       </div>
     </nav>
   );
