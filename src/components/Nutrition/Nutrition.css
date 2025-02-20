@@ -58,7 +58,7 @@
     margin-top: -20rem;
 }
 
-.floating1{
+.floating1 {
     width: 20rem;
     height: 20rem;
 }
@@ -209,6 +209,32 @@
     100% {
         transform: translate(0, 0);
     }
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+    .bowl {
+        left: -2rem;
+    }
+
+    .bowl img {
+        width: 10rem;
+        height: 10rem;
+    }
+
+    .floating6 {
+        top: 10px;
+        left: -25px;
+    }
+
+    .floating5 {
+        top: 20px;
+        right: 0px;
+    }
+
+    .nutrition-right h1{
+        margin-top: -11rem;
+    }
+
 }
 
 @media (max-width: 1024px) {
