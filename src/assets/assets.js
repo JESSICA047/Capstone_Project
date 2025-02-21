@@ -12,9 +12,27 @@ import salad from "./Ketogenic Diet food plate 1.png";
 import strong_man from "./Ellipse 23.png";
 import bell_pepper from "./efa2d1e1-f3bc-4c48-9b20-ce51fd409d6a 1.png";
 import salt from "./white salt crystals 1.png";
+import vegan from "./30-Day Vegan Fitness Challenge_ Transform Your Body and Mind 1.png";
+import biriyani from "./Biriyani 1.png";
+import weight_loss from "./Discussing Weight loss and weight management in Spanish.png";
+import woman from "./download (31) 1.png";
+import fufu from "./download (38).png";
+import fitness from "./Fitness.png";
+import oats from "./Make-Ahead Breakfast_ Coconut Banana Overnight Oats Recipe.png";
+import eating from "./eating healthy vision board ideas.png";
+import fruit_man from "./WEIGHT LOSS _ Medical Hypnosis with Roger Moore (1) 1.png";
 
 export const assets = {
   logo,
+  vegan,
+  biriyani,
+  weight_loss,
+  fruit_man,
+  woman,
+  fufu,
+  fitness,
+  oats,
+  eating,
   massive_legs,
   strong_man,
   elevate,
@@ -27,5 +45,5 @@ export const assets = {
   spring_onion,
   tomato,
   salad,
-  salt
+  salt,
 };
