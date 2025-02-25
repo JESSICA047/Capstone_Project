@@ -82,3 +82,98 @@
     font-size: 1.5rem;
 
 }
+
+@media (min-width: 320px) and (max-width: 480px) {
+    .explore {
+        margin: 0rem -1em;
+        padding: 1rem;
+    }
+
+    .explore .text {
+        flex-direction: column;
+        gap: 1em;
+        text-align: center;
+    }
+
+    .explore .text-left {
+        font-size: 0.8rem;
+    }
+
+    .explore-title {
+        font-size: 1rem;
+        margin-bottom: 1rem;
+
+    }
+
+    .card {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .card img {
+        border-radius: 5px;
+    }
+
+    .card-text {
+        padding: 1rem;
+    }
+
+    .card-text h3 {
+        margin-top: 0;
+        margin-bottom: 1rem;
+    }
+
+    .card-text button {
+        padding: 0.5rem 1rem;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+    .explore {
+        margin: 0rem -1.5em;
+        padding: 1.5rem;
+    }
+
+    .explore .text {
+        flex-direction: column;
+        gap: 2em;
+        text-align: center;
+    }
+
+    .explore .text-left {
+        font-size: 1rem;
+    }
+
+    .explore-title {
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+    }
+
+    .card {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .card img {
+        border-radius: 8px;
+    }
+
+    .card-text {
+        padding: 1.2rem;
+    }
+
+    .card-text h3 {
+        margin-top: -0.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .card-text button {
+        padding: 0.8rem 1.5rem;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {}
+
+@media (min-width: 1025px) and (max-width: 1280px) {}
+
+@media (min-width: 1281px) {}

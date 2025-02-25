@@ -214,6 +214,7 @@
 @media (min-width: 320px) and (max-width: 480px) {
     .bowl {
         left: -2rem;
+        top: 1rem;
     }
 
     .bowl img {
@@ -221,17 +222,32 @@
         height: 10rem;
     }
 
+
+    .under-bowl img {
+        width: 25rem;
+        height: 25rem;
+        margin-top: -14rem;
+    }
+
+
+    /* .floating1, .floating2, .floating3, .floating4, .floating5, .floating6 {
+        width: 25rem;
+        height: 25rem;
+        margin-top: 2rem;
+    } */
+
+
     .floating6 {
-        top: 10px;
-        left: -25px;
+        top: -10px;
+        left: 30px;
     }
 
     .floating5 {
-        top: 20px;
-        right: 0px;
+        top: -10px;
+        right: 100px;
     }
 
-    .nutrition-right h1{
+    .nutrition-right h1 {
         margin-top: -11rem;
     }
 
