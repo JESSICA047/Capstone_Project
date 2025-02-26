@@ -3,6 +3,8 @@ import Navbar from "../../components/Navbar/Navbar";
 import Hero from "../../components/Hero/Hero";
 import Nutrition from "../../components/Nutrition/Nutrition";
 import Explore from "../../components/Explore/Explore";
+import Faq from "../../components/Faq/Faq";
+import Testimonials from "../../components/Testimonials/Testimonials";
 import "./Home.css";
 
 function Home() {
@@ -12,6 +14,8 @@ function Home() {
       <Hero />
       <Nutrition />
       <Explore />
+      <Faq />
+      <Testimonials />
     </div>
   );
 }

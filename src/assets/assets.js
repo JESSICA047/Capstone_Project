@@ -21,9 +21,19 @@ import fitness from "./Fitness.png";
 import oats from "./Make-Ahead Breakfast_ Coconut Banana Overnight Oats Recipe.png";
 import eating from "./eating healthy vision board ideas.png";
 import fruit_man from "./WEIGHT LOSS _ Medical Hypnosis with Roger Moore (1) 1.png";
+import dumb_bell from "./b4265d4b-aa43-4417-8395-1e09842acdc1.png";
+import six_packs from "./download (36).png";
+import marsai from "./Marsai Martin Fronts Make Up For Ever's New Campaign and Talks Inclusivity in Beauty_ 'Representation Matters'.png";
+import hand_cheeks from "./Premium Photo _ Portrait male wearing cap.png";
+import happy_armpit from "./TRAIN FOR YOU, CLEAR YOUR MIND.png";
 
 export const assets = {
   logo,
+  dumb_bell,
+  six_packs,
+  marsai,
+  hand_cheeks,
+  happy_armpit,
   vegan,
   biriyani,
   weight_loss,
