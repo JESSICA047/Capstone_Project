@@ -7,23 +7,37 @@ function Testimonials() {
     {
       id: 1,
       image: assets.happy_armpit,
-      name: "Sally Sharpe",
+      name: "Jessica M",
       testimonial:
         "I've tried countless meal plans over the years, but none have been as effective as this one. In just three months, I've gained lean muscle, reduced my body fat percentage, and my energy levels are through the roof! The meal plan is simple to follow, and the results speak for themselves.",
     },
     {
       id: 2,
       image: assets.hand_cheeks,
-      name: "Michael John",
+      name: "John K",
       testimonial:
-        "This program transformed my diet and lifestyle completely. I've never felt better!",
+        "This program transformed my diet and lifestyle completely. I've never felt better! The meal plan is easy to follow and the results are incredible.",
     },
     {
       id: 3,
       image: assets.marsai,
-      name: "Mikayla Eddie",
+      name: "Emily Mikayla",
       testimonial:
-        "I love how easy it is to follow this plan. The results have been amazing!",
+        "I love how easy it is to follow this plan. The results have been amazing! I've seen significant improvements in my health and fitness.",
+    },
+    {
+      id: 4,
+      image: assets.six_packs,
+      name: "Chris B",
+      testimonial:
+        "In just three months, I've gained lean muscle, reduced my body fat percentage, and my energy levels are through the roof! The meal plan is simple to follow and effective.",
+    },
+    {
+      id: 5,
+      image: assets.dumb_bell,
+      name: "Sarah M",
+      testimonial:
+        "I've tried countless meal plans over the years, but none have been as effective as this one. The results speak for themselves and I couldn't be happier.",
     },
   ];
 
