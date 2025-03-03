@@ -1,171 +1,97 @@
 .testimonials-container {
-    background-color: black;
-    padding: 40px;
-    /* display: flex; */
-    align-items: center;
-    justify-content: center;
+    display: flex;
     flex-direction: row;
-    color: white;
-    text-align: left;
+    align-items: center;
+    justify-content: space-between;
+    width: 105%;
     margin: 0rem -2em;
+    padding: 40px;
+    background-color: black;
+    color: white;
+}
+
+.carousel-section {
+    width: 50%;
+}
+
+.text-section {
+    width: 45%;
+    padding-left: 40px;
 }
 
 .carousel-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width: 100%;
+    max-width: 400px;
+    height: 150px;
     position: relative;
-    width: 300px;
-    height: 250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .carousel {
     display: flex;
     align-items: center;
-    position: relative;
+    justify-content: center;
     width: 100%;
     height: 100%;
+    position: relative;
 }
 
 .carousel-item {
-    /* position: absolute; */
-    width: 120px;
-    height: 120px;
-    border-radius: 15px;
-    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
-    opacity: 0.5;
-    transform: scale(0.8);
-}
-
-.carousel-item.active {
-    opacity: 1;
-    transform: scale(1.5);
-    z-index: 10;
+    position: relative;
+    width: 100px;
+    height: 100px;
+    margin: 0 -15px;
+    transition: all 0.5s ease;
 }
 
 .carousel-item img {
-    /* width: 100%; */
+    width: 100%;
     height: 100%;
-    border-radius: 15px;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.name {
-    font-size: 14px;
-    text-align: center;
-    margin-top: 5px;
+.carousel-item:not(.active) {
+    transform: scale(0.8);
+    opacity: 0.6;
 }
 
-.testimonial-text {
-    /* max-width: 500px; */
-    padding-left: 40px;
-    text-align: center;
+.carousel-item.active {
+    transform: scale(1.2);
+    opacity: 1;
+    z-index: 5;
 }
 
 .testimonial-text h2 {
-    font-size: 24px;
-    margin-bottom: 10px;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 16px;
 }
 
 .testimonial-text p {
-    font-size: 16px;
-    line-height: 1.5;
+    font-size: 15px;
+    line-height: 1.6;
+    opacity: 0.9;
 }
 
-/* Media Queries */
-
-@media (min-width: 320px) and (max-width: 480px) {
+@media (max-width: 768px) {
     .testimonials-container {
         flex-direction: column;
         padding: 20px;
     }
 
-    .carousel {
-        flex-direction: column;
-        position: relative;
-        /* width: 20%; */
-        /* height: 20%; */
-    }
-
-    .carousel-container {
+    .carousel-section,
+    .text-section {
         width: 100%;
-        height: auto;
-        display: flex;
-        justify-content: center;
+        padding: 10px;
     }
 
     .carousel-item {
-        width: 200px;
-        height: 200px;
-        object-fit: cover;
-        display: block;
-    }
-
-    .testimonial-text {
-        padding-left: 0;
-        text-align: center;
-    }
-
-    .testimonial-text h2 {
-        font-size: 20px;
-    }
-
-    .testimonial-text p {
-        font-size: 14px;
-    }
-}
-
-@media (min-width: 1025px) and (max-width: 1280px) {
-    .testimonials-container {
-        padding: 30px;
-    }
-
-    .carousel-container {
-        width: 400px;
-        height: 300px;
-    }
-
-    .carousel-item {
-        width: 150px;
-        height: 150px;
-    }
-
-    .testimonial-text {
-        padding-left: 30px;
-    }
-
-    .testimonial-text h2 {
-        font-size: 22px;
-    }
-
-    .testimonial-text p {
-        font-size: 15px;
-    }
-}
-
-@media (min-width: 1281px) {
-    .testimonials-container {
-        padding: 50px;
-    }
-
-    .carousel-container {
-        width: 500px;
-        height: 350px;
-    }
-
-    .carousel-item {
-        width: 180px;
-        height: 180px;
-    }
-
-    .testimonial-text {
-        padding-left: 50px;
-    }
-
-    .testimonial-text h2 {
-        font-size: 26px;
-    }
-
-    .testimonial-text p {
-        font-size: 18px;
+        width: 80px;
+        height: 80px;
+        margin: 0 -15px;
     }
 }

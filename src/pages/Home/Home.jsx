@@ -5,6 +5,7 @@ import Nutrition from "../../components/Nutrition/Nutrition";
 import Explore from "../../components/Explore/Explore";
 import Faq from "../../components/Faq/Faq";
 import Testimonials from "../../components/Testimonials/Testimonials";
+import Footer from "../../components/Footer/Footer";
 import "./Home.css";
 
 function Home() {
@@ -16,6 +17,7 @@ function Home() {
       <Explore />
       <Faq />
       <Testimonials />
+      <Footer />
     </div>
   );
 }

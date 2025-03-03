@@ -23,7 +23,7 @@
 }
 
 .faqs .faq .faq-question::after {
-    content: "+";
+    content: "⋀";
     position: absolute;
     top: 50%;
     right: 0px;
@@ -41,7 +41,7 @@
 }
 
 .faqs .faq.open .faq-question::after {
-    content: "-";
+    content: "⋁";
 }
 
 .faqs .faq.open .faq-answer {
