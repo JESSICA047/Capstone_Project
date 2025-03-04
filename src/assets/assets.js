@@ -26,10 +26,16 @@ import six_packs from "./download (36).png";
 import marsai from "./Marsai Martin Fronts Make Up For Ever's New Campaign and Talks Inclusivity in Beauty_ 'Representation Matters'.png";
 import hand_cheeks from "./Premium Photo _ Portrait male wearing cap.png";
 import happy_armpit from "./TRAIN FOR YOU, CLEAR YOUR MIND.png";
+import facebook from "./Group (1).png";
+import instagram from "./Group 4928 (1).png";
+import twitter from "./Layer_1 (1).png";
 import footer_image from "./3b360279-8b43-40f3-9b11-604749128187 1 (1).png";
 
 export const assets = {
   logo,
+  facebook,
+  instagram,
+  twitter,
   dumb_bell,
   six_packs,
   marsai,

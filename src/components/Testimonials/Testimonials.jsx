@@ -50,7 +50,7 @@ export default function Testimonials() {
         const nextIndex = prevIndex + 1;
         return nextIndex >= testimonials.length ? 0 : nextIndex;
       });
-    }, 5000); // Increased interval to 5 seconds
+    }, 5000);
     return () => clearInterval(interval);
   }, []);
 
@@ -87,6 +87,7 @@ export default function Testimonials() {
                 }`}
                 initial={false}
                 animate={{
+                  x: `${testimonial.position * 100}%`,
                   scale: testimonial.position === 0 ? 1.2 : 0.8,
                   opacity: testimonial.position === 0 ? 1 : 0.6,
                   zIndex: testimonial.position === 0 ? 5 : 1,
