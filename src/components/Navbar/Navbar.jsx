@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./Navbar.css";
 
 function Navbar() {
+  const navigate = useNavigate();
   const [menu, setMenu] = useState("home");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -92,7 +94,12 @@ function Navbar() {
 
       {/* Right Side Actions */}
       <div className="navbar-right">
-        <button onClick={handleLinkClick}>Get Started</button>
+        <button className="sign-up" onClick={() => navigate("/signup")}>
+          Sign Up
+        </button>
+        <button className="sign-in" onClick={() => navigate("/signin")}>
+          Sign In
+        </button>
       </div>
       <div className="hamburger" onClick={toggleMenu}>
         ☰

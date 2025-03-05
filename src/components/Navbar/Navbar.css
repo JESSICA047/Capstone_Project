@@ -41,11 +41,51 @@
     border-radius: 50px;
     cursor: pointer;
     transition: 0.5s;
+    border: 2px solid;
+    animation: borderAnimation 3s infinite;
+}
+
+.navbar button.sign-up {
+    margin-right: 10px;
+}
+
+.navbar .sign-up {
+    background: transparent;
+    color: black;
+    border: 2px solid black;
+}
+
+.navbar .sign-up:hover {
+    background: black;
+    color: white;
+}
+
+@keyframes borderAnimation {
+    0% {
+        border-color: #a88218;
+    }
+
+    25% {
+        border-color: #ff0000;
+    }
+
+    50% {
+        border-color: #00ff00;
+    }
+
+    75% {
+        border-color: #0000ff;
+    }
+
+    100% {
+        border-color: #a88218;
+    }
 }
 
 .navbar button:hover {
     background: transparent;
     color: black;
+    transition: 0.5s;
 }
 
 .navbar a:hover {

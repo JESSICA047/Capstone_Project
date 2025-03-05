@@ -20,7 +20,7 @@ function Faq() {
       question: "What is a meal planner , and how does it work ?",
       answer:
         "A meal plan is tool that can help you and organize your meal in advance. Our meal planner for bodybuilders providers personalized meal plan tailored to your fitness goals and dietary needs.",
-      open: true,
+      open: false,
     },
     {
       question:

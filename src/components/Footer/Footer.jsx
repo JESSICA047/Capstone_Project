@@ -14,7 +14,7 @@ function Footer() {
             <h2>About Us</h2>
             <p>Get healthy and organized with MealPlanPro!</p>
             <p>
-              Discover a world of delicious and nutricious meal ideas, carefully
+              Discover a world of delicious and nutritious meal ideas, carefully
               curated to suit your dietary needs and preferences. Plan your meal
               for the week, daily and monthly
             </p>

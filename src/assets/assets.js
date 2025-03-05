@@ -30,11 +30,18 @@ import facebook from "./Group (1).png";
 import instagram from "./Group 4928 (1).png";
 import twitter from "./Layer_1 (1).png";
 import footer_image from "./3b360279-8b43-40f3-9b11-604749128187 1 (1).png";
+import google from "./Group 1.png";
+import signup from "./How to Eat Healthy Without Spending a Ton of Money.png";
+import signin from "./Cheerful african-american man eating.png";
+import faq from "./Vector.png";
 
 export const assets = {
   logo,
   facebook,
   instagram,
+  signup,
+  signin,
+  google,
   twitter,
   dumb_bell,
   six_packs,
@@ -64,4 +71,5 @@ export const assets = {
   salad,
   salt,
   footer_image,
+  faq,
 };

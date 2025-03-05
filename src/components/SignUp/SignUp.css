@@ -1,0 +1,123 @@
+.signup-container {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.signup-container .left {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.left h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.left input {
+    width: 80%;
+    padding: 12px;
+    margin: 8px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+}
+
+.signup-btn {
+    width: 80%;
+    padding: 12px;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    margin-top: 1rem;
+}
+
+.signup-btn:hover {
+    background-color: #333;
+}
+
+.social-media {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.social-media img {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+
+.social-media img:hover {
+    opacity: 0.8;
+}
+
+.signup-container .left h3 {
+    margin-top: 1rem;
+    font-size: 1rem;
+}
+
+.signup-container .left h3 a {
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.signup-container .left h3 a:hover {
+    text-decoration: underline;
+}
+
+.signup-container .right {
+    height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.signup-container .right::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.65);
+    z-index: 1;
+    border-radius: 20px 20px 20px 20px;
+}
+
+.signup-container .right img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: relative;
+    z-index: 0;
+}
+
+.signup-container .right .text {
+    font-family: "Roboto", sans-serif;
+    position: absolute;
+    z-index: 2;
+    color: #fff;
+    /* text-align: center; */
+}
+
+.signup-container .right .text h3 {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+}
+
+.signup-container .right .text p {
+    /* font-size: 1.2rem; */
+    font-weight: 300;
+}
