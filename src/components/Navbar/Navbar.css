@@ -117,6 +117,7 @@
 
     .mobile-auth {
         display: block;
+        display: flex;
         text-align: center;
         margin-top: 10px;
     }

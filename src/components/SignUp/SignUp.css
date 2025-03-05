@@ -121,3 +121,140 @@
     /* font-size: 1.2rem; */
     font-weight: 300;
 }
+
+@media (min-width: 1281px) {
+    .signup-container {
+        max-width: 1440px;
+        margin: 0 auto;
+    }
+}
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+    .signup-container {
+        max-width: 1200px;
+    }
+
+    .signup-container .right .text h3 {
+        font-size: 2.5rem;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .signup-container {
+        flex-direction: column;
+        height: auto;
+        padding: 2rem 0;
+    }
+
+    .signup-container .left,
+    .signup-container .right {
+        width: 100%;
+        height: auto;
+    }
+
+    .signup-container .right {
+        height: 50vh;
+        order: 1;
+        margin-bottom: 2rem;
+    }
+
+    .signup-container .left {
+        padding: 1rem;
+        order: 2;
+    }
+
+    .left input {
+        width: 90%;
+    }
+
+    .signup-btn {
+        width: 90%;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+    .signup-container {
+        flex-direction: column;
+        height: auto;
+        padding: 1rem 0;
+    }
+
+    .signup-container .left,
+    .signup-container .right {
+        width: 100%;
+        height: auto;
+    }
+
+    .signup-container .right {
+        height: 40vh;
+        order: 1;
+        margin-bottom: 1.5rem;
+    }
+
+    .signup-container .left {
+        order: 2;
+    }
+
+    .signup-container .right .text h3 {
+        font-size: 2rem;
+    }
+
+    .left h1 {
+        font-size: 1.8rem;
+    }
+
+    .left input {
+        width: 95%;
+    }
+
+    .signup-btn {
+        width: 95%;
+    }
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+    .signup-container {
+        flex-direction: column;
+        height: auto;
+        padding: 0.5rem 0;
+    }
+
+    .signup-container .left,
+    .signup-container .right {
+        width: 100%;
+        height: auto;
+    }
+
+    .signup-container .right {
+        height: 35vh;
+        order: 1;
+        margin-bottom: 1rem;
+    }
+
+    .signup-container .left {
+        order: 2;
+    }
+
+    .signup-container .right .text h3 {
+        font-size: 1.8rem;
+    }
+
+    .left h1 {
+        font-size: 1.5rem;
+    }
+
+    .left input {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .signup-btn {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .social-media img {
+        width: 35px;
+        height: 35px;
+    }
+}
