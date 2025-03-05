@@ -90,6 +90,14 @@ function Navbar() {
             About Us
           </Link>
         </li>
+        <li className="mobile-auth">
+          <button className="sign-up" onClick={() => navigate("/signup")}>
+            Sign Up
+          </button>
+          <button className="sign-in" onClick={() => navigate("/signin")}>
+            Sign In
+          </button>
+        </li>
       </ul>
 
       {/* Right Side Actions */}
