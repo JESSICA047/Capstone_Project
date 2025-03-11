@@ -1,10 +1,10 @@
 import React from "react";
 import SignIn from "../../components/SignIn/SignIn";
 
-function SignInPage() {
+function SignInPage({ setIsLoggedIn }) {
   return (
     <div>
-      <SignIn />
+      <SignIn setIsLoggedIn={setIsLoggedIn} />
     </div>
   );
 }

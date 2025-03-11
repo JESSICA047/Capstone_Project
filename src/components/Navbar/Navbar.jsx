@@ -3,10 +3,18 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import "./Navbar.css";
 
-function Navbar() {
+function Navbar({ isLoggedIn }) {
   const navigate = useNavigate();
   const [menu, setMenu] = useState("home");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const handleProtectedNavigation = (path) => {
+    if (!isLoggedIn) {
+      navigate("/signin");
+    } else {
+      navigate(path);
+    }
+  };
 
   // Function to toggle the hamburger menu
   const toggleMenu = () => {
@@ -43,52 +51,52 @@ function Navbar() {
           </Link>
         </li>
         <li>
-          <Link
-            to="/recipes"
+          <button
             onClick={() => {
+              handleProtectedNavigation("/recipes");
               setMenu("recipes");
               handleLinkClick();
             }}
             className={menu === "recipes" ? "active" : ""}
           >
             Recipes
-          </Link>
+          </button>
         </li>
         <li>
-          <Link
-            to="/meal-plans"
+          <button
             onClick={() => {
+              handleProtectedNavigation("/meal-plans");
               setMenu("meal-plans");
               handleLinkClick();
             }}
             className={menu === "meal-plans" ? "active" : ""}
           >
             Meal Plans
-          </Link>
+          </button>
         </li>
         <li>
-          <Link
-            to="/nutritional-tips"
+          <button
             onClick={() => {
+              handleProtectedNavigation("/nutritional-tips");
               setMenu("nutritional-tips");
               handleLinkClick();
             }}
             className={menu === "nutritional-tips" ? "active" : ""}
           >
             Nutritional Tips
-          </Link>
+          </button>
         </li>
         <li>
-          <Link
-            to="/about-us"
+          <button
             onClick={() => {
+              handleProtectedNavigation("/about-us");
               setMenu("about-us");
               handleLinkClick();
             }}
             className={menu === "about-us" ? "active" : ""}
           >
             About Us
-          </Link>
+          </button>
         </li>
         <li className="mobile-auth">
           <button className="sign-up" onClick={() => navigate("/signup")}>

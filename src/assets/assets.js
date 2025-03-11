@@ -34,6 +34,7 @@ import google from "./Group 1.png";
 import signup from "./How to Eat Healthy Without Spending a Ton of Money.png";
 import signin from "./Cheerful african-american man eating.png";
 import faq from "./Vector.png";
+import logo_login from "./Hello.png";
 
 export const assets = {
   logo,
@@ -72,4 +73,5 @@ export const assets = {
   salt,
   footer_image,
   faq,
+  logo_login,
 };

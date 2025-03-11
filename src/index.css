@@ -21,6 +21,10 @@ a {
   margin: auto;
 }
 
-button{
+button {
   cursor: pointer;
+}
+
+html {
+  scroll-behavior: smooth;
 }

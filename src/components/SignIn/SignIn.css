@@ -122,6 +122,13 @@
     font-weight: 300;
 }
 
+.error-message {
+    color: #ff0000;
+    font-size: 14px;
+    margin: 5px 0;
+    text-align: center;
+}
+
 @media (min-width: 1281px) {
     .signin-container {
         max-width: 1440px;

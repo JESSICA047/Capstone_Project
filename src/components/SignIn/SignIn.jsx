@@ -1,9 +1,17 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { assets } from "../../assets/assets";
 import "./SignIn.css";
 
-function SignIn() {
+function SignIn({ setIsLoggedIn }) {
+  const navigate = useNavigate();
+
+  const handleSignIn = () => {
+    // Simple frontend routing without authentication
+    setIsLoggedIn(true);
+    navigate("/loggedin");
+  };
+
   return (
     <div className="signin-container">
       <div className="left">
@@ -18,8 +26,12 @@ function SignIn() {
         <h1>Sign In</h1>
         <input type="email" id="email" placeholder="Email" />
         <input type="password" id="password" placeholder="Password" />
-        <p>Forgot Password?</p>
-        <button className="signin-btn">LOGIN</button>
+        <a href="/forgot-password">
+          <p>Forgot Password?</p>
+        </a>
+        <button className="signin-btn" onClick={handleSignIn}>
+          LOGIN
+        </button>
         <p>or sign in with</p>
         <div className="social-media">
           <img src={assets.google} alt="" />

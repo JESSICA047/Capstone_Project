@@ -1,0 +1,302 @@
+.explore {
+    width: 100%;
+    margin: 0;
+    background: #FFFFDD;
+    padding: 2rem;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.explore .text {
+    display: flex;
+    gap: 10em;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.text-left {
+    font-size: 1.1rem;
+}
+
+.text-right {
+    font-size: 1.2rem;
+}
+
+.card {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.card img {
+    width: 100%;
+    border-radius: 10px;
+    transition: filter 0.3s ease-in-out;
+}
+
+.card img:hover {
+    filter: brightness(1.2);
+}
+
+.card1,
+.card2,
+.card3 {
+    background-color: white;
+    border-radius: 10px;
+}
+
+.card-text {
+    padding: 1.5rem;
+}
+
+.card-text h3 {
+    margin-top: -1rem;
+    margin-bottom: 2rem;
+}
+
+.card-text p {
+    margin-bottom: 1rem;
+}
+
+.card-text button {
+    padding: 1rem 2rem;
+    background: #FFFFDD;
+    color: black;
+    text-transform: uppercase;
+    font-weight: 600;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+.card-text button:hover {
+    background: #e0e0e0;
+    transform: scale(1.05);
+}
+
+.explore-2 {
+    margin-top: 7rem;
+}
+
+.explore-title {
+    margin-bottom: 5em;
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+@media (min-width: 1281px) {
+    .explore {
+        padding: 3rem;
+    }
+
+    .explore .text {
+        gap: 12em;
+    }
+
+    .text-left {
+        font-size: 1.2rem;
+    }
+
+    .text-right {
+        font-size: 1.3rem;
+    }
+
+    .card {
+        gap: 25px;
+    }
+
+    .card-text h3 {
+        font-size: 1.4rem;
+    }
+
+    .card-text p {
+        font-size: 1.1rem;
+    }
+
+    .card-text button {
+        padding: 1.2rem 2.5rem;
+        font-size: 1.1rem;
+    }
+
+    .explore-title {
+        font-size: 2rem;
+        margin-bottom: 6em;
+    }
+}
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+    .explore {
+        padding: 2.5rem;
+    }
+
+    .explore .text {
+        gap: 8em;
+    }
+
+    .text-left {
+        font-size: 1.15rem;
+    }
+
+    .text-right {
+        font-size: 1.25rem;
+    }
+
+    .card {
+        gap: 22px;
+    }
+
+    .card-text h3 {
+        font-size: 1.3rem;
+    }
+
+    .card-text p {
+        font-size: 1rem;
+    }
+
+    .card-text button {
+        padding: 1.1rem 2.2rem;
+        font-size: 1rem;
+    }
+
+    .explore-title {
+        font-size: 1.8rem;
+        margin-bottom: 5.5em;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .explore {
+        padding: 2rem;
+    }
+
+    .explore .text {
+        gap: 5em;
+    }
+
+    .text-left {
+        font-size: 1rem;
+    }
+
+    .text-right {
+        font-size: 1.1rem;
+    }
+
+    .card {
+        gap: 20px;
+    }
+
+    .card-text h3 {
+        font-size: 1.2rem;
+    }
+
+    .card-text p {
+        font-size: 0.95rem;
+    }
+
+    .card-text button {
+        padding: 0.9rem 2rem;
+        font-size: 0.95rem;
+    }
+
+    .explore-title {
+        font-size: 1.6rem;
+        margin-bottom: 4em;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+    .explore {
+        padding: 1.5rem;
+    }
+
+    .explore .text {
+        flex-direction: column;
+        gap: 2em;
+        text-align: center;
+    }
+
+    .text-left {
+        font-size: 0.95rem;
+    }
+
+    .text-right {
+        font-size: 1rem;
+    }
+
+    .card {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .card-text {
+        padding: 1.2rem;
+    }
+
+    .card-text h3 {
+        font-size: 1.1rem;
+        margin-top: -0.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .card-text p {
+        font-size: 0.9rem;
+    }
+
+    .card-text button {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .explore-title {
+        font-size: 1.4rem;
+        margin-bottom: 3em;
+    }
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+    .explore {
+        padding: 1rem;
+    }
+
+    .explore .text {
+        gap: 1.5em;
+    }
+
+    .text-left {
+        font-size: 0.9rem;
+    }
+
+    .text-right {
+        font-size: 0.95rem;
+    }
+
+    .card {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .card-text {
+        padding: 1rem;
+    }
+
+    .card-text h3 {
+        font-size: 1rem;
+        margin-top: 0;
+        margin-bottom: 1rem;
+    }
+
+    .card-text p {
+        font-size: 0.85rem;
+    }
+
+    .card-text button {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.85rem;
+    }
+
+    .explore-title {
+        font-size: 1.2rem;
+        margin-bottom: 2em;
+    }
+}

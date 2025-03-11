@@ -1,0 +1,48 @@
+.login-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 35px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: white;
+    z-index: 1000;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+}
+
+@keyframes borderAnimation {
+    0% {
+        border-color: #a88218;
+    }
+
+    25% {
+        border-color: #ff0000;
+    }
+
+    50% {
+        border-color: #00ff00;
+    }
+
+    75% {
+        border-color: #0000ff;
+    }
+
+    100% {
+        border-color: #a88218;
+    }
+}
+
+.login-navbar .navbar-menu li:hover {
+    color: #f31b1b;
+    border-bottom: 2px solid #f31b1b;
+    animation: borderAnimation 0.5s infinite;
+}
+
+.login-navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+}
