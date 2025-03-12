@@ -3,7 +3,7 @@ import NavbarLogin from "../../components/NavbarLogin/NavbarLogin";
 import HeroLogin from "../../components/HeroLogin/HeroLogin";
 import Nutrition from "../../components/Nutrition/Nutrition";
 import ExploreLogin from "../../components/ExploreLogin/ExploreLogin";
-import Faq from "../../components/FAQ/FAQ";
+import Faq from "../../components/FaqLogin/FaqLogin";
 import Testimonials from "../../components/Testimonials/Testimonials";
 import FooterLogin from "../../components/FooterLogin/FooterLogin";
 
