@@ -31,10 +31,48 @@ import instagram from "./Group 4928 (1).png";
 import twitter from "./Layer_1 (1).png";
 import footer_image from "./3b360279-8b43-40f3-9b11-604749128187 1 (1).png";
 import google from "./Group 1.png";
+
+import nutrition from "./Nutrition 1.png";
+import lemon_article from "./LEMON MINT.png"
+
 import signup from "./How to Eat Healthy Without Spending a Ton of Money.png";
 import signin from "./Cheerful african-american man eating.png";
 import faq from "./Vector.png";
 import logo_login from "./Hello.png";
+
+import recipe from "./recipe.png";
+import meal_1 from "./meal_1.png";
+import meal_2 from "./meal_2.png";
+import meal_3 from "./meal_3.png";
+
+import breakfast_1 from "./breakfast_1.png";
+import breakfast_2 from "./breakfast_2.png";
+import breakfast_3 from "./breakfast_3.png";
+import breakfast_4 from "./breakfast_4.png";
+import breakfast_5 from "./breakfast_5.png";
+import breakfast_6 from "./breakfast_6.png";
+
+import lunch_1 from "./lunch_1.png";
+import lunch_2 from "./lunch_2.png";
+import lunch_3 from "./lunch_3.png";
+import lunch_4 from "./lunch_4.png";
+import lunch_5 from "./lunch_5.png";
+import lunch_6 from "./lunch_6.png";
+import lunch_7 from "./lunch_7.png";
+
+import dinner_1 from "./dinner_1.png";
+import dinner_2 from "./dinner_2.png";
+import dinner_3 from "./dinner_3.png";
+import dinner_4 from "./dinner_4.png";
+import dinner_5 from "./dinner_5.png";
+import dinner_6 from "./dinner_6.png";
+
+import snack_1 from "./snack_1.png";
+import snack_2 from "./snack_2.png";
+import snack_3 from "./snack_3.png";
+import snack_4 from "./snack_4.png";
+import snack_5 from "./snack_5.png";
+import snack_6 from "./snack_6.png";
 
 export const assets = {
   logo,
@@ -74,4 +112,211 @@ export const assets = {
   footer_image,
   faq,
   logo_login,
+  nutrition,
+  lemon_article
 };
+
+export const recipes = {
+  recipe,
+};
+
+export const recipes_list = [
+  {
+    id: 1,
+    name: "Jollof Rice with Grilled Chicken",
+    image: meal_1,
+    description:
+      "Traditional spicy rice dish with grilled chicken breast, perfect for protein intake",
+    category: ["Lunch", "Dinner", "Protein", "Weight Loss", "Performance"],
+  },
+  {
+    id: 2,
+    name: "Waakye with Fish",
+    image: meal_2,
+    description:
+      "Rice and beans cooked with dried millet stalks, served with grilled tilapia",
+    category: ["Breakfast", "Lunch", "Protein", "Grain", "Muscle Gain"],
+  },
+  {
+    id: 3,
+    name: "Kelewele (Spiced Plantains)",
+    image: meal_3,
+    description: "Spiced, diced and fried plantains with peanuts",
+    category: ["Snack", "Vegetable", "Wellness"],
+  },
+  {
+    id: 4,
+    name: "Kontomire Stew with Plantain",
+    image: breakfast_1,
+    description: "Cocoyam leaves stew with smoked fish and boiled plantain",
+    category: ["Lunch", "Dinner", "Vegetable", "Weight Loss"],
+  },
+  {
+    id: 5,
+    name: "Tuo Zaafi with Ayoyo Soup",
+    image: breakfast_2,
+    description: "Corn flour dumpling with green leafy soup",
+    category: ["Lunch", "Dinner", "Grain", "Vegetable", "Performance"],
+  },
+  {
+    id: 6,
+    name: "Banku with Okro Stew",
+    image: breakfast_3,
+    description: "Fermented corn and cassava dough with healthy okra soup",
+    category: ["Lunch", "Dinner", "Grain", "Strength Training"],
+  },
+  {
+    id: 7,
+    name: "Tom Brown Porridge",
+    image: breakfast_4,
+    description: "Roasted corn porridge with groundnuts and milk",
+    category: ["Breakfast", "Grain", "Protein", "Lean Muscle"],
+  },
+  {
+    id: 8,
+    name: "Hausa Koko with Koose",
+    image: breakfast_5,
+    description: "Spiced millet porridge with bean cake",
+    category: ["Breakfast", "Grain", "Protein", "Weight Loss"],
+  },
+  {
+    id: 9,
+    name: "Fruit and Sobolo Smoothie",
+    image: breakfast_6,
+    description: "Hibiscus drink blended with tropical fruits",
+    category: ["Breakfast", "Snack", "Fruit", "Wellness"],
+  },
+  {
+    id: 10,
+    name: "Nkontomire Rice with Fish",
+    image: lunch_1,
+    description: "Rice cooked with cocoyam leaves and grilled fish",
+    category: ["Lunch", "Dinner", "Vegetable", "Protein", "Lean Muscle"],
+  },
+  {
+    id: 11,
+    name: "Kenkey with Fish Stew",
+    image: lunch_2,
+    description: "Fermented corn dough with healthy fish stew",
+    category: ["Lunch", "Dinner", "Grain", "Protein", "Muscle Gain"],
+  },
+  {
+    id: 12,
+    name: "Garden Egg Stew with Yam",
+    image: lunch_3,
+    description: "African eggplant stew with boiled yam",
+    category: ["Lunch", "Dinner", "Vegetable", "Weight Loss"],
+  },
+  {
+    id: 13,
+    name: "Beans and Plantain (Red Red)",
+    image: lunch_4,
+    description: "Spicy bean stew with fried ripe plantain",
+    category: ["Lunch", "Dinner", "Protein", "Performance"],
+  },
+  {
+    id: 14,
+    name: "Ampesi with Palava Sauce",
+    image: lunch_5,
+    description: "Boiled yam with spinach sauce",
+    category: ["Lunch", "Dinner", "Vegetable", "Wellness"],
+  },
+  {
+    id: 15,
+    name: "Fufu with Light Soup",
+    image: lunch_6,
+    description: "Cassava and plantain dough with spicy pepper soup",
+    category: ["Lunch", "Dinner", "Grain", "Strength Training"],
+  },
+  {
+    id: 16,
+    name: "Abolo with Fish Stew",
+    image: lunch_7,
+    description: "Steamed corn bread with healthy fish stew",
+    category: ["Lunch", "Dinner", "Grain", "Protein", "Muscle Gain"],
+  },
+  {
+    id: 17,
+    name: "Gari and Shito",
+    image: dinner_1,
+    description: "Cassava granules with spicy pepper sauce",
+    category: ["Snack", "Grain", "Performance"],
+  },
+  {
+    id: 18,
+    name: "Yam Balls",
+    image: dinner_2,
+    description: "Spiced and baked yam balls",
+    category: ["Snack", "Grain", "Weight Loss"],
+  },
+  {
+    id: 19,
+    name: "Apapransa",
+    image: dinner_3,
+    description: "Cornmeal with fish and vegetables",
+    category: ["Dinner", "Grain", "Protein", "Lean Muscle"],
+  },
+  {
+    id: 20,
+    name: "Kokonte with Groundnut Soup",
+    image: dinner_4,
+    description: "Cassava flour meal with peanut soup",
+    category: ["Dinner", "Grain", "Protein", "Strength Training"],
+  },
+  {
+    id: 21,
+    name: "Yakeyake (Mashed Yam)",
+    image: dinner_5,
+    description: "Mashed yam with herbs and spices",
+    category: ["Dinner", "Grain", "Wellness"],
+  },
+  {
+    id: 22,
+    name: "Omotuo with Green Green Soup",
+    image: dinner_6,
+    description: "Rice balls with vegetable soup",
+    category: ["Dinner", "Grain", "Vegetable", "Weight Loss"],
+  },
+  {
+    id: 23,
+    name: "Roasted Groundnuts",
+    image: snack_1,
+    description: "Spiced roasted peanuts",
+    category: ["Snack", "Protein", "Performance"],
+  },
+  {
+    id: 24,
+    name: "Atwemo (Twisted Dough)",
+    image: snack_2,
+    description: "Baked twisted dough snack",
+    category: ["Snack", "Grain", "Muscle Gain"],
+  },
+  {
+    id: 25,
+    name: "Tatale (Plantain Pancakes)",
+    image: snack_3,
+    description: "Spiced plantain pancakes",
+    category: ["Snack", "Breakfast", "Vegetable", "Lean Muscle"],
+  },
+  {
+    id: 26,
+    name: "Kuli-Kuli",
+    image: snack_4,
+    description: "Groundnut paste snack",
+    category: ["Snack", "Protein", "Strength Training"],
+  },
+  {
+    id: 27,
+    name: "Chinchinga (Suya)",
+    image: snack_5,
+    description: "Spiced grilled meat skewers",
+    category: ["Snack", "Protein", "Muscle Gain"],
+  },
+  {
+    id: 28,
+    name: "Tiger Nuts Pudding",
+    image: snack_6,
+    description: "Creamy tiger nuts dessert",
+    category: ["Snack", "Breakfast", "Wellness"],
+  },
+];

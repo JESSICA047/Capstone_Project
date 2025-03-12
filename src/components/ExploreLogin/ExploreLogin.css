@@ -1,10 +1,8 @@
 .explore {
     width: 100%;
-    margin: 0;
     background: #FFFFDD;
     padding: 2rem;
     box-sizing: border-box;
-    overflow: hidden;
 }
 
 .explore .text {

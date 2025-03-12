@@ -82,6 +82,12 @@
     }
 }
 
+.navbar .navbar-menu li:hover {
+    color: #f31b1b;
+    border-bottom: 2px solid #f31b1b;
+    animation: borderAnimation 0.5s infinite;
+}
+
 .navbar button:hover {
     background: transparent;
     color: black;

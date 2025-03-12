@@ -21,15 +21,7 @@ function NavbarLogin({ setIsLoggedIn }) {
   };
 
   const handleNavigation = (path) => {
-    if (path === "/") {
-      // If trying to go to home, first check if logged in
-      const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
-      if (!isLoggedIn) {
-        navigate(path);
-      }
-    } else {
-      navigate(`/loggedin${path}`);
-    }
+    navigate(`/loggedin${path}`);
     handleLinkClick();
   };
 

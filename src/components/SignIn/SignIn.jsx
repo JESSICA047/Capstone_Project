@@ -7,9 +7,8 @@ function SignIn({ setIsLoggedIn }) {
   const navigate = useNavigate();
 
   const handleSignIn = () => {
-    // Simple frontend routing without authentication
     setIsLoggedIn(true);
-    navigate("/loggedin");
+    navigate("/loggedin", { replace: true });
   };
 
   return (
