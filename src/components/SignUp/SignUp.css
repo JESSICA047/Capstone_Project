@@ -30,6 +30,16 @@
     font-size: 1rem;
 }
 
+.left p{
+    font-size: 1.2rem;
+    margin-top: 1rem;
+}
+
+.left h3{
+    font-size: 1.2rem;
+    margin-top: 1rem;
+}
+
 .signup-btn {
     width: 80%;
     padding: 12px;

@@ -1,12 +1,12 @@
-import React from 'react'
-import SignUp from '../../components/SignUp/SignUp'
+import React from "react";
+import SignUp from "../../components/SignUp/SignUp";
 
-function SignUpPage() {
+function SignUpPage({ setIsLoggedIn }) {
   return (
-    <div className='signup'>
-        <SignUp />
+    <div>
+      <SignUp setIsLoggedIn={setIsLoggedIn} />
     </div>
-  )
+  );
 }
 
 export default SignUpPage;

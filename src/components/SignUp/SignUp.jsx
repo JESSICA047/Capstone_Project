@@ -1,9 +1,20 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { assets } from "../../assets/assets";
 import "./SignUp.css";
 
-function SignUp() {
+function SignUp({ setIsLoggedIn }) {
+  const navigate = useNavigate();
+
+  const handleSignUp = () => {
+    // Set logged in state to true
+    localStorage.setItem("isLoggedIn", "true");
+    setIsLoggedIn(true);
+
+    // Navigate to logged in page
+    navigate("/loggedin", { replace: true });
+  };
+
   return (
     <div className="signup-container">
       <div className="left">
@@ -16,7 +27,9 @@ function SignUp() {
           id="confirm-password"
           placeholder="Confirm Password"
         />
-        <button className="signup-btn">Sign Up</button>
+        <button className="signup-btn" onClick={handleSignUp}>
+          Sign Up
+        </button>
         <p>or sign up with</p>
         <div className="social-media">
           <img src={assets.google} alt="" />
