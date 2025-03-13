@@ -1,14 +1,24 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { assets } from "../../assets/assets";
 import UserDropdown from "../UserDropdown/UserDropdown";
 import "./NavbarLogin.css";
 
 function NavbarLogin({ setIsLoggedIn }) {
   const navigate = useNavigate();
+  const location = useLocation();
   const [menu, setMenu] = useState("home");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  // Set initial menu state based on location path
+  useEffect(() => {
+    const path = location.pathname;
+    if (path === "/loggedin") setMenu("home");
+    else if (path.includes("/recipes")) setMenu("recipes");
+    else if (path.includes("/meal-plans")) setMenu("meal-plans");
+    else if (path.includes("/nutritional-tips")) setMenu("nutritional-tips");
+  }, [location.pathname]);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -20,8 +30,20 @@ function NavbarLogin({ setIsLoggedIn }) {
     }
   };
 
-  const handleNavigation = (path) => {
-    navigate(`/loggedin${path}`);
+  const handleNavigation = (path, menuItem) => {
+    setMenu(menuItem);
+
+    // If clicking on current page, scroll to top
+    if (
+      (path === "" && location.pathname === "/loggedin") ||
+      location.pathname === `/loggedin${path}`
+    ) {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      // Navigate to new page
+      navigate(`/loggedin${path}`);
+    }
+
     handleLinkClick();
   };
 
@@ -29,18 +51,18 @@ function NavbarLogin({ setIsLoggedIn }) {
     <div>
       <div className="login-navbar">
         <div className="navbar-left">
-          <Link to="/loggedin" onClick={() => setMenu("home")}>
-            FitFare{" "}
-          </Link>
+          <a
+            onClick={() => handleNavigation("", "home")}
+            style={{ cursor: "pointer" }}
+          >
+            FitFare
+          </a>
         </div>
 
         <ul className={`navbar-menu ${isMenuOpen ? "active" : ""}`}>
           <li>
             <button
-              onClick={() => {
-                setMenu("home");
-                handleNavigation("/");
-              }}
+              onClick={() => handleNavigation("", "home")}
               className={menu === "home" ? "active" : ""}
             >
               Home
@@ -48,10 +70,7 @@ function NavbarLogin({ setIsLoggedIn }) {
           </li>
           <li>
             <button
-              onClick={() => {
-                setMenu("recipes");
-                handleNavigation("/recipes");
-              }}
+              onClick={() => handleNavigation("/recipes", "recipes")}
               className={menu === "recipes" ? "active" : ""}
             >
               Recipes
@@ -59,10 +78,7 @@ function NavbarLogin({ setIsLoggedIn }) {
           </li>
           <li>
             <button
-              onClick={() => {
-                setMenu("meal-plans");
-                handleNavigation("/meal-plans");
-              }}
+              onClick={() => handleNavigation("/meal-plans", "meal-plans")}
               className={menu === "meal-plans" ? "active" : ""}
             >
               Meal Plans
@@ -70,10 +86,9 @@ function NavbarLogin({ setIsLoggedIn }) {
           </li>
           <li>
             <button
-              onClick={() => {
-                setMenu("nutritional-tips");
-                handleNavigation("/nutritional-tips");
-              }}
+              onClick={() =>
+                handleNavigation("/nutritional-tips", "nutritional-tips")
+              }
               className={menu === "nutritional-tips" ? "active" : ""}
             >
               Nutritional Tips

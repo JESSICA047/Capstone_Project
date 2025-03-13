@@ -1,8 +1,24 @@
 import React from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import "./FooterLogin.css";
 import { assets } from "../../assets/assets";
 
 function FooterLogin() {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleFooterNavigation = (path) => {
+    // If clicking on current path, scroll to top
+    if (
+      (path === "" && location.pathname === "/loggedin") ||
+      location.pathname === `/loggedin${path}`
+    ) {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      navigate(`/loggedin${path}`);
+    }
+  };
+
   return (
     <footer id="footer-section" className="footer">
       <div className="footer-top">
@@ -32,10 +48,30 @@ function FooterLogin() {
         <div className="footer-center">
           <h3>Quick Links</h3>
           <ul>
-            <li>Home</li>
-            <li>About</li>
-            <li>Services</li>
-            <li>Contact</li>
+            <li
+              onClick={() => handleFooterNavigation("")}
+              style={{ cursor: "pointer" }}
+            >
+              Home
+            </li>
+            <li
+              onClick={() => handleFooterNavigation("/recipes")}
+              style={{ cursor: "pointer" }}
+            >
+              Recipes
+            </li>
+            <li
+              onClick={() => handleFooterNavigation("/meal-plans")}
+              style={{ cursor: "pointer" }}
+            >
+              Meal Plans
+            </li>
+            <li
+              onClick={() => handleFooterNavigation("/nutritional-tips")}
+              style={{ cursor: "pointer" }}
+            >
+              Nutritional Tips
+            </li>
           </ul>
         </div>
         <div className="footer-right">

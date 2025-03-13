@@ -14,6 +14,8 @@ import Navbar from "./components/Navbar/Navbar";
 import Recipe from "./pages/Recipes/Recipes";
 import MealPlan from "./pages/MealPlan/MealPlan";
 import NutritionTipsPage from "./pages/NutritionTipsPage/NutritionTipsPage";
+import ProfilePage from "./pages/Profilepage/ProfilePage";
+import ScrollToTop from "./components/ScrollToTop/ScrollToTop"; // Import the new component
 
 function App() {
   // Initialize state from localStorage
@@ -59,6 +61,8 @@ function App() {
   return (
     <div className="app">
       {showNavbar && <Navbar isLoggedIn={isLoggedIn} />}
+      <ScrollToTop /> {/* Add this component */}
+      {showNavbar && <Navbar isLoggedIn={isLoggedIn} />}
       <Routes>
         {/* Public Routes */}
         <Route path="/" element={<Home />} />
@@ -70,7 +74,6 @@ function App() {
           path="/signin"
           element={<SignInPage setIsLoggedIn={setIsLoggedIn} />}
         />
-
         {/* Protected Routes */}
         <Route
           path="/loggedin"
@@ -101,6 +104,15 @@ function App() {
           element={
             <ProtectedRoute>
               <NutritionTipsPage />
+            </ProtectedRoute>
+          }
+        />
+        // Add this route in your protected routes section
+        <Route
+          path="/loggedin/profile"
+          element={
+            <ProtectedRoute>
+              <ProfilePage setIsLoggedIn={setIsLoggedIn} />
             </ProtectedRoute>
           }
         />

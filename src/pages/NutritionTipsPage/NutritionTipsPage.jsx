@@ -3,7 +3,7 @@ import NutritionTip from "../../components/NutritionTip/NutritionTip";
 import "./../../components/NutritionTip/NutritionTip.css";
 import { assets } from "../../assets/assets";
 import NavbarLogin from "../../components/NavbarLogin/NavbarLogin";
-import Footer from "../../components/Footer/Footer";
+import FooterLogin from "../../components/FooterLogin/FooterLogin";
 
 const NutritionTipsPage = () => {
   const tips = [
@@ -72,7 +72,7 @@ const NutritionTipsPage = () => {
           </div>
         </div>
       </div>
-      <Footer />
+      <FooterLogin />
     </>
   );
 };

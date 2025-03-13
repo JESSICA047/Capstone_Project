@@ -77,6 +77,12 @@ import snack_6 from "./snack_6.png";
 export const assets = {
   logo,
   facebook,
+  lunch_1,
+  lunch_2,
+  lunch_3,
+  lunch_4,
+  lunch_5,
+  lunch_6,
   instagram,
   signup,
   signin,

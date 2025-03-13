@@ -2,35 +2,22 @@
     position: relative;
 }
 
+/* Update the top property in .dropdown-content to better position the dropdown */
 .dropdown-content {
     position: absolute;
-    top: 100%;
+    top: calc(100% + 5px);
     right: 0;
     background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    padding: 8px;
-    min-width: 150px;
+    border-radius: 10px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+    width: 280px;
     z-index: 1000;
+    overflow: hidden;
+    animation: dropdown-fade 0.2s ease-out;
+    transform-origin: top right;
 }
 
-.dropdown-content button {
-    width: 100%;
-    padding: 10px;
-    text-align: left;
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 14px;
-    color: #333;
-    transition: background-color 0.2s;
-    border-radius: 4px;
-}
-
-.dropdown-content button:hover {
-    background-color: #f5f5f5;
-}
-
+/* Add this to ensure the dropdown overlay doesn't interfere with the navbar itself */
 .dropdown-overlay {
     position: fixed;
     top: 0;
@@ -38,4 +25,120 @@
     right: 0;
     bottom: 0;
     z-index: 999;
+    background: transparent;
+}
+
+@keyframes dropdown-fade {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Header section with user info */
+.dropdown-header {
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    background-color: #f9f9f9;
+}
+
+.dropdown-header img {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #8BC34A;
+    margin-right: 12px;
+}
+
+.user-info h4 {
+    color: #333;
+    font-size: 16px;
+    margin: 0 0 4px 0;
+    font-weight: 600;
+}
+
+.user-info p {
+    color: #666;
+    font-size: 12px;
+    margin: 0;
+}
+
+/* Menu section with navigation options */
+.dropdown-menu {
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.dropdown-menu button,
+.dropdown-footer button {
+    width: 100%;
+    padding: 12px 16px;
+    text-align: left;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    color: #333;
+    transition: background-color 0.2s;
+    display: flex;
+    align-items: center;
+}
+
+.dropdown-menu button:hover,
+.dropdown-footer button:hover {
+    background-color: #f5f5f5;
+}
+
+.menu-icon {
+    font-size: 16px;
+    margin-right: 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+}
+
+/* Footer section with logout */
+.dropdown-footer {
+    padding: 8px 0;
+}
+
+.logout-button {
+    color: #f70000 !important;
+}
+
+.logout-button:hover {
+    text-transform: uppercase;
+    background-color: #fc1135 !important;
+}
+
+/* Overlay that closes the dropdown when clicking outside */
+.dropdown-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 999;
+}
+
+/* Responsive styles */
+@media (max-width: 480px) {
+    .dropdown-content {
+        width: 250px;
+        right: -10px;
+    }
+
+    .dropdown-header img {
+        width: 40px;
+        height: 40px;
+    }
 }
