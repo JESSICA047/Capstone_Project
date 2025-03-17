@@ -1,47 +1,112 @@
 .login-navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding: 20px 35px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: white;
-    z-index: 1000;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 15px 35px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Navbar logo/brand */
+.navbar-left a {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #000000;
+  /* Changed to green */
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.navbar-left a:hover {
+  color: #27ae60;
+  /* Changed to darker green */
+}
+
+/* Menu items container */
+.navbar-menu {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 10px;
+}
+
+/* Menu items */
+.navbar-menu li {
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-menu button {
+  background: none;
+  border: none;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #333;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 5px;
+}
+
+.navbar-menu button:hover {
+  background-color: #e8f5e9;
+  /* Changed to light green */
+  color: #2ecc71;
+  /* Changed to green */
+}
+
+.navbar-menu button.active {
+  background-color: #2ecc71;
+  /* Changed to green */
+  color: white;
+}
+
+/* Animation for menu button borders */
 @keyframes borderAnimation {
-    0% {
-        border-color: #a88218;
-    }
+  0% {
+    width: 0;
+  }
 
-    25% {
-        border-color: #ff0000;
-    }
-
-    50% {
-        border-color: #00ff00;
-    }
-
-    75% {
-        border-color: #0000ff;
-    }
-
-    100% {
-        border-color: #a88218;
-    }
+  100% {
+    width: 100%;
+  }
 }
 
-.login-navbar .navbar-menu li:hover {
-    color: #f31b1b;
-    border-bottom: 2px solid #f31b1b;
-    animation: borderAnimation 0.5s infinite;
+.navbar-menu li:hover {
+  position: relative;
 }
 
-/* Add these styles to your NavbarLogin.css file */
+.navbar-menu li:hover::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #2ecc71;
+  /* Changed to green */
+  animation: borderAnimation 0.3s ease;
+}
 
+/* Mobile menu toggle button */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  color: #2ecc71;
+  /* Changed to green */
+  cursor: pointer;
+  padding: 5px;
+}
+
+/* User profile section */
 .login-navbar-right {
   display: flex;
   align-items: center;
@@ -62,7 +127,8 @@
   height: 35px;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid #8BC34A;
+  border: 2px solid #2ecc71;
+  /* Changed to green */
 }
 
 .login-navbar-right p {
@@ -72,17 +138,79 @@
 }
 
 .login-navbar-right span {
-  color: #2E7D32;
+  color: #2ecc71;
+  /* Changed to green */
   font-weight: 600;
 }
 
-/* Add a subtle hover effect */
+/* Add hover effect */
 .login-navbar-right:hover {
-  background-color: #f5f5f5;
+  background-color: #e8f5e9;
+  /* Changed to light green */
 }
 
-/* For mobile responsiveness */
-@media (max-width: 768px) {
+/* Mobile styles */
+@media screen and (max-width: 992px) {
+
+  /* Show the menu toggle button on mobile */
+  .menu-toggle {
+    display: block;
+    order: 3;
+  }
+
+  /* The navbar needs to be properly spaced */
+  .login-navbar {
+    padding: 15px 20px;
+  }
+
+  /* The navbar-left (logo) should take priority */
+  .navbar-left {
+    flex-grow: 1;
+  }
+
+  /* Style the mobile menu properly */
+  .navbar-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    flex-direction: column;
+    background-color: white;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.4s ease;
+    opacity: 0;
+    z-index: 999;
+  }
+
+  /* When the menu is active, show it */
+  .navbar-menu.active {
+    max-height: 300px;
+    padding: 10px 0;
+    opacity: 1;
+  }
+
+  /* Each menu item should be full width */
+  .navbar-menu li {
+    width: 100%;
+  }
+
+  .navbar-menu button {
+    width: 100%;
+    text-align: left;
+    padding: 15px 25px;
+    font-size: 1.1rem;
+    border-radius: 0;
+  }
+
+  /* Remove the border animation on mobile */
+  .navbar-menu li:hover::after {
+    display: none;
+  }
+
+  /* Hide the user greeting text on mobile */
   .login-navbar-right p {
     display: none;
   }

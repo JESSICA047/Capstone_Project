@@ -4,18 +4,55 @@
 
 .recipes-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 24px;
-    padding: 24px;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem;
+    padding: 1.5rem;
     background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.no-recipes {
+    text-align: center;
+    padding: 4rem 0;
+}
+
+.no-recipes h3 {
+    font-size: 1.5rem;
+    color: #495057;
+    margin-bottom: 1rem;
+}
+
+.no-recipes p {
+    font-size: 1.1rem;
+    color: #6c757d;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.no-recipes img {
+    max-width: 180px;
+    margin-bottom: 2rem;
+    opacity: 0.7;
+}
+
+@media (max-width: 992px) {
+    .recipes-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 1.5rem;
+    }
 }
 
 @media (max-width: 768px) {
     .recipes-grid {
-        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-        padding: 16px;
-        gap: 16px;
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        padding: 1rem;
+        gap: 1.2rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .recipes-grid {
+        grid-template-columns: 1fr;
     }
 }

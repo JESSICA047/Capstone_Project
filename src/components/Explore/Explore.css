@@ -10,16 +10,16 @@
 .explore .text {
     display: flex;
     gap: 10em;
-    margin-top: 20px;
+    margin-top: 50px;
     margin-bottom: 30px;
 }
 
 .text-left {
-    font-size: 1.1rem;
+    /* font-size: 1.1rem; */
 }
 
 .text-right {
-    font-size: 1.2rem;
+    /* font-size: 1.2rem; */
 }
 
 .card {
@@ -75,27 +75,23 @@
     transform: scale(1.05);
 }
 
-.explore-2 {
-    margin-top: 7rem;
-}
-
 .explore-title {
-    margin-bottom: 5em;
+    /* margin-bottom: 5em; */
     text-align: center;
     font-size: 1.5rem;
 }
 
 @media (min-width: 1281px) {
     .explore {
-        padding: 3rem;
+        /* padding: 3rem; */
     }
 
     .explore .text {
-        gap: 12em;
+        /* gap: 12em; */
     }
 
     .text-left {
-        font-size: 1.2rem;
+        /* font-size: 1.2rem; */
     }
 
     .text-right {
@@ -120,8 +116,8 @@
     }
 
     .explore-title {
-        font-size: 2rem;
-        margin-bottom: 6em;
+        /* font-size: 2rem; */
+        margin-bottom: 1em;
     }
 }
 

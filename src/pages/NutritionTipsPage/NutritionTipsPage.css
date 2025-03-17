@@ -1,0 +1,190 @@
+.nutrition-tips-page {
+    min-height: 100vh;
+    background-color: #f8f9fa;
+}
+
+/* Header styles that match the Recipe and Meal Plan pages */
+.nutrition-tips-header {
+    position: relative;
+    width: 100%;
+    height: 450px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+}
+
+.nutrition-tips-header-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.7);
+    transition: transform 0.5s ease;
+}
+
+.nutrition-tips-header:hover .nutrition-tips-header-image {
+    transform: scale(1.05);
+}
+
+.nutrition-tips-header-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    width: 80%;
+    max-width: 900px;
+    z-index: 1;
+    padding: 2rem;
+    background-color: rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+    backdrop-filter: blur(3px);
+}
+
+.nutrition-tips-header-content h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+    animation: fadeIn 0.8s ease-in;
+}
+
+.nutrition-tips-header-content p {
+    font-size: 1.3rem;
+    line-height: 1.7;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 1.2s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Container for the main content */
+.nutrition-tips-container {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem 4rem;
+}
+
+/* Filters sidebar */
+.tips-filter {
+    padding: 1.5rem;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+    height: fit-content;
+}
+
+.tips-filter h3 {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 1.25rem;
+    font-weight: 600;
+}
+
+.category-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.category-item {
+    padding: 0.75rem 1rem;
+    margin-bottom: 0.5rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.category-item:hover:not(.active) {
+    background-color: #f1f3f5;
+}
+
+.category-item.active {
+    background-color: #2ecc71;
+    color: white;
+}
+
+/* Main content area */
+.tips-body {
+    flex: 1;
+}
+
+.tips-body h2 {
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
+    color: #333;
+    font-weight: 600;
+}
+
+.tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 1.5rem;
+}
+
+/* Responsive styles */
+@media (max-width: 992px) {
+    .nutrition-tips-container {
+        grid-template-columns: 1fr;
+    }
+
+    .tips-filter {
+        margin-bottom: 1.5rem;
+    }
+
+    .category-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .category-item {
+        margin-bottom: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .nutrition-tips-header-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .nutrition-tips-header-content p {
+        font-size: 1.1rem;
+    }
+
+    .tips-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 576px) {
+    .nutrition-tips-header {
+        height: 350px;
+    }
+
+    .nutrition-tips-header-content h1 {
+        font-size: 2rem;
+    }
+
+    .nutrition-tips-header-content {
+        width: 90%;
+        padding: 1.5rem;
+    }
+
+    .nutrition-tips-container {
+        padding: 0 1rem 3rem;
+    }
+}

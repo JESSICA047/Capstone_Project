@@ -12,19 +12,35 @@ const Recipes = () => {
     mealTypes: [],
     foodGroups: [],
     fitnessPlans: [],
+    dietaryPreferences: [], // Add this new filter category
   });
+  const [searchQuery, setSearchQuery] = useState("");
 
-  // Filter recipes based on active filters
+  // Filter recipes based on active filters and search query
   const getFilteredRecipes = () => {
+    let filteredRecipes = recipes_list;
+
+    // Apply search query filter first
+    if (searchQuery.trim()) {
+      const query = searchQuery.toLowerCase();
+      filteredRecipes = filteredRecipes.filter(
+        (recipe) =>
+          recipe.name.toLowerCase().includes(query) ||
+          recipe.description.toLowerCase().includes(query)
+      );
+    }
+
+    // Then apply category filters
     if (
       activeFilters.mealTypes.length === 0 &&
       activeFilters.foodGroups.length === 0 &&
-      activeFilters.fitnessPlans.length === 0
+      activeFilters.fitnessPlans.length === 0 &&
+      activeFilters.dietaryPreferences.length === 0
     ) {
-      return recipes_list;
+      return filteredRecipes;
     }
 
-    return recipes_list.filter((recipe) => {
+    return filteredRecipes.filter((recipe) => {
       const matchesMealType =
         activeFilters.mealTypes.length === 0 ||
         recipe.category.some((cat) => activeFilters.mealTypes.includes(cat));
@@ -41,7 +57,20 @@ const Recipes = () => {
             recipe.category.some((cat) => cat.includes(plan))
         );
 
-      return matchesMealType && matchesFoodGroup && matchesFitnessPlan;
+      // Add dietary preferences filter
+      const matchesDietaryPreferences =
+        activeFilters.dietaryPreferences.length === 0 ||
+        (recipe.dietaryTags &&
+          activeFilters.dietaryPreferences.some((pref) =>
+            recipe.dietaryTags.includes(pref)
+          ));
+
+      return (
+        matchesMealType &&
+        matchesFoodGroup &&
+        matchesFitnessPlan &&
+        matchesDietaryPreferences
+      );
     });
   };
 
@@ -67,16 +96,20 @@ const Recipes = () => {
         <RecipeFilter
           activeFilters={activeFilters}
           setActiveFilters={setActiveFilters}
+          searchQuery={searchQuery}
+          setSearchQuery={setSearchQuery}
         />
         <div className="recipes-main">
           {(activeFilters.mealTypes.length > 0 ||
             activeFilters.foodGroups.length > 0 ||
-            activeFilters.fitnessPlans.length > 0) && (
+            activeFilters.fitnessPlans.length > 0 ||
+            activeFilters.dietaryPreferences.length > 0) && (
             <div className="active-filters">
               {[
                 ...activeFilters.mealTypes,
                 ...activeFilters.foodGroups,
                 ...activeFilters.fitnessPlans,
+                ...(activeFilters.dietaryPreferences || []),
               ].map((filter, index) => (
                 <span key={index} className="filter-tag">
                   {filter}

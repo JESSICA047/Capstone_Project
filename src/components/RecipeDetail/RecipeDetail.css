@@ -1,0 +1,234 @@
+  .recipe-detail-container {
+    max-width: 1200px;
+    margin: 4rem auto;
+    padding: 0 1.5rem;
+  }
+
+  .recipe-detail {
+    background-color: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    padding: 2rem;
+  }
+
+  .back-button {
+    background: none;
+    border: none;
+    color: #4263eb;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 0.5rem 0;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    transition: color 0.2s;
+  }
+
+  .back-button:hover {
+    color: #364fc7;
+  }
+
+  .recipe-header {
+    margin-bottom: 2rem;
+  }
+
+  .recipe-header h1 {
+    font-size: 2.5rem;
+    color: #212529;
+    margin-bottom: 1rem;
+    font-weight: 700;
+  }
+
+  .recipe-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .recipe-meta span {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #6c757d;
+    font-size: 1rem;
+  }
+
+  .recipe-image-container {
+    margin-bottom: 2rem;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .recipe-detail-image {
+    width: 100%;
+    height: auto;
+    max-height: 500px;
+    object-fit: cover;
+  }
+
+  .recipe-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .nutrition-breakdown {
+    background-color: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 10px;
+  }
+
+  .nutrition-breakdown h2 {
+    font-size: 1.5rem;
+    color: #212529;
+    margin-bottom: 1rem;
+  }
+
+  .nutrition-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 1rem;
+  }
+
+  .nutrition-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+
+  .nutrition-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #4263eb;
+  }
+
+  .nutrition-label {
+    font-size: 0.9rem;
+    color: #6c757d;
+    margin-top: 0.3rem;
+  }
+
+  .ingredients-section,
+  .instructions-section {
+    background-color: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 10px;
+  }
+
+  .ingredients-section h2,
+  .instructions-section h2 {
+    font-size: 1.5rem;
+    color: #212529;
+    margin-bottom: 1rem;
+  }
+
+  .ingredients-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .ingredient-item {
+    position: relative;
+    padding: 0.75rem 0.75rem 0.75rem 2rem;
+    border-bottom: 1px solid #e9ecef;
+  }
+
+  .ingredient-item:last-child {
+    border-bottom: none;
+  }
+
+  .ingredient-item:before {
+    content: "•";
+    position: absolute;
+    left: 0.75rem;
+    color: #4263eb;
+  }
+
+  .instructions-list {
+    padding-left: 1.5rem;
+  }
+
+  .instruction-step {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #e9ecef;
+  }
+
+  .instruction-step:last-child {
+    border-bottom: none;
+  }
+
+  .recipe-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .add-to-meal-plan-btn,
+  .save-recipe-btn {
+    padding: 0.8rem 1.5rem;
+    border-radius: 6px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+  }
+
+  .add-to-meal-plan-btn {
+    background-color: #4263eb;
+    color: white;
+  }
+
+  .add-to-meal-plan-btn:hover {
+    background-color: #364fc7;
+  }
+
+  .save-recipe-btn {
+    background-color: #f1f3f5;
+    color: #495057;
+  }
+
+  .save-recipe-btn:hover {
+    background-color: #e9ecef;
+    color: #212529;
+  }
+
+  .recipe-not-found {
+    text-align: center;
+    padding: 5rem 2rem;
+    font-size: 1.5rem;
+    color: #6c757d;
+  }
+
+  @media (min-width: 768px) {
+    .recipe-content {
+      grid-template-columns: 1fr 2fr;
+    }
+
+    .nutrition-breakdown {
+      grid-column: 1 / -1;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .recipe-header h1 {
+      font-size: 2rem;
+    }
+
+    .recipe-meta {
+      gap: 1rem;
+    }
+
+    .recipe-actions {
+      flex-direction: column;
+    }
+  }

@@ -1,13 +1,75 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { assets } from "../../assets/assets";
 import "./Explore.css";
 
-function Explore() {
+function ExploreLogin() {
   // State to track hover for each card
   const [hoveredCard, setHoveredCard] = useState(null);
 
   return (
     <div className="explore">
+      <div className="explore-2">
+        <div className="explore-title">
+          <h2>Explore Our Delicious and Nutritious Recipes</h2>
+          <p>
+            Discover a variety of healthy recipes that cater to your dietary
+            needs. From breakfast to dinner, our recipes are designed to support
+            your fitness goals and promote a balanced lifestyle.
+          </p>
+        </div>
+
+        <div className="card">
+          {/* Breakfast Card */}
+          <div className="card1">
+            <img src={assets.oats} alt="" />
+            <div className="card-text">
+              <h3>BREAKFAST</h3>
+              <p>
+                Start your day with our nutritious breakfast recipes. Each meal
+                is designed to provide sustained energy and essential nutrients
+                to power you through the morning.
+              </p>
+              <Link to="/signin">
+                <button>Browse Recipes</button>
+              </Link>
+            </div>
+          </div>
+
+          {/*Lunch Card */}
+          <div className="card2">
+            <img src={assets.biriyani} alt="" />
+            <div className="card-text">
+              <h3>LUNCH</h3>
+              <p>
+                Our lunch recipes offer the perfect balance of proteins, carbs,
+                and healthy fats to keep you energized and focused throughout
+                your busy day.
+              </p>
+              <Link to="/signin">
+                <button>Browse Recipes</button>
+              </Link>
+            </div>
+          </div>
+
+          {/* Supper Card */}
+          <div className="card3">
+            <img src={assets.fufu} alt="" />
+            <div className="card-text">
+              <h3>DINNER</h3>
+              <p>
+                End your day with our delicious dinner options that are both
+                satisfying and nutritious, designed to support your body's
+                overnight recovery.
+              </p>
+              <Link to="/signin">
+                <button>Browse Recipes</button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div className="explore-1">
         <div className="text">
           <div className="text-left">
@@ -51,7 +113,9 @@ function Explore() {
                 control, and sustainable eating habits to help you achieve your
                 goals effectively.
               </p>
-              <button>Learn More</button>
+              <Link to="/signin">
+                <button>Go to Meal Plan</button>
+              </Link>
             </div>
           </div>
 
@@ -70,7 +134,9 @@ function Explore() {
                 high-protein meals and nutrient-rich food to support your
                 fitness journey.
               </p>
-              <button>Learn More</button>
+              <Link to="/signin">
+                <button>Go to Meal Plan</button>
+              </Link>
             </div>
           </div>
 
@@ -88,61 +154,9 @@ function Explore() {
                 Our wellness diet plan promotes overall health with a focus on
                 nutrient-dense foods, ensuring you feel your best every day.
               </p>
-              <button>Learn More</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="explore-2">
-        <div className="explore-title">
-          <h2>Explore Our Delicious and Nutrition Recipes</h2>
-          <p>
-            Discover a variety of healthy recipes that cater to your dietary
-            needs. From breakfast to dinner, our recipes are designed to support
-            your fitness goals and promote a balanced lifestyle.
-          </p>
-        </div>
-
-        <div className="card">
-          {/* Breakfast Card */}
-          <div className="card1">
-            <img src={assets.oats} alt="" />
-            <div className="card-text">
-              <h3>BREAKFAST</h3>
-              <p>
-                Our weight loss diet plan focuses on balanced nutrition, portion
-                control, and sustainable eating habits to help you achieve your
-                goals effectively.
-              </p>
-              <button>Click Me</button>
-            </div>
-          </div>
-
-          {/*Lunch Card */}
-          <div className="card2">
-            <img src={assets.biriyani} alt="" />
-            <div className="card-text">
-              <h3>LUNCH</h3>
-              <p>
-                Designed for those looking to build muscle, this plan includes
-                high-protein meals and nutrient-rich food to support your
-                fitness journey.
-              </p>
-              <button>Click Me</button>
-            </div>
-          </div>
-
-          {/* Supper Card */}
-          <div className="card3">
-            <img src={assets.fufu} alt="" />
-            <div className="card-text">
-              <h3>SUPPER</h3>
-              <p>
-                Our wellness diet plan promotes overall health with a focus on
-                nutrient-dense foods, ensuring you feel your best every day.
-              </p>
-              <button>Click Me</button>
+              <Link to="/signin">
+                <button>Go to Meal Plan</button>
+              </Link>
             </div>
           </div>
         </div>
@@ -151,4 +165,4 @@ function Explore() {
   );
 }
 
-export default Explore;
+export default ExploreLogin;

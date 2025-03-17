@@ -12,10 +12,12 @@ import SignInPage from "./pages/SignInPage/SignInPage";
 import LoggedIn from "./pages/LoggedIn/LoggedIn";
 import Navbar from "./components/Navbar/Navbar";
 import Recipe from "./pages/Recipes/Recipes";
+import RecipeDetail from "./components/RecipeDetail/RecipeDetail";
 import MealPlan from "./pages/MealPlan/MealPlan";
 import NutritionTipsPage from "./pages/NutritionTipsPage/NutritionTipsPage";
 import ProfilePage from "./pages/Profilepage/ProfilePage";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop"; // Import the new component
+import { ToastProvider } from "./contexts/ToastContext";
 
 function App() {
   // Initialize state from localStorage
@@ -63,68 +65,71 @@ function App() {
       {showNavbar && <Navbar isLoggedIn={isLoggedIn} />}
       <ScrollToTop /> {/* Add this component */}
       {showNavbar && <Navbar isLoggedIn={isLoggedIn} />}
-      <Routes>
-        {/* Public Routes */}
-        <Route path="/" element={<Home />} />
-        <Route
-          path="/signup"
-          element={<SignUpPage setIsLoggedIn={setIsLoggedIn} />}
-        />
-        <Route
-          path="/signin"
-          element={<SignInPage setIsLoggedIn={setIsLoggedIn} />}
-        />
-        {/* Protected Routes */}
-        <Route
-          path="/loggedin"
-          element={
-            <ProtectedRoute>
-              <LoggedIn setIsLoggedIn={handleLogout} />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/loggedin/recipes"
-          element={
-            <ProtectedRoute>
-              <Recipe />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/loggedin/meal-plans"
-          element={
-            <ProtectedRoute>
-              <MealPlan />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/loggedin/nutritional-tips"
-          element={
-            <ProtectedRoute>
-              <NutritionTipsPage />
-            </ProtectedRoute>
-          }
-        />
-        // Add this route in your protected routes section
-        <Route
-          path="/loggedin/profile"
-          element={
-            <ProtectedRoute>
-              <ProfilePage setIsLoggedIn={setIsLoggedIn} />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/loggedin/*"
-          element={
-            <ProtectedRoute>
-              <LoggedIn setIsLoggedIn={handleLogout} />
-            </ProtectedRoute>
-          }
-        />
-      </Routes>
+      <ToastProvider>
+        <Routes>
+          {/* Public Routes */}
+          <Route path="/" element={<Home />} />
+          <Route
+            path="/signup"
+            element={<SignUpPage setIsLoggedIn={setIsLoggedIn} />}
+          />
+          <Route
+            path="/signin"
+            element={<SignInPage setIsLoggedIn={setIsLoggedIn} />}
+          />
+          {/* Protected Routes */}
+          <Route
+            path="/loggedin"
+            element={
+              <ProtectedRoute>
+                <LoggedIn setIsLoggedIn={handleLogout} />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/loggedin/recipes"
+            element={
+              <ProtectedRoute>
+                <Recipe />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="/recipe/:id" element={<RecipeDetail />} />
+          <Route
+            path="/loggedin/meal-plans"
+            element={
+              <ProtectedRoute>
+                <MealPlan />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/loggedin/nutritional-tips"
+            element={
+              <ProtectedRoute>
+                <NutritionTipsPage />
+              </ProtectedRoute>
+            }
+          />
+          // Add this route in your protected routes section
+          <Route
+            path="/loggedin/profile"
+            element={
+              <ProtectedRoute>
+                <ProfilePage setIsLoggedIn={setIsLoggedIn} />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/loggedin/*"
+            element={
+              <ProtectedRoute>
+                <LoggedIn setIsLoggedIn={handleLogout} />
+              </ProtectedRoute>
+            }
+          />
+        </Routes>
+      </ToastProvider>
     </div>
   );
 }

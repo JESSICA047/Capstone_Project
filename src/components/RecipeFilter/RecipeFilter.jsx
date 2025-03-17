@@ -1,91 +1,146 @@
-import React from "react";
-import { fitnessPlans } from "../PlanFilter/PlanFilter";
+import React, { useState } from "react";
 import "./RecipeFilter.css";
 
-const mealTypeEmojis = {
-  Breakfast: "🍳",
-  Lunch: "🍽️",
-  Dinner: "🌙",
-  Snack: "🥨",
-};
+const RecipeFilter = ({
+  activeFilters,
+  setActiveFilters,
+  searchQuery,
+  setSearchQuery,
+}) => {
+  const mealTypes = ["Breakfast", "Lunch", "Dinner", "Snack"];
+  const foodGroups = ["Protein", "Grain", "Vegetable", "Fruit"];
+  const fitnessPlans = [
+    "Weight Loss",
+    "Muscle Gain",
+    "Performance",
+    "Wellness",
+    "Strength Training",
+    "Lean Muscle",
+  ];
+  const dietaryPreferences = [
+    "Vegetarian",
+    "Vegan",
+    "Gluten-Free",
+    "Dairy-Free",
+    "Low-Carb",
+    "High-Protein",
+  ];
 
-const foodGroupEmojis = {
-  Protein: "🥩",
-  Vegetable: "🥬",
-  Grain: "🌾",
-  Fruit: "🍎",
-};
+  const handleSearchChange = (e) => {
+    setSearchQuery(e.target.value);
+  };
 
-const RecipeFilter = ({ activeFilters, setActiveFilters }) => {
-  const handleFilterChange = (category, type) => {
+  const toggleFilter = (filterType, value) => {
     setActiveFilters((prev) => {
-      const newFilters = { ...prev };
-      const categoryArray = newFilters[category];
+      const currentFilters = [...prev[filterType]];
+      const index = currentFilters.indexOf(value);
 
-      if (categoryArray.includes(type)) {
-        // Remove the filter if it's already active
-        newFilters[category] = categoryArray.filter((item) => item !== type);
+      if (index === -1) {
+        return { ...prev, [filterType]: [...currentFilters, value] };
       } else {
-        // Add the filter if it's not active
-        newFilters[category] = [...categoryArray, type];
+        currentFilters.splice(index, 1);
+        return { ...prev, [filterType]: currentFilters };
       }
-
-      return newFilters;
     });
+  };
+
+  const clearFilters = () => {
+    setActiveFilters({
+      mealTypes: [],
+      foodGroups: [],
+      fitnessPlans: [],
+      dietaryPreferences: [],
+    });
+    setSearchQuery("");
   };
 
   return (
     <div className="recipe-filter">
+      <div className="search-container">
+        <input
+          type="text"
+          placeholder="Search recipes..."
+          value={searchQuery}
+          onChange={handleSearchChange}
+          className="search-input"
+        />
+      </div>
+
+      {/* Keep your existing filter sections */}
       <div className="filter-section">
-        <h3>🎯 Fitness Plans</h3>
+        <h3>Meal Type</h3>
         <div className="filter-options">
-          {Object.entries(fitnessPlans).map(([planName, planInfo]) => (
-            <label key={planInfo.id}>
-              <input
-                type="checkbox"
-                checked={activeFilters.fitnessPlans?.includes(planName)}
-                onChange={() => handleFilterChange("fitnessPlans", planName)}
-              />
-              <span className="plan-icon-small">{planInfo.icon}</span>
-              {planName}
-            </label>
+          {mealTypes.map((type) => (
+            <button
+              key={type}
+              className={`filter-button ${
+                activeFilters.mealTypes.includes(type) ? "active" : ""
+              }`}
+              onClick={() => toggleFilter("mealTypes", type)}
+            >
+              {type}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Keep your existing food group and fitness plan filters */}
+
+      {/* Add dietary preferences filter */}
+      <div className="filter-section">
+        <h3>Dietary Preferences</h3>
+        <div className="filter-options">
+          {dietaryPreferences.map((pref) => (
+            <button
+              key={pref}
+              className={`filter-button ${
+                activeFilters.dietaryPreferences?.includes(pref) ? "active" : ""
+              }`}
+              onClick={() => toggleFilter("dietaryPreferences", pref)}
+            >
+              {pref}
+            </button>
           ))}
         </div>
       </div>
 
       <div className="filter-section">
-        <h3>⏰ Meal Types</h3>
+        <h3>Fitness Plan</h3>
         <div className="filter-options">
-          {Object.entries(mealTypeEmojis).map(([type, emoji]) => (
-            <label key={type}>
-              <input
-                type="checkbox"
-                checked={activeFilters.mealTypes.includes(type)}
-                onChange={() => handleFilterChange("mealTypes", type)}
-              />
-              <span className="category-emoji">{emoji}</span>
-              {type}
-            </label>
+          {fitnessPlans.map((plan) => (
+            <button
+              key={plan}
+              className={`filter-button ${
+                activeFilters.fitnessPlans.includes(plan) ? "active" : ""
+              }`}
+              onClick={() => toggleFilter("fitnessPlans", plan)}
+            >
+              {plan}
+            </button>
           ))}
         </div>
       </div>
 
       <div className="filter-section">
-        <h3>🥗 Food Groups</h3>
+        <h3>Food Groups</h3>
         <div className="filter-options">
-          {Object.entries(foodGroupEmojis).map(([type, emoji]) => (
-            <label key={type}>
-              <input
-                type="checkbox"
-                checked={activeFilters.foodGroups.includes(type)}
-                onChange={() => handleFilterChange("foodGroups", type)}
-              />
-              <span className="category-emoji">{emoji}</span>
-              {type}
-            </label>
+          {foodGroups.map((group) => (
+            <button
+              key={group}
+              className={`filter-button ${
+                activeFilters.foodGroups.includes(group) ? "active" : ""
+              }`}
+              onClick={() => toggleFilter("foodGroups", group)}
+            >
+              {group}
+            </button>
           ))}
         </div>
       </div>
+
+      <button className="clear-filters-button" onClick={clearFilters}>
+        Clear All Filters
+      </button>
     </div>
   );
 };

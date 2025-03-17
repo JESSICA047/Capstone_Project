@@ -59,6 +59,11 @@ function NavbarLogin({ setIsLoggedIn }) {
           </a>
         </div>
 
+        {/* Add the mobile menu toggle button */}
+        <button className="menu-toggle" onClick={toggleMenu}>
+          {isMenuOpen ? "✕" : "☰"}
+        </button>
+
         <ul className={`navbar-menu ${isMenuOpen ? "active" : ""}`}>
           <li>
             <button

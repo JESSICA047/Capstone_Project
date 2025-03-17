@@ -1,100 +1,231 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import NavbarLogin from "../../components/NavbarLogin/NavbarLogin";
 import FooterLogin from "../../components/FooterLogin/FooterLogin";
-import PlanFilter, {
-  fitnessPlans,
-} from "../../components/PlanFilter/PlanFilter";
-import { recipes, recipes_list } from "../../assets/assets";
+import PlanFilter from "../../components/PlanFilter/PlanFilter";
+import { recipes_list } from "../../assets/assets";
+import { recipes } from "../../assets/assets";
+import { useToast } from "../../contexts/ToastContext";
 import "./MealPlan.css";
 
-const daysOfWeek = [
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-  "Sunday",
-];
-
-const mealTypes = ["Breakfast", "Lunch", "Dinner", "Snack"];
-
-const calculateDailyNutrition = (dayMeals) => {
-  let total = {
+const MealPlan = () => {
+  const navigate = useNavigate();
+  const { showToast } = useToast();
+  const [selectedDay, setSelectedDay] = useState("Monday");
+  const [selectedPlan, setSelectedPlan] = useState("All");
+  const [showMealSelector, setShowMealSelector] = useState(false);
+  const [showNutrition, setShowNutrition] = useState(false);
+  const [currentMealType, setCurrentMealType] = useState("");
+  const [mealPlan, setMealPlan] = useState({});
+  const [hasMealsPlanned, setHasMealsPlanned] = useState(false);
+  const [dailyNutrition, setDailyNutrition] = useState({
     calories: 0,
     protein: 0,
     carbs: 0,
     fats: 0,
-  };
-
-  Object.values(dayMeals).forEach((meal) => {
-    if (meal) {
-      // Example nutrition values - in real app, these would come from your database
-      total.calories += 300; // Example value
-      total.protein += 20;
-      total.carbs += 30;
-      total.fats += 10;
-    }
   });
 
-  return total;
-};
+  const daysOfWeek = [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
+  ];
 
-const MealPlan = () => {
-  const [selectedDay, setSelectedDay] = useState("Monday");
-  const [selectedPlan, setSelectedPlan] = useState("Weight Loss");
-  const [showMealSelector, setShowMealSelector] = useState(false);
-  const [currentMealType, setCurrentMealType] = useState(null);
-  const [mealPlan, setMealPlan] = useState(
-    daysOfWeek.reduce((acc, day) => {
-      acc[day] = {
-        Breakfast: null,
-        Lunch: null,
-        Dinner: null,
-        Snack: null,
+  const mealTypes = ["Breakfast", "Lunch", "Dinner", "Snack"];
+
+  // Initialize empty meal plan
+  const emptyMealPlan = daysOfWeek.reduce((acc, day) => {
+    acc[day] = {};
+    mealTypes.forEach((type) => {
+      acc[day][type] = null;
+    });
+    return acc;
+  }, {});
+
+  // Load meal plan from localStorage when component mounts
+  useEffect(() => {
+    const savedMealPlan = JSON.parse(localStorage.getItem("mealPlan") || "[]");
+
+    if (savedMealPlan.length > 0) {
+      // Transform the flat array into a structured object by day and meal type
+      const transformedMealPlan = { ...emptyMealPlan };
+
+      savedMealPlan.forEach((item) => {
+        // Find the full recipe data
+        const fullRecipe = recipes_list.find((r) => r.id === item.recipeId);
+
+        if (fullRecipe && item.day && item.meal) {
+          transformedMealPlan[item.day][item.meal] = {
+            ...fullRecipe,
+            dateAdded: item.dateAdded,
+          };
+        }
+      });
+
+      setMealPlan(transformedMealPlan);
+      setHasMealsPlanned(true);
+    } else {
+      setMealPlan(emptyMealPlan);
+    }
+  }, []);
+
+  // Calculate and update daily nutrition whenever the selected day or meal plan changes
+  useEffect(() => {
+    if (mealPlan && mealPlan[selectedDay]) {
+      const dayMeals = Object.values(mealPlan[selectedDay]).filter(
+        (meal) => meal !== null
+      );
+
+      const totals = {
+        calories: 0,
+        protein: 0,
+        carbs: 0,
+        fats: 0,
       };
-      return acc;
-    }, {})
-  );
-  const [showNutrition, setShowNutrition] = useState(false);
+
+      dayMeals.forEach((meal) => {
+        if (meal) {
+          totals.calories += meal.calories || 0;
+          totals.protein += meal.protein || 0;
+          totals.carbs += meal.carbs || 0;
+          totals.fats += meal.fat || 0; // Note: recipe data uses 'fat' not 'fats'
+        }
+      });
+
+      setDailyNutrition(totals);
+    }
+  }, [selectedDay, mealPlan]);
+
+  // Check if any meals are planned when mealPlan changes
+  useEffect(() => {
+    const hasAnyMeals = Object.values(mealPlan).some((day) =>
+      Object.values(day).some((meal) => meal !== null)
+    );
+    setHasMealsPlanned(hasAnyMeals);
+  }, [mealPlan]);
+
+  // Update localStorage when meal plan changes
+  useEffect(() => {
+    if (Object.keys(mealPlan).length > 0) {
+      // Convert the structured meal plan back to a flat array for localStorage
+      const storageFormat = [];
+
+      Object.entries(mealPlan).forEach(([day, meals]) => {
+        Object.entries(meals).forEach(([mealType, recipe]) => {
+          if (recipe) {
+            storageFormat.push({
+              day,
+              meal: mealType,
+              recipeId: recipe.id,
+              recipeName: recipe.name,
+              recipeImage: recipe.image,
+              recipeCalories: recipe.calories || 0,
+              recipeProtein: recipe.protein || 0,
+              recipeCarbs: recipe.carbs || 0,
+              recipeFat: recipe.fat || 0,
+              dateAdded: recipe.dateAdded || new Date().toISOString(),
+            });
+          }
+        });
+      });
+
+      localStorage.setItem("mealPlan", JSON.stringify(storageFormat));
+    }
+  }, [mealPlan]);
+
+  const handlePlanChange = (plan) => {
+    setSelectedPlan(plan);
+  };
 
   const handleAddMeal = (mealType) => {
     setCurrentMealType(mealType);
     setShowMealSelector(true);
   };
 
-  const handlePlanChange = (plan) => {
-    setSelectedPlan(plan);
-  };
-
   const handleSelectMeal = (recipe) => {
-    setMealPlan((prev) => ({
-      ...prev,
-      [selectedDay]: {
-        ...prev[selectedDay],
-        [currentMealType]: recipe,
-      },
-    }));
-    setShowMealSelector(false);
-    setCurrentMealType(null);
-  };
+    const updatedMealPlan = { ...mealPlan };
+    updatedMealPlan[selectedDay][currentMealType] = {
+      ...recipe,
+      dateAdded: new Date().toISOString(),
+    };
 
-  const getFilteredRecipes = () => {
-    return recipes_list.filter(
-      (recipe) =>
-        recipe.category.includes(currentMealType) &&
-        recipe.category.includes(selectedPlan)
+    setMealPlan(updatedMealPlan);
+    setShowMealSelector(false);
+    showToast(
+      `${recipe.name} added to your ${selectedDay} ${currentMealType}`,
+      "success"
     );
   };
 
-  const dailyNutrition = calculateDailyNutrition(mealPlan[selectedDay]);
+  const handleRemoveMeal = (mealType) => {
+    const mealName = mealPlan[selectedDay][mealType]?.name || "Meal";
+
+    const updatedMealPlan = { ...mealPlan };
+    updatedMealPlan[selectedDay][mealType] = null;
+
+    setMealPlan(updatedMealPlan);
+    showToast(`${mealName} removed from your meal plan`, "info");
+  };
+
+  const handleClearMealPlan = () => {
+    if (
+      window.confirm("Are you sure you want to clear your entire meal plan?")
+    ) {
+      setMealPlan(emptyMealPlan);
+      localStorage.removeItem("mealPlan");
+      showToast("Meal plan has been cleared", "info");
+    }
+  };
+
+  // Fix getFilteredRecipes to return an array
+  const getFilteredRecipes = () => {
+    return recipes_list.filter((recipe) => {
+      // First check if this recipe is appropriate for the current meal type
+      const matchesMealType = recipe.category.some(
+        (cat) =>
+          cat === currentMealType ||
+          (currentMealType === "Breakfast" && cat === "Breakfast") ||
+          (currentMealType === "Lunch" &&
+            (cat === "Lunch" || cat === "Dinner")) ||
+          (currentMealType === "Dinner" &&
+            (cat === "Dinner" || cat === "Lunch")) ||
+          (currentMealType === "Snack" && cat === "Snack")
+      );
+
+      // Then check if it matches the selected fitness plan
+      const matchesPlan =
+        selectedPlan === "All" ||
+        recipe.category.some(
+          (cat) =>
+            cat === selectedPlan ||
+            (selectedPlan === "Weight Loss" &&
+              (cat === "Weight Loss" || cat === "Wellness")) ||
+            (selectedPlan === "Muscle Gain" &&
+              (cat === "Muscle Gain" ||
+                cat === "Performance" ||
+                cat === "Lean Muscle")) ||
+            (selectedPlan === "Performance" &&
+              (cat === "Performance" || cat === "Protein"))
+        );
+
+      return matchesMealType && matchesPlan;
+    });
+  };
+
+  // Safely access image
+  const headerImage =
+    recipes && recipes.recipe ? recipes.recipe : "path/to/default/image";
 
   return (
     <div className="meal-plan-page">
       <NavbarLogin />
       <div className="meal-plan-header">
         <img
-          src={recipes.recipe}
+          src={headerImage}
           alt="Meal Plan Header"
           className="meal-plan-header-image"
         />
@@ -142,10 +273,12 @@ const MealPlan = () => {
 
           <div className="sidebar-section">
             <h3>Quick Actions</h3>
+            {/* Remove the redundant image in the sidebar */}
             <div className="quick-actions">
               <button
                 className="action-button"
                 onClick={() => setShowNutrition(!showNutrition)}
+                disabled={!hasMealsPlanned}
               >
                 <span className="button-icon">📊</span>
                 Detailed Nutrition
@@ -158,9 +291,13 @@ const MealPlan = () => {
                 <span className="button-icon">📱</span>
                 Share Plan
               </button>
-              <button className="action-button">
-                <span className="button-icon">💾</span>
-                Save Plan
+              <button
+                className="action-button"
+                onClick={handleClearMealPlan}
+                disabled={!hasMealsPlanned}
+              >
+                <span className="button-icon">🗑️</span>
+                Clear Plan
               </button>
             </div>
           </div>
@@ -184,13 +321,19 @@ const MealPlan = () => {
               <div key={mealType} className="meal-slot">
                 <div className="meal-slot-header">
                   <h3>{mealType}</h3>
-                  {mealPlan[selectedDay][mealType] && (
-                    <div className="meal-slot-nutrition">
-                      <span>300 kcal</span>
-                    </div>
-                  )}
+                  {mealPlan &&
+                    mealPlan[selectedDay] &&
+                    mealPlan[selectedDay][mealType] && (
+                      <div className="meal-slot-nutrition">
+                        <span>
+                          {mealPlan[selectedDay][mealType].calories || 0} kcal
+                        </span>
+                      </div>
+                    )}
                 </div>
-                {mealPlan[selectedDay][mealType] ? (
+                {mealPlan &&
+                mealPlan[selectedDay] &&
+                mealPlan[selectedDay][mealType] ? (
                   <div className="planned-meal">
                     <img
                       src={mealPlan[selectedDay][mealType].image}
@@ -211,24 +354,37 @@ const MealPlan = () => {
                                 "Snack",
                               ].includes(cat)
                           )
+                          .slice(0, 2) // Limit to first 2 tags
                           .map((tag, index) => (
                             <span key={index} className="meal-tag">
                               {tag}
                             </span>
                           ))}
+                        {mealPlan[selectedDay][mealType].category.filter(
+                          (cat) =>
+                            !["Breakfast", "Lunch", "Dinner", "Snack"].includes(
+                              cat
+                            )
+                        ).length > 2 && (
+                          <span className="meal-tag more-tag">
+                            +
+                            {mealPlan[selectedDay][mealType].category.filter(
+                              (cat) =>
+                                ![
+                                  "Breakfast",
+                                  "Lunch",
+                                  "Dinner",
+                                  "Snack",
+                                ].includes(cat)
+                            ).length - 2}
+                          </span>
+                        )}
                       </div>
                     </div>
                     <button
                       className="remove-meal-button"
-                      onClick={() => {
-                        setMealPlan((prev) => ({
-                          ...prev,
-                          [selectedDay]: {
-                            ...prev[selectedDay],
-                            [mealType]: null,
-                          },
-                        }));
-                      }}
+                      onClick={() => handleRemoveMeal(mealType)}
+                      aria-label={`Remove ${mealPlan[selectedDay][mealType].name}`}
                     >
                       ×
                     </button>
@@ -256,45 +412,67 @@ const MealPlan = () => {
               Recommended meals for your {selectedPlan} Plan
             </p>
             <div className="recipe-grid">
-              {getFilteredRecipes().map((recipe) => (
-                <div
-                  key={recipe.id}
-                  className="recipe-card"
-                  onClick={() => handleSelectMeal(recipe)}
-                >
-                  <img src={recipe.image} alt={recipe.name} />
-                  <h4>{recipe.name}</h4>
-                  <p>{recipe.description}</p>
-                  <div className="recipe-tags">
-                    {recipe.category
-                      .filter(
-                        (cat) =>
-                          cat !== currentMealType &&
-                          cat !== selectedPlan &&
-                          !["Breakfast", "Lunch", "Dinner", "Snack"].includes(
-                            cat
-                          )
-                      )
-                      .map((tag, index) => (
-                        <span key={index} className="recipe-tag">
-                          {tag}
+              {getFilteredRecipes().length > 0 ? (
+                getFilteredRecipes().map((recipe) => (
+                  <div
+                    key={recipe.id}
+                    className="recipe-card"
+                    onClick={() => handleSelectMeal(recipe)}
+                  >
+                    <img src={recipe.image} alt={recipe.name} />
+                    <h4>{recipe.name}</h4>
+                    <p>{recipe.description}</p>
+                    <div className="recipe-nutrition">
+                      {recipe.calories && (
+                        <span className="nutrition-badge">
+                          {recipe.calories} cal
                         </span>
-                      ))}
+                      )}
+                      {recipe.protein && (
+                        <span className="nutrition-badge">
+                          {recipe.protein}g protein
+                        </span>
+                      )}
+                    </div>
+                    <div className="recipe-tags">
+                      {recipe.category
+                        .filter(
+                          (cat) =>
+                            cat !== currentMealType &&
+                            cat !== selectedPlan &&
+                            !["Breakfast", "Lunch", "Dinner", "Snack"].includes(
+                              cat
+                            )
+                        )
+                        .slice(0, 3)
+                        .map((tag, index) => (
+                          <span key={index} className="recipe-tag">
+                            {tag}
+                          </span>
+                        ))}
+                    </div>
                   </div>
+                ))
+              ) : (
+                <div className="no-recipes-message">
+                  <p>No recipes found for this meal type and plan.</p>
+                  <p>Try selecting a different plan or add custom recipes.</p>
                 </div>
-              ))}
+              )}
             </div>
-            <button
-              className="close-modal-button"
-              onClick={() => setShowMealSelector(false)}
-            >
-              Cancel
-            </button>
+            <div className="modal-actions">
+              <button
+                className="close-modal-button"
+                onClick={() => setShowMealSelector(false)}
+              >
+                Cancel
+              </button>
+            </div>
           </div>
         </div>
       )}
 
-      {showNutrition && (
+      {showNutrition && mealPlan && mealPlan[selectedDay] && (
         <div className="nutrition-modal">
           <div className="modal-content">
             <h2>Detailed Nutrition Information</h2>
@@ -309,19 +487,19 @@ const MealPlan = () => {
                       <div className="nutrition-grid">
                         <div className="nutrition-item">
                           <span>Calories</span>
-                          <span>300 kcal</span>
+                          <span>{meal.calories || 0} kcal</span>
                         </div>
                         <div className="nutrition-item">
                           <span>Protein</span>
-                          <span>20g</span>
+                          <span>{meal.protein || 0}g</span>
                         </div>
                         <div className="nutrition-item">
                           <span>Carbs</span>
-                          <span>30g</span>
+                          <span>{meal.carbs || 0}g</span>
                         </div>
                         <div className="nutrition-item">
                           <span>Fats</span>
-                          <span>10g</span>
+                          <span>{meal.fat || 0}g</span>
                         </div>
                       </div>
                     </div>
@@ -349,12 +527,14 @@ const MealPlan = () => {
                 </div>
               </div>
             </div>
-            <button
-              className="close-modal-button"
-              onClick={() => setShowNutrition(false)}
-            >
-              Close
-            </button>
+            <div className="modal-actions">
+              <button
+                className="close-modal-button"
+                onClick={() => setShowNutrition(false)}
+              >
+                Close
+              </button>
+            </div>
           </div>
         </div>
       )}

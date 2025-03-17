@@ -1,60 +1,52 @@
 import React from "react";
 import "./PlanFilter.css";
 
-export const fitnessPlans = {
-  "Weight Loss": {
-    id: "weight-loss",
-    description: "Calorie-controlled meals to support healthy weight loss",
-    icon: "🏋️‍♂️",
-  },
-  "Muscle Gain": {
-    id: "muscle-gain",
-    description: "High-protein meals for muscle building and recovery",
-    icon: "💪",
-  },
-  Wellness: {
-    id: "wellness",
-    description: "Balanced nutrition for overall health and vitality",
-    icon: "🌱",
-  },
-  Performance: {
-    id: "performance",
-    description: "Energy-optimized meals for athletic performance",
-    icon: "🎯",
-  },
-  "Strength Training": {
-    id: "strength",
-    description: "Power-packed meals for strength and endurance",
-    icon: "🏋️",
-  },
-  "Lean Muscle": {
-    id: "lean-muscle",
-    description: "Clean eating for lean muscle development",
-    icon: "⚡",
-  },
-};
-
 const PlanFilter = ({ selectedPlan, onPlanChange }) => {
+  const plans = [
+    {
+      id: "All",
+      icon: "�️",
+      title: "All Plans",
+      description: "View recipes from all meal plans",
+    },
+    {
+      id: "Weight Loss",
+      icon: "⚖️",
+      title: "Weight Loss",
+      description: "Lower calorie meals with balanced nutrition",
+    },
+    {
+      id: "Muscle Gain",
+      icon: "💪",
+      title: "Muscle Gain",
+      description: "High protein meals for muscle building",
+    },
+    {
+      id: "Performance",
+      icon: "�",
+      title: "Performance",
+      description: "Balanced meals for optimal performance",
+    },
+  ];
+
   return (
-    <div className="plan-filter">
-      <h2>Fitness Goals</h2>
-      <div className="plan-options">
-        {Object.entries(fitnessPlans).map(([planName, planInfo]) => (
-          <button
-            key={planInfo.id}
-            className={`plan-button ${
-              selectedPlan === planName ? "active" : ""
-            }`}
-            onClick={() => onPlanChange(planName)}
-          >
-            <span className="plan-icon">{planInfo.icon}</span>
-            <div className="plan-info">
-              <h3>{planName}</h3>
-              <p>{planInfo.description}</p>
-            </div>
-          </button>
-        ))}
-      </div>
+    <div className="sidebar-section plan-filter">
+      <h3>Fitness Plans</h3>
+      {plans.map((plan) => (
+        <button
+          key={plan.id}
+          className={`fitness-plan-button ${
+            selectedPlan === plan.id ? "active" : ""
+          }`}
+          onClick={() => onPlanChange(plan.id)}
+        >
+          <span className="plan-icon">{plan.icon}</span>
+          <div className="plan-info">
+            <span className="plan-title">{plan.title}</span>
+            <span className="plan-description">{plan.description}</span>
+          </div>
+        </button>
+      ))}
     </div>
   );
 };
