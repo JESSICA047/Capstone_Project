@@ -123,7 +123,7 @@ function NavbarLogin({ setIsLoggedIn }) {
         >
           <img src={assets.logo_login} alt="" />
           <p>
-            Hello, <span>User!</span>
+            Hello,<span>User!</span>
           </p>
           <UserDropdown
             setIsLoggedIn={setIsLoggedIn}

@@ -60,22 +60,15 @@ function UserDropdown({ setIsLoggedIn, isOpen, onClose }) {
 
           <button
             onClick={() => {
-              navigate("/loggedin/settings");
-              onClose();
-            }}
-          >
-            <span className="menu-icon">⚙️</span>
-            <span>Settings</span>
-          </button>
-
-          <button
-            onClick={() => {
-              navigate("/loggedin/saved");
+              // Navigate to profile page with saved-recipes tab active
+              navigate("/loggedin/profile", {
+                state: { activeTab: "saved-recipes" },
+              });
               onClose();
             }}
           >
             <span className="menu-icon">❤️</span>
-            <span>Saved Items</span>
+            <span>Saved Recipes</span>
           </button>
         </div>
 

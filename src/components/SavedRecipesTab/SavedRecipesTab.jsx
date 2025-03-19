@@ -1,38 +1,57 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { assets } from "../../assets/assets";
-
+import "./SavedRecipesTab.css";
 
 const SavedRecipesTab = () => {
-  // Demo data for saved recipes
-  const savedRecipes = [
-    {
-      id: 1,
-      title: "Avocado & Egg Toast",
-      image: assets.lunch_1,
-      calories: 320,
-      protein: 15,
-      time: 10,
-      saved: "2023-10-15",
-    },
-    {
-      id: 2,
-      title: "Greek Yogurt with Berries",
-      image: assets.lunch_1,
-      calories: 220,
-      protein: 18,
-      time: 5,
-      saved: "2023-10-10",
-    },
-    {
-      id: 3,
-      title: "Chicken Quinoa Bowl",
-      image: assets.lunch_1,
-      calories: 450,
-      protein: 35,
-      time: 25,
-      saved: "2023-09-25",
-    },
-  ];
+  const navigate = useNavigate();
+  const [savedRecipes, setSavedRecipes] = useState([]);
+
+  // Load saved recipes from localStorage when component mounts
+  useEffect(() => {
+    const loadSavedRecipes = () => {
+      try {
+        // Get saved recipes from localStorage
+        const savedRecipesJSON = localStorage.getItem("savedRecipes");
+        if (savedRecipesJSON) {
+          const parsedRecipes = JSON.parse(savedRecipesJSON);
+          setSavedRecipes(parsedRecipes);
+        }
+      } catch (error) {
+        console.error("Error loading saved recipes:", error);
+      }
+    };
+
+    loadSavedRecipes();
+  }, []);
+
+  // Handle removing a recipe from saved recipes
+  const handleRemoveRecipe = (recipeId) => {
+    try {
+      // Filter out the recipe to remove
+      const updatedRecipes = savedRecipes.filter(
+        (recipe) => recipe.id !== recipeId
+      );
+
+      // Update state
+      setSavedRecipes(updatedRecipes);
+
+      // Save to localStorage
+      localStorage.setItem("savedRecipes", JSON.stringify(updatedRecipes));
+    } catch (error) {
+      console.error("Error removing recipe:", error);
+    }
+  };
+
+  // Handle viewing full recipe details
+  const handleViewRecipe = (recipeId) => {
+    navigate(`/loggedin/recipe/${recipeId}`);
+  };
+
+  // Handle browsing all recipes
+  const handleBrowseRecipes = () => {
+    navigate("/loggedin/recipes");
+  };
 
   return (
     <div className="profile-section">
@@ -41,15 +60,15 @@ const SavedRecipesTab = () => {
       </div>
 
       <div className="saved-recipes">
-        {savedRecipes.length > 0 ? (
+        {savedRecipes && savedRecipes.length > 0 ? (
           <div className="recipe-cards">
             {savedRecipes.map((recipe) => (
               <div className="recipe-card" key={recipe.id}>
                 <div className="recipe-image">
-                  <img src={recipe.image} alt={recipe.title} />
+                  <img src={recipe.image} alt={recipe.title || recipe.name} />
                 </div>
                 <div className="recipe-details">
-                  <h3>{recipe.title}</h3>
+                  <h3>{recipe.title || recipe.name}</h3>
                   <div className="recipe-stats">
                     <div className="stat">
                       <span className="icon">🔥</span>
@@ -59,14 +78,26 @@ const SavedRecipesTab = () => {
                       <span className="icon">🍗</span>
                       <span>{recipe.protein}g protein</span>
                     </div>
-                    <div className="stat">
-                      <span className="icon">⏱️</span>
-                      <span>{recipe.time} mins</span>
-                    </div>
+                    {recipe.time && (
+                      <div className="stat">
+                        <span className="icon">⏱️</span>
+                        <span>{recipe.time} mins</span>
+                      </div>
+                    )}
                   </div>
                   <div className="recipe-actions">
-                    <button className="view-recipe-btn">View Recipe</button>
-                    <button className="remove-btn">Remove</button>
+                    <button
+                      className="view-recipe-btn"
+                      onClick={() => handleViewRecipe(recipe.id)}
+                    >
+                      View Recipe
+                    </button>
+                    <button
+                      className="remove-btn"
+                      onClick={() => handleRemoveRecipe(recipe.id)}
+                    >
+                      Remove
+                    </button>
                   </div>
                 </div>
               </div>
@@ -80,7 +111,12 @@ const SavedRecipesTab = () => {
               You haven't saved any recipes yet. Browse our recipes and click
               the save button to add them here!
             </p>
-            <button className="browse-recipes-btn">Browse Recipes</button>
+            <button
+              className="browse-recipes-btn"
+              onClick={handleBrowseRecipes}
+            >
+              Browse Recipes
+            </button>
           </div>
         )}
       </div>

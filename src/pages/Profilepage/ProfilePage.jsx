@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import NavbarLogin from "../../components/NavbarLogin/NavbarLogin";
 import FooterLogin from "../../components/FooterLogin/FooterLogin";
 import { assets } from "../../assets/assets";
@@ -24,7 +25,18 @@ const ProfilePage = ({ setIsLoggedIn }) => {
     cuisinePreferences: ["Italian", "Mediterranean", "Mexican"],
   });
 
-  const [activeTab, setActiveTab] = useState("personal");
+  // Get the location object to check for state
+  const location = useLocation();
+
+  // Set the active tab, with priority:
+  // 1. Tab specified in location state (from navigation)
+  // 2. Default to "personal"
+  const [activeTab, setActiveTab] = useState(() => {
+    if (location.state && location.state.activeTab) {
+      return location.state.activeTab;
+    }
+    return "personal";
+  });
 
   // Load user data from localStorage if available
   useEffect(() => {

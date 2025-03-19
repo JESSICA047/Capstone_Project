@@ -46,6 +46,39 @@ const MealPlan = () => {
     return acc;
   }, {});
 
+  // Add this function to your MealPlan.jsx component
+  const handleSaveRecipe = (recipe) => {
+    try {
+      // Get existing saved recipes
+      const savedRecipesJSON = localStorage.getItem("savedRecipes");
+      let savedRecipes = savedRecipesJSON ? JSON.parse(savedRecipesJSON) : [];
+
+      // Check if recipe is already saved
+      const isAlreadySaved = savedRecipes.some((item) => item.id === recipe.id);
+
+      if (!isAlreadySaved) {
+        // Prepare recipe data with timestamp
+        const recipeToSave = {
+          ...recipe,
+          savedAt: new Date().toISOString(),
+        };
+
+        // Add to saved recipes
+        savedRecipes.push(recipeToSave);
+
+        // Save to localStorage
+        localStorage.setItem("savedRecipes", JSON.stringify(savedRecipes));
+
+        showToast(`${recipe.name} added to your saved recipes`, "success");
+      } else {
+        showToast(`${recipe.name} is already in your saved recipes`, "info");
+      }
+    } catch (error) {
+      console.error("Error saving recipe:", error);
+      showToast("Could not save recipe", "error");
+    }
+  };
+
   // Load meal plan from localStorage when component mounts
   useEffect(() => {
     const savedMealPlan = JSON.parse(localStorage.getItem("mealPlan") || "[]");
@@ -334,6 +367,7 @@ const MealPlan = () => {
                 {mealPlan &&
                 mealPlan[selectedDay] &&
                 mealPlan[selectedDay][mealType] ? (
+                  // In the planned-meal div section (around line 368)
                   <div className="planned-meal">
                     <img
                       src={mealPlan[selectedDay][mealType].image}
@@ -360,34 +394,27 @@ const MealPlan = () => {
                               {tag}
                             </span>
                           ))}
-                        {mealPlan[selectedDay][mealType].category.filter(
-                          (cat) =>
-                            !["Breakfast", "Lunch", "Dinner", "Snack"].includes(
-                              cat
-                            )
-                        ).length > 2 && (
-                          <span className="meal-tag more-tag">
-                            +
-                            {mealPlan[selectedDay][mealType].category.filter(
-                              (cat) =>
-                                ![
-                                  "Breakfast",
-                                  "Lunch",
-                                  "Dinner",
-                                  "Snack",
-                                ].includes(cat)
-                            ).length - 2}
-                          </span>
-                        )}
+                        {/* ...existing code... */}
                       </div>
                     </div>
-                    <button
-                      className="remove-meal-button"
-                      onClick={() => handleRemoveMeal(mealType)}
-                      aria-label={`Remove ${mealPlan[selectedDay][mealType].name}`}
-                    >
-                      ×
-                    </button>
+                    <div className="meal-actions">
+                      <button
+                        className="save-recipe-button"
+                        onClick={() =>
+                          handleSaveRecipe(mealPlan[selectedDay][mealType])
+                        }
+                        aria-label={`Save ${mealPlan[selectedDay][mealType].name} to your recipes`}
+                      >
+                        ❤️ Save
+                      </button>
+                      <button
+                        className="remove-meal-button"
+                        onClick={() => handleRemoveMeal(mealType)}
+                        aria-label={`Remove ${mealPlan[selectedDay][mealType].name}`}
+                      >
+                        ×
+                      </button>
+                    </div>
                   </div>
                 ) : (
                   <button
@@ -450,6 +477,23 @@ const MealPlan = () => {
                             {tag}
                           </span>
                         ))}
+                    </div>
+                    <div className="recipe-selector-actions">
+                      <button
+                        className="select-recipe-btn"
+                        onClick={() => handleSelectMeal(recipe)}
+                      >
+                        Add to Plan
+                      </button>
+                      <button
+                        className="save-recipe-btn"
+                        onClick={(e) => {
+                          e.stopPropagation(); // Prevent selecting the meal
+                          handleSaveRecipe(recipe);
+                        }}
+                      >
+                        Save ❤️
+                      </button>
                     </div>
                   </div>
                 ))
