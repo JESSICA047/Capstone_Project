@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import "./SecurityTab.css";
+import { assets } from "../../assets/assets";
 
 const SecurityTab = () => {
   const [isChangingPassword, setIsChangingPassword] = useState(false);
@@ -21,6 +23,7 @@ const SecurityTab = () => {
     setSuccessMessage("");
   };
 
+  // In the SecurityTab.jsx file, update the handlePasswordChange function
   const handlePasswordChange = (e) => {
     e.preventDefault();
 
@@ -44,19 +47,29 @@ const SecurityTab = () => {
       return;
     }
 
-    // Here you would normally send an API request to update the password
-    // For demo purposes, we'll just show a success message
-    setSuccessMessage("Password changed successfully!");
-    setPasswordData({
-      currentPassword: "",
-      newPassword: "",
-      confirmPassword: "",
-    });
-    // Close the password change form after a delay
-    setTimeout(() => {
-      setIsChangingPassword(false);
-      setSuccessMessage("");
-    }, 2000);
+    // For demo purposes, we'll update any stored password in localStorage
+    try {
+      const userData = JSON.parse(localStorage.getItem("userData") || "{}");
+      // In a real app, you would hash the password
+      userData.password = passwordData.newPassword;
+      localStorage.setItem("userData", JSON.stringify(userData));
+
+      setSuccessMessage("Password changed successfully!");
+      setPasswordData({
+        currentPassword: "",
+        newPassword: "",
+        confirmPassword: "",
+      });
+
+      // Close the password change form after a delay
+      setTimeout(() => {
+        setIsChangingPassword(false);
+        setSuccessMessage("");
+      }, 2000);
+    } catch (error) {
+      console.error("Error updating password:", error);
+      setErrorMessage("Failed to update password. Please try again.");
+    }
   };
 
   return (

@@ -1,3 +1,4 @@
+/* Main Container */
 .meal-preferences-tab {
     background-color: white;
     border-radius: 12px;
@@ -5,6 +6,7 @@
     padding: 30px;
 }
 
+/* Section Header */
 .section-header {
     display: flex;
     justify-content: space-between;
@@ -34,34 +36,41 @@
     background-color: #c5e1a5;
 }
 
-/* Form Styling */
+/* Form Layout */
 .form-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+    gap: 24px;
     margin-bottom: 30px;
+}
+
+.form-group.wide {
+    grid-column: span 2;
 }
 
 .form-group {
     margin-bottom: 15px;
 }
 
+/* Form Elements Styling */
 .form-group label {
     display: block;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
     font-weight: 500;
-    color: #444;
+    color: #333;
+    font-size: 0.95rem;
 }
 
 .form-group input,
 .form-group select,
 .form-group textarea {
     width: 100%;
-    padding: 10px 12px;
+    padding: 12px 14px;
     border: 1px solid #ddd;
-    border-radius: 6px;
-    font-size: 0.95rem;
-    transition: border-color 0.3s;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background-color: #fff;
 }
 
 .form-group input:focus,
@@ -69,14 +78,25 @@
 .form-group textarea:focus {
     border-color: #8BC34A;
     outline: none;
-    box-shadow: 0 0 0 2px rgba(139, 195, 74, 0.2);
+    box-shadow: 0 0 0 3px rgba(139, 195, 74, 0.2);
+}
+
+.form-group select {
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 16px;
+    padding-right: 40px;
 }
 
 .form-group textarea {
-    height: 100px;
+    height: 120px;
     resize: vertical;
+    line-height: 1.5;
 }
 
+/* Nutrition and Cuisine Sections */
 .nutrition-targets,
 .cuisine-preferences {
     margin-top: 30px;
@@ -98,6 +118,54 @@
     gap: 15px;
 }
 
+.form-group.nutrition-input input {
+    text-align: center;
+    font-weight: 500;
+}
+
+.form-group.nutrition-input label {
+    text-align: center;
+}
+
+/* Checkbox Grid Styling */
+.checkbox-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    padding: 6px 8px;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.checkbox-item:hover {
+    background-color: #f0f0f0;
+}
+
+.checkbox-item input[type="checkbox"] {
+    margin-right: 8px;
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    accent-color: #8BC34A;
+}
+
+.checkbox-item label {
+    cursor: pointer;
+    font-size: 0.95rem;
+    margin-bottom: 0;
+    color: #444;
+}
+
+/* Legacy Cuisine Grid (for backwards compatibility) */
 .cuisine-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -124,48 +192,75 @@
     font-size: 0.9rem;
 }
 
+/* Section dividers */
+.form-section {
+    margin-bottom: 28px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.form-section-title {
+    font-size: 1.1rem;
+    color: #2E7D32;
+    margin-bottom: 16px;
+    font-weight: 500;
+}
+
+/* Form Buttons */
 .form-buttons {
     display: flex;
-    gap: 10px;
-    margin-top: 25px;
+    gap: 16px;
+    margin-top: 32px;
     justify-content: flex-end;
 }
 
 .save-button,
 .cancel-button {
-    padding: 10px 20px;
-    border-radius: 6px;
-    font-size: 0.9rem;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
     cursor: pointer;
     transition: all 0.3s ease;
+    min-width: 120px;
 }
 
 .save-button {
     background-color: #8BC34A;
     color: white;
     border: none;
+    box-shadow: 0 2px 4px rgba(139, 195, 74, 0.2);
 }
 
 .save-button:hover {
     background-color: #7cb342;
+    box-shadow: 0 4px 8px rgba(139, 195, 74, 0.3);
+    transform: translateY(-1px);
+}
+
+.save-button:active {
+    transform: translateY(0);
 }
 
 .cancel-button {
     background-color: #f5f5f5;
-    color: #666;
+    color: #444;
     border: 1px solid #ddd;
 }
 
 .cancel-button:hover {
-    background-color: #eee;
+    background-color: #e8e8e8;
+    color: #333;
 }
 
 /* Display Styling */
-.preferences-display {
+.preferences-display,
+.preference-display {
     padding: 10px 0;
 }
 
-.preferences-grid {
+.preferences-grid,
+.preference-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
@@ -176,6 +271,13 @@
     padding: 20px;
     border-radius: 8px;
     background-color: #f9f9f9;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.preference-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .preference-card h3 {
@@ -188,7 +290,7 @@
 
 .preference-item {
     display: flex;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
 }
 
 .preference-item .label {
@@ -199,6 +301,7 @@
 
 .preference-item .value {
     color: #333;
+    font-weight: 400;
 }
 
 .cuisine-display {
@@ -227,13 +330,20 @@
     font-size: 0.9rem;
     display: inline-block;
     border: 1px solid #c5e1a5;
+    transition: all 0.2s ease;
+}
+
+.cuisine-tag:hover {
+    background-color: #c5e1a5;
+    transform: translateY(-1px);
 }
 
 /* Responsive Design */
 @media (max-width: 1024px) {
 
     .form-grid,
-    .preferences-grid {
+    .preferences-grid,
+    .preference-grid {
         grid-template-columns: 1fr;
     }
 
@@ -241,7 +351,8 @@
         grid-template-columns: repeat(2, 1fr);
     }
 
-    .cuisine-grid {
+    .cuisine-grid,
+    .checkbox-grid {
         grid-template-columns: repeat(3, 1fr);
     }
 }
@@ -255,8 +366,23 @@
         font-size: 1.5rem;
     }
 
-    .cuisine-grid {
+    .cuisine-grid,
+    .checkbox-grid {
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    .form-group.wide {
+        grid-column: span 1;
+    }
+
+    .form-buttons {
+        margin-top: 25px;
+    }
+
+    .save-button,
+    .cancel-button {
+        padding: 10px 20px;
+        font-size: 0.95rem;
     }
 }
 
@@ -270,7 +396,8 @@
     }
 
     .nutrition-grid,
-    .cuisine-grid {
+    .cuisine-grid,
+    .checkbox-grid {
         grid-template-columns: 1fr;
     }
 
@@ -281,5 +408,10 @@
     .preference-item .label {
         width: 100%;
         margin-bottom: 4px;
+    }
+
+    .save-button,
+    .cancel-button {
+        min-width: 100%;
     }
 }

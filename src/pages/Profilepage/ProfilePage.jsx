@@ -52,12 +52,14 @@ const ProfilePage = ({ setIsLoggedIn }) => {
   }, []);
 
   // Render the active tab content
+  // In your renderActiveTab function:
   const renderActiveTab = () => {
     switch (activeTab) {
       case "personal":
         return (
           <PersonalInfoTab userData={userData} setUserData={setUserData} />
         );
+      // Fix the meal-preferences case in the renderActiveTab function
       case "meal-preferences":
         return (
           <MealPreferencesTab userData={userData} setUserData={setUserData} />

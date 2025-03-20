@@ -16,6 +16,7 @@ const PersonalInfoTab = ({ userData, setUserData }) => {
     e.preventDefault();
     setUserData(formData);
     localStorage.setItem("userData", JSON.stringify(formData));
+    window.dispatchEvent(new Event("userDataChanged"));
     setIsEditing(false);
   };
 

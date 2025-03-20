@@ -4,12 +4,14 @@ import { recipes_list } from "../../assets/assets";
 import NavbarLogin from "../NavbarLogin/NavbarLogin";
 import FooterLogin from "../FooterLogin/FooterLogin";
 import AddToMealPlanModal from "../AddToMealPlanModal/AddToMealPlanModal";
+import { useToast } from "../../contexts/ToastContext"; // Import the toast hook
 import "./RecipeDetail.css";
 
 const RecipeDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [showMealPlanModal, setShowMealPlanModal] = useState(false);
+  const { showToast } = useToast(); // Use the toast hook
 
   // Find the recipe by id
   const recipe = recipes_list.find((recipe) => recipe.id === parseInt(id));
@@ -17,11 +19,78 @@ const RecipeDetail = () => {
   if (!recipe) {
     return <div className="recipe-not-found">Recipe not found</div>;
   }
+  
 
   const handleAddToMealPlan = (mealPlanData) => {
-    // Add logic to save to meal plan
-    console.log("Added to meal plan:", mealPlanData);
-    setShowMealPlanModal(false);
+    try {
+      // Get current meal plan from localStorage
+      const mealPlanJSON = localStorage.getItem("mealPlan");
+      let mealPlan = mealPlanJSON ? JSON.parse(mealPlanJSON) : {};
+
+      // Initialize the day if it doesn't exist
+      if (!mealPlan[mealPlanData.day]) {
+        mealPlan[mealPlanData.day] = {};
+      }
+
+      // Add the recipe to the meal plan
+      mealPlan[mealPlanData.day][mealPlanData.meal] = {
+        id: recipe.id,
+        name: recipe.name,
+        image: recipe.image,
+        calories: recipe.calories,
+        protein: recipe.protein,
+        carbs: recipe.carbs,
+        fat: recipe.fat,
+        category: recipe.category || [],
+      };
+
+      // Save to localStorage
+      localStorage.setItem("mealPlan", JSON.stringify(mealPlan));
+
+      // Show toast notification instead of alert
+      showToast(
+        `${recipe.name} added to your meal plan for ${mealPlanData.day}'s ${mealPlanData.meal}`,
+        "success"
+      );
+      setShowMealPlanModal(false);
+    } catch (error) {
+      console.error("Error adding to meal plan:", error);
+      showToast("Could not add to meal plan", "error");
+    }
+  };
+
+  const handleSaveRecipe = () => {
+    try {
+      // Get existing saved recipes from localStorage
+      const savedRecipesJSON = localStorage.getItem("savedRecipes");
+      let savedRecipes = savedRecipesJSON ? JSON.parse(savedRecipesJSON) : [];
+
+      // Check if recipe is already saved (compare as numbers)
+      const isAlreadySaved = savedRecipes.some(
+        (item) => parseInt(item.id) === parseInt(recipe.id)
+      );
+
+      if (isAlreadySaved) {
+        // Show toast notification instead of alert
+        showToast(`${recipe.name} is already in your saved recipes`, "info");
+        return;
+      }
+
+      // Add to saved recipes
+      savedRecipes.push({
+        ...recipe,
+        savedAt: new Date().toISOString(),
+      });
+
+      // Save to localStorage
+      localStorage.setItem("savedRecipes", JSON.stringify(savedRecipes));
+
+      // Show toast notification instead of alert
+      showToast(`${recipe.name} added to your saved recipes`, "success");
+    } catch (error) {
+      console.error("Error saving recipe:", error);
+      showToast("Could not save recipe", "error");
+    }
   };
 
   return (
@@ -133,8 +202,8 @@ const RecipeDetail = () => {
             >
               <i className="fas fa-plus"></i> Add to Meal Plan
             </button>
-            <button className="save-recipe-btn">
-              <i className="fas fa-bookmark"></i> Save Recipe
+            <button className="save-recipe-button" onClick={handleSaveRecipe}>
+              <i className="fa fa-heart" aria-hidden="true"></i> Save
             </button>
           </div>
         </div>

@@ -10,6 +10,7 @@ function NavbarLogin({ setIsLoggedIn }) {
   const [menu, setMenu] = useState("home");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [userName, setUserName] = useState("User"); // Add state for user name
 
   // Set initial menu state based on location path
   useEffect(() => {
@@ -19,6 +20,43 @@ function NavbarLogin({ setIsLoggedIn }) {
     else if (path.includes("/meal-plans")) setMenu("meal-plans");
     else if (path.includes("/nutritional-tips")) setMenu("nutritional-tips");
   }, [location.pathname]);
+
+  // Load user name from localStorage
+  useEffect(() => {
+    try {
+      const userData = JSON.parse(localStorage.getItem("userData") || "{}");
+      if (userData && userData.name) {
+        // Get just the first name if there's a space
+        const firstName = userData.name.split(" ")[0];
+        setUserName(firstName);
+      }
+    } catch (error) {
+      console.error("Error loading user data:", error);
+    }
+  }, []); // Load on component mount
+
+  // Listen for user data changes
+  useEffect(() => {
+    const handleUserDataChange = () => {
+      try {
+        const userData = JSON.parse(localStorage.getItem("userData") || "{}");
+        if (userData && userData.name) {
+          const firstName = userData.name.split(" ")[0];
+          setUserName(firstName);
+        }
+      } catch (error) {
+        console.error("Error loading updated user data:", error);
+      }
+    };
+
+    // Listen for the custom event
+    window.addEventListener("userDataChanged", handleUserDataChange);
+
+    // Cleanup
+    return () => {
+      window.removeEventListener("userDataChanged", handleUserDataChange);
+    };
+  }, []);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -123,7 +161,8 @@ function NavbarLogin({ setIsLoggedIn }) {
         >
           <img src={assets.logo_login} alt="" />
           <p>
-            Hello,<span>User!</span>
+            Hello,<span>{userName}!</span>{" "}
+            {/* Changed from "User" to dynamic userName */}
           </p>
           <UserDropdown
             setIsLoggedIn={setIsLoggedIn}

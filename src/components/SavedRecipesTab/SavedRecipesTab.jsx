@@ -43,7 +43,7 @@ const SavedRecipesTab = () => {
     }
   };
 
-  // Handle viewing full recipe details
+  // Handle viewing a recipe - this navigates to the recipe details page
   const handleViewRecipe = (recipeId) => {
     navigate(`/loggedin/recipe/${recipeId}`);
   };

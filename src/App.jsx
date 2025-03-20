@@ -94,7 +94,7 @@ function App() {
               </ProtectedRoute>
             }
           />
-          <Route path="/recipe/:id" element={<RecipeDetail />} />
+          <Route path="/loggedin/recipe/:id" element={<RecipeDetail />} />
           <Route
             path="/loggedin/meal-plans"
             element={

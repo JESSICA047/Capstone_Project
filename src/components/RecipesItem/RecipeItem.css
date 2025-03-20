@@ -24,58 +24,58 @@
 }
 
 .recipe-image-container {
-  cursor: pointer;
-  transition: opacity 0.2s;
+    cursor: pointer;
+    transition: opacity 0.2s;
 }
 
 .recipe-image-container:hover {
-  opacity: 0.9;
+    opacity: 0.9;
 }
 
 .recipe-name {
-  cursor: pointer;
-  transition: color 0.2s;
+    cursor: pointer;
+    transition: color 0.2s;
 }
 
 .recipe-name:hover {
-  color: #2ecc71;
+    color: #2ecc71;
 }
 
 .view-recipe-button {
-  display: inline-block;
-  background-color: #2ecc71;
-  color: white;
-  padding: 0.6rem 1.2rem;
-  border-radius: 6px;
-  font-weight: 500;
-  text-decoration: none;
-  transition: background-color 0.2s;
-  cursor: pointer;
-  border: none;
+    display: inline-block;
+    background-color: #2ecc71;
+    color: white;
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background-color 0.2s;
+    cursor: pointer;
+    border: none;
 }
 
 .view-recipe-button:hover {
-  background-color: #2ecc71;
+    background-color: #2ecc71;
 }
 
 .add-to-meal-plan-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.4rem;
-  background-color: #f1f3f5;
-  color: #495057;
-  padding: 0.6rem 1.2rem;
-  border-radius: 6px;
-  font-weight: 500;
-  border: none;
-  transition: background-color 0.2s;
-  cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    background-color: #f1f3f5;
+    color: #495057;
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    font-weight: 500;
+    border: none;
+    transition: background-color 0.2s;
+    cursor: pointer;
 }
 
 .add-to-meal-plan-button:hover {
-  background-color: #e9ecef;
-  color: #212529;
+    background-color: #e9ecef;
+    color: #212529;
 }
 
 .recipe-image {
@@ -225,6 +225,26 @@
 .save-recipe-button:hover {
     background-color: #fd7e14;
     color: white;
+}
+
+.save-recipe-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    background-color: #f8f9fa;
+    color: #dc3545;
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    font-weight: 500;
+    border: none;
+    transition: background-color 0.2s, color 0.2s;
+    cursor: pointer;
+}
+
+.save-recipe-button:hover {
+    background-color: #dc3545;
+    color: black;
 }
 
 @media (max-width: 576px) {

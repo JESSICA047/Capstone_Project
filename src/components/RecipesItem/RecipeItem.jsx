@@ -22,7 +22,7 @@ const RecipeItem = ({
   const { showToast } = useToast(); // Use toast context for notifications
 
   const handleViewRecipe = () => {
-    navigate(`/recipe/${id}`);
+    navigate(`/loggedin/recipe/${id}`);
   };
 
   const handleAddToMealPlan = (mealPlanData) => {

@@ -84,8 +84,6 @@ const RecipeFilter = ({
         </div>
       </div>
 
-      {/* Keep your existing food group and fitness plan filters */}
-
       {/* Add dietary preferences filter */}
       <div className="filter-section">
         <h3>Dietary Preferences</h3>
