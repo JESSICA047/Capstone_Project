@@ -89,7 +89,7 @@ const NutritionTipsPage = () => {
             className="nutrition-tips-header-image"
           />
           <div className="nutrition-tips-header-content">
-            <h1>Nutrition Tips & Articles</h1>
+            <h1>Nutritional Tips & Articles</h1>
             <p>
               Stay updated with expert advice, science-backed nutrition
               insights, and inspiring stories to fuel your health and fitness
