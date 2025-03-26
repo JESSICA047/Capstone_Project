@@ -14,9 +14,11 @@ function Footer() {
             <h2>About Us</h2>
             <p>Get healthy and organized with MealPlanPro!</p>
             <p>
-              Discover a world of delicious and nutritious meal ideas, carefully
-              curated to suit your dietary needs and preferences. Plan your meal
-              for the week, daily and monthly
+              Discover a world of delicious and nutritious meal ideas,
+              <p>
+                carefully curated to suit your dietary needs and preferences.
+              </p>{" "}
+              Plan your meal for the week, daily and monthly
             </p>
             <p>
               Join our community today and start cooking your way to a
@@ -47,9 +49,7 @@ function Footer() {
           <span className="copyright">&copy;</span> 2025 FitFare. All rights
           reserved.
         </p>
-        <p>
-          Privacy Policy | Terms & Conditions
-        </p>
+        <p>Privacy Policy | Terms & Conditions</p>
       </div>
     </div>
   );

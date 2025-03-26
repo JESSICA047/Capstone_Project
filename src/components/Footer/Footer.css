@@ -61,17 +61,18 @@
   font-size: 16px;
 }
 
-.footer-center,
-.footer-right {
+.footer-left .footer-center,
+.footer-left.footer-right {
   flex: 1;
   padding: 0 15px;
-  margin-top: 0;
+  margin-top: 30rem;
   box-sizing: border-box;
 }
 
 .footer-center h3,
 .footer-right h3 {
   font-size: 20px;
+  margin-top: 4rem;
   margin-bottom: 20px;
   color: #fff;
   line-height: 1.3;

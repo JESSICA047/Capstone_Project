@@ -585,9 +585,10 @@ body {
     background: linear-gradient(45deg, #f5f7fa, #e9f0f7);
 }
 
-.section-header {
+.metrics-section .section-header {
     text-align: center;
-    margin-bottom: 3rem;
+    padding: 0rem 5rem;
+    /* margin-bottom: 3rem; */
 }
 
 .section-header h2 {
