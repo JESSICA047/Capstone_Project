@@ -5,6 +5,7 @@ import NavbarLogin from "../../components/NavbarLogin/NavbarLogin";
 import Faq from "../../components/Faq/Faq";
 import Testimonials from "../../components/Testimonials/Testimonials";
 import FooterLogin from "../../components/FooterLogin/FooterLogin";
+import ExploreLogin from "../../components/ExploreLogin/ExploreLogin";
 import { assets } from "../../assets/assets";
 import "./LoggedIn.css";
 import { useUserStats } from "../../contexts/UserStatsContext/UserStatsContext";
@@ -12,7 +13,7 @@ import { useUserStats } from "../../contexts/UserStatsContext/UserStatsContext";
 function LoggedIn({ setIsLoggedIn }) {
   const [scrollY, setScrollY] = useState(0);
   const [userName, setUserName] = useState("");
-  const [activeSection, setActiveSection] = useState("nutrition");
+  const [activeSection, setActiveSection] = useState("explore");
   const [showWelcome, setShowWelcome] = useState(true);
   const { userStats, updateStat } = useUserStats();
 
@@ -84,7 +85,6 @@ function LoggedIn({ setIsLoggedIn }) {
   return (
     <div className="logged-in-page">
       <NavbarLogin setIsLoggedIn={setIsLoggedIn} />
-
       {/* Welcome Animation Overlay */}
       <AnimatePresence>
         {showWelcome && (
@@ -106,7 +106,6 @@ function LoggedIn({ setIsLoggedIn }) {
           </motion.div>
         )}
       </AnimatePresence>
-
       {/* Hero Section with Parallax */}
       <section className="hero-section">
         <div
@@ -167,8 +166,7 @@ function LoggedIn({ setIsLoggedIn }) {
           </div>
         </motion.div>
       </section>
-
-      {/* Interactive Navigation Tabs */}
+      {/* Interactive Navigation Tabs  */}
       <section className="interactive-tabs">
         <div className="tab-container">
           <button
@@ -217,100 +215,12 @@ function LoggedIn({ setIsLoggedIn }) {
             className="tab-content"
           >
             {activeSection === "nutrition" && <NutritionSection />}
-            {activeSection === "explore" && <ExploreSection />}
+            {activeSection === "explore" && <ExploreLogin />}
             {activeSection === "testimonials" && <Testimonials />}
             {activeSection === "faq" && <Faq />}
           </motion.div>
         </AnimatePresence>
       </section>
-
-      {/* Featured Metrics and Progress */}
-      <section className="metrics-section">
-        <div className="section-header">
-          <h2>Your Nutrition Dashboard</h2>
-          <p>Track your progress and optimize your nutrition</p>
-        </div>
-
-        <div className="metrics-grid">
-          <div className="metric-card calories">
-            <div className="metric-icon">🔥</div>
-            <div className="metric-data">
-              <div className="metric-value">2,145</div>
-              <div className="metric-label">Avg. Daily Calories</div>
-            </div>
-            <div className="metric-chart">
-              <div className="bar-chart">
-                <div className="bar" style={{ height: "65%" }}></div>
-                <div className="bar" style={{ height: "80%" }}></div>
-                <div className="bar" style={{ height: "70%" }}></div>
-                <div className="bar" style={{ height: "90%" }}></div>
-                <div className="bar" style={{ height: "75%" }}></div>
-                <div className="bar" style={{ height: "85%" }}></div>
-                <div
-                  className="bar highlighted"
-                  style={{ height: "72%" }}
-                ></div>
-              </div>
-            </div>
-          </div>
-
-          <div className="metric-card macros">
-            <div className="metric-icon">🥩</div>
-            <div className="metric-data">
-              <div className="metric-value">Protein: 132g</div>
-              <div className="metric-label">Carbs: 214g • Fats: 67g</div>
-            </div>
-            <div className="metric-chart">
-              <div className="donut-chart">
-                <div className="donut-segment protein"></div>
-                <div className="donut-segment carbs"></div>
-                <div className="donut-segment fats"></div>
-              </div>
-            </div>
-          </div>
-
-          <div className="metric-card water">
-            <div className="metric-icon">💧</div>
-            <div className="metric-data">
-              <div className="metric-value">1.8L</div>
-              <div className="metric-label">Daily Water Intake</div>
-            </div>
-            <div className="metric-chart">
-              <div className="water-level">
-                <div className="water-wave"></div>
-              </div>
-            </div>
-          </div>
-
-          <div className="metric-card progress">
-            <div className="metric-icon">🎯</div>
-            <div className="metric-data">
-              <div className="metric-value">73%</div>
-              <div className="metric-label">Goal Progress</div>
-            </div>
-            <div className="metric-chart">
-              <div className="progress-ring">
-                <svg viewBox="0 0 100 100" width="70" height="70">
-                  <circle
-                    cx="50"
-                    cy="50"
-                    r="40"
-                    className="progress-ring-circle-bg"
-                  />
-                  <circle
-                    cx="50"
-                    cy="50"
-                    r="40"
-                    className="progress-ring-circle"
-                    style={{ strokeDashoffset: 251.2 * (1 - 0.73) }}
-                  />
-                </svg>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Recommended Plan Call-to-Action */}
       <section className="recommended-plan">
         <motion.div
@@ -362,7 +272,6 @@ function LoggedIn({ setIsLoggedIn }) {
           </div>
         </motion.div>
       </section>
-
       <FooterLogin />
     </div>
   );
@@ -460,79 +369,6 @@ const NutritionSection = () => {
             </div>
           </motion.div>
         </div>
-      </div>
-    </div>
-  );
-};
-
-// Explore Section Component
-const ExploreSection = () => {
-  const mealCategories = [
-    {
-      name: "Breakfast",
-      image: assets.oats,
-      description: "Start your day strong with protein-rich meals",
-      path: "/loggedin/recipes",
-    },
-    {
-      name: "Lunch",
-      image: assets.biriyani,
-      description: "Fuel your afternoon with balanced nutrition",
-      path: "/loggedin/recipes",
-    },
-    {
-      name: "Dinner",
-      image: assets.fufu,
-      description: "Replenish and recover with these nutritious dinner options",
-      path: "/loggedin/recipes",
-    },
-    {
-      name: "Snacks",
-      image: assets.walnuts,
-      description: "Smart between-meal options to keep you energized",
-      path: "/loggedin/recipes",
-    },
-    {
-      name: "Pre-Workout",
-      image: assets.fruit_man,
-      description: "Maximize your performance with these pre-workout meals",
-      path: "/loggedin/recipes",
-    },
-    {
-      name: "Post-Workout",
-      image: assets.eating,
-      description: "Optimize recovery with these protein-packed options",
-      path: "/loggedin/recipes",
-    },
-  ];
-
-  return (
-    <div className="explore-content">
-      <div className="category-cards">
-        {mealCategories.map((category, index) => (
-          <Link to={category.path} key={index}>
-            <motion.div
-              className="category-card"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              whileHover={{
-                y: -10,
-                boxShadow: "0 15px 30px rgba(0,0,0,0.2)",
-                transition: { duration: 0.3 },
-              }}
-            >
-              <div className="category-image">
-                <img src={category.image} alt={category.name} />
-              </div>
-              <div className="category-details">
-                <h3>{category.name}</h3>
-                <p>{category.description}</p>
-              </div>
-              <div className="category-arrow">→</div>
-            </motion.div>
-          </Link>
-        ))}
       </div>
     </div>
   );

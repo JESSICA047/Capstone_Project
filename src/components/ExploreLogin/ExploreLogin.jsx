@@ -10,14 +10,14 @@ function ExploreLogin() {
   return (
     <div className="explore">
       <div className="explore-2">
-        <div className="explore-title">
+        {/* <div className="explore-title">
           <h2>Explore Our Delicious and Nutritious Recipes</h2>
           <p>
             Discover a variety of healthy recipes that cater to your dietary
             needs. From breakfast to dinner, our recipes are designed to support
             your fitness goals and promote a balanced lifestyle.
           </p>
-        </div>
+        </div> */}
 
         <div className="card">
           {/* Breakfast Card */}
@@ -71,7 +71,7 @@ function ExploreLogin() {
       </div>
 
       <div className="explore-1">
-        <div className="text">
+        {/* <div className="text">
           <div className="text-left">
             <h1>Explore Our Tailored Diet </h1>
             <h1> Plans For Every Need</h1>{" "}
@@ -93,7 +93,7 @@ function ExploreLogin() {
             </p>
             <p>enjoy the journey to a better you.</p>
           </div>
-        </div>
+        </div> */}
 
         <div className="card">
           {/* Weight Loss Card */}
