@@ -14,13 +14,6 @@
     margin-bottom: 30px;
 }
 
-.text-left {
-    /* font-size: 1.1rem; */
-}
-
-.text-right {
-    /* font-size: 1.2rem; */
-}
 
 .card {
     display: grid;
@@ -60,9 +53,9 @@
 
 .card-text button {
     padding: 1rem 2rem;
-    background: #FFFFDD;
+    background: #27A627;
     color: black;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
     font-weight: 600;
     border: none;
     border-radius: 5px;
@@ -71,7 +64,7 @@
 }
 
 .card-text button:hover {
-    background: #e0e0e0;
+    background: #34e434;
     transform: scale(1.05);
 }
 
@@ -82,17 +75,7 @@
 }
 
 @media (min-width: 1281px) {
-    .explore {
-        /* padding: 3rem; */
-    }
-
-    .explore .text {
-        /* gap: 12em; */
-    }
-
-    .text-left {
-        /* font-size: 1.2rem; */
-    }
+    
 
     .text-right {
         font-size: 1.3rem;

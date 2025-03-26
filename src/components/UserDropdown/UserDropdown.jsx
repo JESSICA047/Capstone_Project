@@ -28,8 +28,14 @@ function UserDropdown({ setIsLoggedIn, isOpen, onClose }) {
     }
   }, []);
 
+  // In your logout handler function:
+
   const handleLogout = () => {
-    localStorage.removeItem("isLoggedIn");
+    // Clear the welcome flag so it shows again on next login
+    localStorage.removeItem("hasSeenWelcome");
+
+    // Your existing logout code
+    localStorage.removeItem("userData");
     setIsLoggedIn(false);
     navigate("/");
   };

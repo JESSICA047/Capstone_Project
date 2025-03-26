@@ -7,6 +7,7 @@ function Navbar({ isLoggedIn }) {
   const location = useLocation();
   const [menu, setMenu] = useState("home");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   // Set initial menu state based on location path
   useEffect(() => {
@@ -16,6 +17,24 @@ function Navbar({ isLoggedIn }) {
     else if (path.includes("/meal-plans")) setMenu("meal-plans");
     else if (path.includes("/nutritional-tips")) setMenu("nutritional-tips");
   }, [location.pathname]);
+
+  // Add scroll effect
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    // Clean up
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const handleProtectedNavigation = (path, menuItem) => {
     setMenu(menuItem);
@@ -50,7 +69,7 @@ function Navbar({ isLoggedIn }) {
   };
 
   return (
-    <nav className="navbar">
+    <nav className={`navbar ${scrolled ? "scrolled" : ""}`}>
       <div className="navbar-left">
         <a
           onClick={() => handleProtectedNavigation("/", "home")}
@@ -62,45 +81,44 @@ function Navbar({ isLoggedIn }) {
 
       {/* Navigation Menu */}
       <ul className={`navbar-menu ${isMenuOpen ? "active" : ""}`}>
-        <li>
+        <li className={menu === "home" ? "active" : ""}>
           <a
             onClick={() => handleProtectedNavigation("/", "home")}
-            className={menu === "home" ? "active" : ""}
             style={{ cursor: "pointer" }}
           >
             Home
           </a>
         </li>
-        <li>
-          <button
+        <li className={menu === "recipes" ? "active" : ""}>
+          <a
             onClick={() => handleProtectedNavigation("/recipes", "recipes")}
-            className={menu === "recipes" ? "active" : ""}
+            style={{ cursor: "pointer" }}
           >
             Recipes
-          </button>
+          </a>
         </li>
-        <li>
-          <button
+        <li className={menu === "meal-plans" ? "active" : ""}>
+          <a
             onClick={() =>
               handleProtectedNavigation("/meal-plans", "meal-plans")
             }
-            className={menu === "meal-plans" ? "active" : ""}
+            style={{ cursor: "pointer" }}
           >
             Meal Plans
-          </button>
+          </a>
         </li>
-        <li>
-          <button
+        <li className={menu === "nutritional-tips" ? "active" : ""}>
+          <a
             onClick={() =>
               handleProtectedNavigation("/nutritional-tips", "nutritional-tips")
             }
-            className={menu === "nutritional-tips" ? "active" : ""}
+            style={{ cursor: "pointer" }}
           >
             Nutritional Tips
-          </button>
+          </a>
         </li>
-        <li>
-          <button
+        <li className={menu === "about-us" ? "active" : ""}>
+          <a
             onClick={() => {
               setMenu("about-us");
               handleLinkClick();
@@ -109,32 +127,35 @@ function Navbar({ isLoggedIn }) {
                 footerElement.scrollIntoView({ behavior: "smooth" });
               }
             }}
-            className={menu === "about-us" ? "active" : ""}
+            style={{ cursor: "pointer" }}
           >
             About Us
-          </button>
-        </li>
-        <li className="mobile-auth">
-          <button className="sign-up" onClick={() => navigate("/signup")}>
-            Sign Up
-          </button>
-          <button className="sign-in" onClick={() => navigate("/signin")}>
-            Sign In
-          </button>
+          </a>
         </li>
       </ul>
 
-      {/* Right Side Actions */}
-      <div className="navbar-right">
-        <button className="sign-up" onClick={() => navigate("/signup")}>
-          Sign Up
-        </button>
-        <button className="sign-in" onClick={() => navigate("/signin")}>
-          Sign In
-        </button>
-      </div>
-      <div className="hamburger" onClick={toggleMenu}>
-        ☰
+      {/* Right Side Actions - only show if not logged in */}
+      {!isLoggedIn ? (
+        <div className="navbar-right">
+          <button className="sign-up" onClick={() => navigate("/signup")}>
+            Sign Up
+          </button>
+          <button onClick={() => navigate("/signin")}>Sign In</button>
+        </div>
+      ) : (
+        <div className="navbar-right">
+          <button onClick={() => navigate("/profile")}>My Profile</button>
+        </div>
+      )}
+
+      {/* Better hamburger menu */}
+      <div
+        className={`hamburger ${isMenuOpen ? "open" : ""}`}
+        onClick={toggleMenu}
+      >
+        <span></span>
+        <span></span>
+        <span></span>
       </div>
     </nav>
   );

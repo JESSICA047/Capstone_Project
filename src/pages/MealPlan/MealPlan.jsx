@@ -24,6 +24,9 @@ const MealPlan = () => {
     carbs: 0,
     fats: 0,
   });
+  const [planChanged, setPlanChanged] = useState(false);
+  const [lastSelectedPlan, setLastSelectedPlan] = useState(null);
+  const [showTemplateSelector, setShowTemplateSelector] = useState(false);
 
   const daysOfWeek = [
     "Monday",
@@ -37,6 +40,24 @@ const MealPlan = () => {
 
   const mealTypes = ["Breakfast", "Lunch", "Dinner", "Snack"];
 
+  const planTemplates = [
+    {
+      id: "Weight Loss",
+      name: "Weight Loss Plan",
+      description: "1500-1800 calories per day with focus on whole foods",
+    },
+    {
+      id: "Muscle Gain",
+      name: "Muscle Building Plan",
+      description: "High protein meals to support muscle growth and recovery",
+    },
+    {
+      id: "Performance",
+      name: "Athletic Performance",
+      description: "Balanced nutrition for optimal energy and performance",
+    },
+  ];
+
   // Initialize empty meal plan
   const emptyMealPlan = daysOfWeek.reduce((acc, day) => {
     acc[day] = {};
@@ -46,7 +67,7 @@ const MealPlan = () => {
     return acc;
   }, {});
 
-  // Add this function to your MealPlan.jsx component
+  // Handle saving a recipe to favorites
   const handleSaveRecipe = (recipe) => {
     try {
       // Get existing saved recipes
@@ -102,7 +123,9 @@ const MealPlan = () => {
       setMealPlan(transformedMealPlan);
       setHasMealsPlanned(true);
     } else {
+      // No saved meal plan, show template selector
       setMealPlan(emptyMealPlan);
+      setShowTemplateSelector(true);
     }
   }, []);
 
@@ -170,15 +193,140 @@ const MealPlan = () => {
     }
   }, [mealPlan]);
 
-  const handlePlanChange = (plan) => {
-    setSelectedPlan(plan);
+  // Filter recipes based on plan type and meal type
+  const getFilteredRecipes = (planType, mealType) => {
+    // Base filters that apply to all plans
+    let filters = {
+      Breakfast: (recipe) => recipe.category.includes("Breakfast"),
+      Lunch: (recipe) => recipe.category.includes("Lunch"),
+      Dinner: (recipe) => recipe.category.includes("Dinner"),
+      Snack: (recipe) => recipe.category.includes("Snack"),
+    };
+
+    // Add plan-specific filters
+    if (planType === "Weight Loss") {
+      filters = {
+        Breakfast: (recipe) =>
+          recipe.category.includes("Breakfast") && recipe.calories < 400,
+        Lunch: (recipe) =>
+          recipe.category.includes("Lunch") && recipe.calories < 500,
+        Dinner: (recipe) =>
+          recipe.category.includes("Dinner") && recipe.calories < 600,
+        Snack: (recipe) =>
+          recipe.category.includes("Snack") && recipe.calories < 200,
+      };
+    } else if (planType === "Muscle Gain") {
+      filters = {
+        Breakfast: (recipe) =>
+          recipe.category.includes("Breakfast") && recipe.protein > 20,
+        Lunch: (recipe) =>
+          recipe.category.includes("Lunch") && recipe.protein > 30,
+        Dinner: (recipe) =>
+          recipe.category.includes("Dinner") && recipe.protein > 35,
+        Snack: (recipe) =>
+          recipe.category.includes("Snack") && recipe.protein > 10,
+      };
+    } else if (planType === "Performance") {
+      filters = {
+        Breakfast: (recipe) =>
+          recipe.category.includes("Breakfast") && recipe.carbs > 30,
+        Lunch: (recipe) =>
+          recipe.category.includes("Lunch") &&
+          recipe.carbs > 40 &&
+          recipe.protein > 20,
+        Dinner: (recipe) =>
+          recipe.category.includes("Dinner") &&
+          recipe.carbs > 30 &&
+          recipe.protein > 25,
+        Snack: (recipe) =>
+          recipe.category.includes("Snack") && recipe.carbs > 15,
+      };
+    }
+
+    return recipes_list.filter(filters[mealType] || (() => true));
   };
 
+  // Get a random recipe from filtered recipes
+  const getRandomRecipe = (recipes) => {
+    if (!recipes || recipes.length === 0) return null;
+    return recipes[Math.floor(Math.random() * recipes.length)];
+  };
+
+  // Generate a curated meal plan based on plan type
+  const generateCuratedMealPlan = (planType) => {
+    // Create empty meal plan
+    const newMealPlan = daysOfWeek.reduce((acc, day) => {
+      acc[day] = {};
+      mealTypes.forEach((type) => {
+        acc[day][type] = null;
+      });
+      return acc;
+    }, {});
+
+    // Fill plan with recipes
+    daysOfWeek.forEach((day) => {
+      mealTypes.forEach((mealType) => {
+        const filteredRecipes = getFilteredRecipes(planType, mealType);
+        const selectedRecipe = getRandomRecipe(filteredRecipes);
+
+        if (selectedRecipe) {
+          newMealPlan[day][mealType] = {
+            ...selectedRecipe,
+            dateAdded: new Date().toISOString(),
+          };
+        }
+      });
+    });
+
+    return newMealPlan;
+  };
+
+  // Handle plan selection
+  const handlePlanChange = (plan) => {
+    setSelectedPlan(plan);
+
+    // Skip loading curated plan for "All" option
+    if (plan === "All") return;
+
+    // Check if we should load a new plan
+    const shouldLoadNewPlan = plan !== lastSelectedPlan || !planChanged;
+
+    if (shouldLoadNewPlan) {
+      // Check if user wants to replace existing plan
+      if (hasMealsPlanned && lastSelectedPlan !== null) {
+        if (
+          window.confirm(
+            `Load the ${plan} meal plan? This will replace your current plan.`
+          )
+        ) {
+          loadCuratedPlan(plan);
+        } else {
+          // Revert the selection if user cancels
+          setSelectedPlan(lastSelectedPlan);
+        }
+      } else {
+        // Load plan if there's no existing plan
+        loadCuratedPlan(plan);
+      }
+    }
+  };
+
+  // Load a curated meal plan
+  const loadCuratedPlan = (planType) => {
+    const newPlan = generateCuratedMealPlan(planType);
+    setMealPlan(newPlan);
+    setLastSelectedPlan(planType);
+    setPlanChanged(false);
+    showToast(`${planType} meal plan loaded`, "success");
+  };
+
+  // Add a meal to the plan
   const handleAddMeal = (mealType) => {
     setCurrentMealType(mealType);
     setShowMealSelector(true);
   };
 
+  // Select a meal from the selector
   const handleSelectMeal = (recipe) => {
     const updatedMealPlan = { ...mealPlan };
     updatedMealPlan[selectedDay][currentMealType] = {
@@ -187,6 +335,7 @@ const MealPlan = () => {
     };
 
     setMealPlan(updatedMealPlan);
+    setPlanChanged(true); // Mark that the user has customized the plan
     setShowMealSelector(false);
     showToast(
       `${recipe.name} added to your ${selectedDay} ${currentMealType}`,
@@ -194,6 +343,7 @@ const MealPlan = () => {
     );
   };
 
+  // Remove a meal from the plan
   const handleRemoveMeal = (mealType) => {
     const mealName = mealPlan[selectedDay][mealType]?.name || "Meal";
 
@@ -201,21 +351,25 @@ const MealPlan = () => {
     updatedMealPlan[selectedDay][mealType] = null;
 
     setMealPlan(updatedMealPlan);
+    setPlanChanged(true); // Mark that the user has customized the plan
     showToast(`${mealName} removed from your meal plan`, "info");
   };
 
+  // Clear the entire meal plan
   const handleClearMealPlan = () => {
     if (
       window.confirm("Are you sure you want to clear your entire meal plan?")
     ) {
       setMealPlan(emptyMealPlan);
+      setLastSelectedPlan(null);
+      setPlanChanged(false);
       localStorage.removeItem("mealPlan");
       showToast("Meal plan has been cleared", "info");
     }
   };
 
-  // Fix getFilteredRecipes to return an array
-  const getFilteredRecipes = () => {
+  // Filter recipes for the meal selector
+  const getFilteredRecipesForSelector = () => {
     return recipes_list.filter((recipe) => {
       // First check if this recipe is appropriate for the current meal type
       const matchesMealType = recipe.category.some(
@@ -278,6 +432,25 @@ const MealPlan = () => {
             onPlanChange={handlePlanChange}
           />
 
+          {selectedPlan !== "All" && (
+            <div className="plan-info-banner">
+              <h3>{selectedPlan} Plan</h3>
+              <p>
+                {selectedPlan === "Weight Loss" &&
+                  "Lower calorie meals to help you reach your weight loss goals."}
+                {selectedPlan === "Muscle Gain" &&
+                  "High protein meals designed to support muscle growth and recovery."}
+                {selectedPlan === "Performance" &&
+                  "Balanced nutrition for optimal energy and performance."}
+              </p>
+              {planChanged && (
+                <p>
+                  <em>This plan has been customized by you</em>
+                </p>
+              )}
+            </div>
+          )}
+
           <div className="sidebar-section">
             <h3>Daily Nutrition Summary</h3>
             <div className="nutrition-stats">
@@ -306,8 +479,35 @@ const MealPlan = () => {
 
           <div className="sidebar-section">
             <h3>Quick Actions</h3>
-            {/* Remove the redundant image in the sidebar */}
             <div className="quick-actions">
+              <button
+                className="action-button"
+                onClick={() => setShowTemplateSelector(true)}
+              >
+                <span className="button-icon">📋</span>
+                Curated Plans
+              </button>
+
+              {lastSelectedPlan &&
+                lastSelectedPlan !== "All" &&
+                planChanged && (
+                  <button
+                    className="action-button warning"
+                    onClick={() => {
+                      if (
+                        window.confirm(
+                          `Reset to the original ${lastSelectedPlan} plan?`
+                        )
+                      ) {
+                        loadCuratedPlan(lastSelectedPlan);
+                      }
+                    }}
+                  >
+                    <span className="button-icon">🔄</span>
+                    Reset Plan
+                  </button>
+                )}
+
               <button
                 className="action-button"
                 onClick={() => setShowNutrition(!showNutrition)}
@@ -367,7 +567,6 @@ const MealPlan = () => {
                 {mealPlan &&
                 mealPlan[selectedDay] &&
                 mealPlan[selectedDay][mealType] ? (
-                  // In the planned-meal div section (around line 368)
                   <div className="planned-meal">
                     <img
                       src={mealPlan[selectedDay][mealType].image}
@@ -394,7 +593,6 @@ const MealPlan = () => {
                               {tag}
                             </span>
                           ))}
-                        {/* ...existing code... */}
                       </div>
                     </div>
                     <div className="meal-actions">
@@ -431,6 +629,48 @@ const MealPlan = () => {
         </main>
       </div>
 
+      {/* Template Selector Modal */}
+      {showTemplateSelector && (
+        <div className="meal-selector-modal">
+          <div className="modal-content">
+            <h2>Select a Curated Meal Plan</h2>
+            <p className="modal-subtitle">
+              Choose a starting plan based on your goals. You can customize it
+              later.
+            </p>
+
+            <div className="plan-templates-grid">
+              {planTemplates.map((template) => (
+                <div key={template.id} className="plan-template-card">
+                  <h3>{template.name}</h3>
+                  <p>{template.description}</p>
+                  <button
+                    className="select-plan-btn"
+                    onClick={() => {
+                      setSelectedPlan(template.id);
+                      loadCuratedPlan(template.id);
+                      setShowTemplateSelector(false);
+                    }}
+                  >
+                    Use This Plan
+                  </button>
+                </div>
+              ))}
+            </div>
+
+            <div className="modal-actions">
+              <button
+                className="close-modal-button"
+                onClick={() => setShowTemplateSelector(false)}
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Meal Selector Modal */}
       {showMealSelector && (
         <div className="meal-selector-modal">
           <div className="modal-content">
@@ -439,8 +679,8 @@ const MealPlan = () => {
               Recommended meals for your {selectedPlan} Plan
             </p>
             <div className="recipe-grid">
-              {getFilteredRecipes().length > 0 ? (
-                getFilteredRecipes().map((recipe) => (
+              {getFilteredRecipesForSelector().length > 0 ? (
+                getFilteredRecipesForSelector().map((recipe) => (
                   <div
                     key={recipe.id}
                     className="recipe-card"
@@ -516,6 +756,7 @@ const MealPlan = () => {
         </div>
       )}
 
+      {/* Nutrition Modal */}
       {showNutrition && mealPlan && mealPlan[selectedDay] && (
         <div className="nutrition-modal">
           <div className="modal-content">

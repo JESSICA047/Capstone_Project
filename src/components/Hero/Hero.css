@@ -176,6 +176,12 @@
     }
 }
 
+@media (width:768px) {
+    .hero-right img {
+        display: none;
+    }
+}
+
 @media (min-width: 481px) and (max-width: 767px) {
     .hero-main {
         flex-direction: column;
@@ -189,6 +195,10 @@
 
     .hero-left #text {
         font-size: 15px;
+    }
+
+    .hero-right img {
+        display: none;
     }
 
     .hero-card {
@@ -213,6 +223,7 @@
     }
 
     .hero-right img {
+        display: none;
         width: 17rem;
         height: 17rem;
     }

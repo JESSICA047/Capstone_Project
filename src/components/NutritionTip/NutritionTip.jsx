@@ -1,18 +1,38 @@
 import React from "react";
 import "./NutritionTip.css";
 
-const NutritionTip = ({ title, content, image, category, date }) => {
+const NutritionTip = ({
+  title,
+  content,
+  image,
+  category,
+  date,
+  source,
+  url,
+}) => {
+  const handleReadMore = () => {
+    // Open link in new tab
+    window.open(url, "_blank", "noopener,noreferrer");
+  };
+
   return (
     <div className="nutrition-tip">
       <div className="nutrition-tip-image">
         <img src={image} alt={title} />
-        {category && <span className="nutrition-tip-category">{category}</span>}
+        <span className="nutrition-tip-category">{category}</span>
       </div>
       <div className="nutrition-tip-content">
         <h2>{title}</h2>
-        {date && <span className="nutrition-tip-date">{date}</span>}
+        <div className="nutrition-tip-date">{date}</div>
         <p>{content}</p>
-        <button className="read-more-btn">Read More</button>
+        <div className="tip-meta">
+          {source && <span className="tip-source">Source: {source}</span>}
+        </div>
+        {url && (
+          <button className="read-more-btn" onClick={handleReadMore}>
+            Read Full Article
+          </button>
+        )}
       </div>
     </div>
   );

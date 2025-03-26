@@ -31,7 +31,7 @@ function ExploreLogin() {
                 to power you through the morning.
               </p>
               <Link to="/signin">
-                <button>Browse Recipes</button>
+                <button>Learn More</button>
               </Link>
             </div>
           </div>
@@ -47,7 +47,7 @@ function ExploreLogin() {
                 your busy day.
               </p>
               <Link to="/signin">
-                <button>Browse Recipes</button>
+                <button>Learn More</button>
               </Link>
             </div>
           </div>
@@ -63,7 +63,7 @@ function ExploreLogin() {
                 overnight recovery.
               </p>
               <Link to="/signin">
-                <button>Browse Recipes</button>
+                <button>Learn More</button>
               </Link>
             </div>
           </div>
@@ -114,7 +114,7 @@ function ExploreLogin() {
                 goals effectively.
               </p>
               <Link to="/signin">
-                <button>Go to Meal Plan</button>
+                <button>Click Me</button>
               </Link>
             </div>
           </div>
@@ -135,7 +135,7 @@ function ExploreLogin() {
                 fitness journey.
               </p>
               <Link to="/signin">
-                <button>Go to Meal Plan</button>
+                <button>Click Me</button>
               </Link>
             </div>
           </div>
@@ -155,7 +155,7 @@ function ExploreLogin() {
                 nutrient-dense foods, ensuring you feel your best every day.
               </p>
               <Link to="/signin">
-                <button>Go to Meal Plan</button>
+                <button>Click Me</button>
               </Link>
             </div>
           </div>
