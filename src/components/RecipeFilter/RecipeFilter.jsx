@@ -12,14 +12,14 @@ const RecipeFilter = ({
   const fitnessPlans = [
     "Weight Loss",
     "Muscle Gain",
-    "Performance",
+    // "Performance",
     "Wellness",
-    "Strength Training",
-    "Lean Muscle",
+    // "Strength Training",
+    // "Lean Muscle",
   ];
   const dietaryPreferences = [
     "Vegetarian",
-    "Vegan",
+    // "Vegan",
     "Gluten-Free",
     "Dairy-Free",
     "Low-Carb",
