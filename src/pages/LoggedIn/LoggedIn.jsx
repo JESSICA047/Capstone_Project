@@ -86,7 +86,7 @@ function LoggedIn({ setIsLoggedIn }) {
     <div className="logged-in-page">
       <NavbarLogin setIsLoggedIn={setIsLoggedIn} />
       {/* Welcome Animation Overlay */}
-      <AnimatePresence>
+      {/* <AnimatePresence>
         {showWelcome && (
           <motion.div
             className="welcome-overlay"
@@ -105,7 +105,7 @@ function LoggedIn({ setIsLoggedIn }) {
             </motion.div>
           </motion.div>
         )}
-      </AnimatePresence>
+      </AnimatePresence> */}
       {/* Hero Section with Parallax */}
       <section className="hero-section">
         <div
@@ -130,10 +130,10 @@ function LoggedIn({ setIsLoggedIn }) {
           </p>
 
           <div className="user-stats">
-            <div className="stat-card">
+            {/* <div className="stat-card">
               <div className="stat-number">{userStats.daysActive}</div>
               <div className="stat-label">Days Active</div>
-            </div>
+            </div> */}
             <div className="stat-card">
               <div className="stat-number">{userStats.mealsPlanned}</div>
               <div className="stat-label">Meals Planned</div>
