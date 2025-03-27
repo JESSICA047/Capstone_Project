@@ -12,7 +12,7 @@ const PlanFilter = ({ selectedPlan, onPlanChange }) => {
           className={`plan-option ${selectedPlan === "All" ? "active" : ""}`}
           onClick={() => onPlanChange("All")}
         >
-          All Recipes
+          Custom Plan{" "}
         </button>
         <button
           className={`plan-option ${
@@ -36,7 +36,7 @@ const PlanFilter = ({ selectedPlan, onPlanChange }) => {
           }`}
           onClick={() => onPlanChange("Performance")}
         >
-          Performance
+          Wellness
         </button>
       </div>
     </div>

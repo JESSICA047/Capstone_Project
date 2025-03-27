@@ -138,7 +138,7 @@
 }
 
 .browse-recipes-btn {
-    background-color: #4285f4;
+    background-color: #4caf50;
     color: white;
     padding: 12px 24px;
     border: none;
@@ -149,5 +149,5 @@
 }
 
 .browse-recipes-btn:hover {
-    background-color: #3367d6;
+    background-color: #3d8b40;
 }

@@ -6,10 +6,12 @@ import PlanFilter from "../../components/PlanFilter/PlanFilter";
 import { recipes_list } from "../../assets/assets";
 import { recipes } from "../../assets/assets";
 import { useToast } from "../../contexts/ToastContext";
+import { useUserStats } from "../../contexts/UserStatsContext/UserStatsContext";
 import "./MealPlan.css";
 
 const MealPlan = () => {
   const navigate = useNavigate();
+  const { updateStat } = useUserStats();
   const { showToast } = useToast();
   const [selectedDay, setSelectedDay] = useState("Monday");
   const [selectedPlan, setSelectedPlan] = useState("All");
@@ -52,8 +54,8 @@ const MealPlan = () => {
       description: "High protein meals to support muscle growth and recovery",
     },
     {
-      id: "Performance",
-      name: "Athletic Performance",
+      id: "Wellness",
+      name: "Wellness Plan",
       description: "Balanced nutrition for optimal energy and performance",
     },
   ];
@@ -89,6 +91,7 @@ const MealPlan = () => {
 
         // Save to localStorage
         localStorage.setItem("savedRecipes", JSON.stringify(savedRecipes));
+        updateStat("recipesBookmarked", savedRecipes.length);
 
         showToast(`${recipe.name} added to your saved recipes`, "success");
       } else {

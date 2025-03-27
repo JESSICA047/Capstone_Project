@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { assets } from "../../assets/assets";
+import { useUserStats } from "../../contexts/UserStatsContext/UserStatsContext";
 import "./SavedRecipesTab.css";
 
 const SavedRecipesTab = () => {
   const navigate = useNavigate();
   const [savedRecipes, setSavedRecipes] = useState([]);
+  const { updateStat } = useUserStats(); // Add this line to get the updateStat function
 
   // Load saved recipes from localStorage when component mounts
   useEffect(() => {
@@ -16,6 +18,8 @@ const SavedRecipesTab = () => {
         if (savedRecipesJSON) {
           const parsedRecipes = JSON.parse(savedRecipesJSON);
           setSavedRecipes(parsedRecipes);
+          // Add this line to update the count in context
+          updateStat("recipesBookmarked", parsedRecipes.length);
         }
       } catch (error) {
         console.error("Error loading saved recipes:", error);
@@ -38,6 +42,7 @@ const SavedRecipesTab = () => {
 
       // Save to localStorage
       localStorage.setItem("savedRecipes", JSON.stringify(updatedRecipes));
+      updateStat("recipesBookmarked", updatedRecipes.length);
     } catch (error) {
       console.error("Error removing recipe:", error);
     }
@@ -105,7 +110,6 @@ const SavedRecipesTab = () => {
           </div>
         ) : (
           <div className="empty-state">
-            <img src={assets.empty_plate} alt="No saved recipes" />
             <h3>No Saved Recipes</h3>
             <p>
               You haven't saved any recipes yet. Browse our recipes and click
