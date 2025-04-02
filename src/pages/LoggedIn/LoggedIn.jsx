@@ -85,27 +85,6 @@ function LoggedIn({ setIsLoggedIn }) {
   return (
     <div className="logged-in-page">
       <NavbarLogin setIsLoggedIn={setIsLoggedIn} />
-      {/* Welcome Animation Overlay */}
-      {/* <AnimatePresence>
-        {showWelcome && (
-          <motion.div
-            className="welcome-overlay"
-            initial={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <motion.div
-              className="welcome-content"
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ delay: 0.3, duration: 0.5 }}
-            >
-              <h1>Welcome Back, {userName}!</h1>
-              <div className="pulse-circle"></div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence> */}
       {/* Hero Section with Parallax */}
       <section className="hero-section">
         <div
@@ -130,10 +109,6 @@ function LoggedIn({ setIsLoggedIn }) {
           </p>
 
           <div className="user-stats">
-            {/* <div className="stat-card">
-              <div className="stat-number">{userStats.daysActive}</div>
-              <div className="stat-label">Days Active</div>
-            </div> */}
             <div className="stat-card">
               <div className="stat-number">{userStats.mealsPlanned}</div>
               <div className="stat-label">Meals Planned</div>

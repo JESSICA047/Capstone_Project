@@ -29,7 +29,7 @@
     right: 0px;
     transform: translateY(-50%);
     width: 30px;
-    height: 30px;
+    /* height: 30px; */
     transition: all 0.2s ease;
 }
 

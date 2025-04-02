@@ -16,7 +16,7 @@ import RecipeDetail from "./components/RecipeDetail/RecipeDetail";
 import MealPlan from "./pages/MealPlan/MealPlan";
 import NutritionTipsPage from "./pages/NutritionTipsPage/NutritionTipsPage";
 import ProfilePage from "./pages/Profilepage/ProfilePage";
-import ScrollToTop from "./components/ScrollToTop/ScrollToTop"; // Import the new component
+import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 import { ToastProvider } from "./contexts/ToastContext";
 import { UserStatsProvider } from "./contexts/UserStatsContext/UserStatsContext";
 
