@@ -13,13 +13,9 @@ function Footer() {
           <div className="footer-text">
             <h2>About Us</h2>
             <p>Get healthy and organized with MealPlanPro!</p>
-            <p>
-              Discover a world of delicious and nutritious meal ideas,
-              <p>
-                carefully curated to suit your dietary needs and preferences.
-              </p>{" "}
-              Plan your meal for the week, daily and monthly
-            </p>
+            <p>Discover a world of delicious and nutritious meal ideas,</p>
+            <p>carefully curated to suit your dietary needs and preferences.</p>
+            <p> Plan your meal for the week, daily and monthly</p>
             <p>
               Join our community today and start cooking your way to a
               healthier, happier you.

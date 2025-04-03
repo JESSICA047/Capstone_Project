@@ -120,7 +120,7 @@ function LoggedIn({ setIsLoggedIn }) {
           </div>
 
           <div className="hero-cta">
-            <Link to="/loggedin/meal-plans">
+            <Link to="/dashboard/meal-plans">
               <motion.button
                 className="cta-button primary"
                 whileHover={{ scale: 1.05 }}
@@ -129,7 +129,7 @@ function LoggedIn({ setIsLoggedIn }) {
                 Plan My Meals
               </motion.button>
             </Link>
-            <Link to="/loggedin/recipes">
+            <Link to="/dashboard/recipes">
               <motion.button
                 className="cta-button secondary"
                 whileHover={{ scale: 1.05 }}
@@ -229,7 +229,7 @@ function LoggedIn({ setIsLoggedIn }) {
                 <span className="check-icon">✓</span> Shopping list included
               </li>
             </ul>
-            <Link to="/loggedin/meal-plans">
+            <Link to="/dashboard/meal-plans">
               <motion.button
                 className="view-plan-button"
                 whileHover={{ scale: 1.05 }}

@@ -10,12 +10,12 @@ function FooterLogin() {
   const handleFooterNavigation = (path) => {
     // If clicking on current path, scroll to top
     if (
-      (path === "" && location.pathname === "/loggedin") ||
-      location.pathname === `/loggedin${path}`
+      (path === "" && location.pathname === "/dashboard") ||
+      location.pathname === `/dashboard${path}`
     ) {
       window.scrollTo({ top: 0, behavior: "smooth" });
     } else {
-      navigate(`/loggedin${path}`);
+      navigate(`/dashboard${path}`);
     }
   };
 

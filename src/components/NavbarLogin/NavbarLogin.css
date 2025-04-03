@@ -62,7 +62,7 @@
 }
 
 .navbar-menu button.active {
-  background-color: #2ecc71;
+  background: linear-gradient(45deg, #2ecc71, #1abc9c);
   /* Changed to green */
   color: white;
 }

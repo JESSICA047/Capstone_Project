@@ -50,12 +50,12 @@ const SavedRecipesTab = () => {
 
   // Handle viewing a recipe - this navigates to the recipe details page
   const handleViewRecipe = (recipeId) => {
-    navigate(`/loggedin/recipe/${recipeId}`);
+    navigate(`/dashboard/recipe/${recipeId}`);
   };
 
   // Handle browsing all recipes
   const handleBrowseRecipes = () => {
-    navigate("/loggedin/recipes");
+    navigate("/dashboard/recipes");
   };
 
   return (

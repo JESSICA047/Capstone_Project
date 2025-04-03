@@ -56,7 +56,7 @@
 
 .card-text button {
     padding: 1rem 2rem;
-    background: #27A627;
+    background: linear-gradient(45deg, #2ecc71, #1abc9c);
     color: black;
     /* text-transform: uppercase; */
     font-weight: 600;
@@ -67,8 +67,8 @@
 }
 
 .card-text button:hover {
-    background: #34e434;
-    transform: scale(1.05);
+    background: linear-gradient(45deg, #1abc9c,#2ecc71, #1abc9c);
+    transform: scale(0.9);
 }
 
 .explore-title {

@@ -15,7 +15,7 @@ function NavbarLogin({ setIsLoggedIn }) {
   // Set initial menu state based on location path
   useEffect(() => {
     const path = location.pathname;
-    if (path === "/loggedin") setMenu("home");
+    if (path === "/dashboard") setMenu("home");
     else if (path.includes("/recipes")) setMenu("recipes");
     else if (path.includes("/meal-plans")) setMenu("meal-plans");
     else if (path.includes("/nutritional-tips")) setMenu("nutritional-tips");
@@ -73,13 +73,13 @@ function NavbarLogin({ setIsLoggedIn }) {
 
     // If clicking on current page, scroll to top
     if (
-      (path === "" && location.pathname === "/loggedin") ||
-      location.pathname === `/loggedin${path}`
+      (path === "" && location.pathname === "/dashboard") ||
+      location.pathname === `/dashboard${path}`
     ) {
       window.scrollTo({ top: 0, behavior: "smooth" });
     } else {
       // Navigate to new page
-      navigate(`/loggedin${path}`);
+      navigate(`/dashboard${path}`);
     }
 
     handleLinkClick();

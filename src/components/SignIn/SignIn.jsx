@@ -8,7 +8,7 @@ function SignIn({ setIsLoggedIn }) {
 
   const handleSignIn = () => {
     setIsLoggedIn(true);
-    navigate("/loggedin", { replace: true });
+    navigate("/dashboard", { replace: true });
   };
 
   return (

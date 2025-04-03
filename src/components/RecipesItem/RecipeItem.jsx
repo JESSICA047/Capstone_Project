@@ -22,7 +22,7 @@ const RecipeItem = ({
   const { showToast } = useToast(); // Use toast context for notifications
 
   const handleViewRecipe = () => {
-    navigate(`/loggedin/recipe/${id}`);
+    navigate(`/dashboard/recipe/${id}`);
   };
 
   const handleAddToMealPlan = (mealPlanData) => {
@@ -138,7 +138,7 @@ const RecipeItem = ({
             className="add-to-meal-plan-button"
             onClick={() => setShowMealPlanModal(true)}
           >
-            <i class="fa fa-plus" aria-hidden="true"></i> Add to Meal Plan
+            <i className="fa fa-plus" aria-hidden="true"></i> Add to Meal Plan
           </button>
         </div>
       </div>

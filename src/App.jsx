@@ -50,7 +50,7 @@ function App() {
   const ProtectedRoute = ({ children }) => {
     // If user just logged out, we don't want to redirect to signin
     // as the navigate("/") in UserDropdown will take care of the redirection
-    if (!isLoggedIn && location.pathname.includes("/loggedin")) {
+    if (!isLoggedIn && location.pathname.includes("/dashboard")) {
       return <Navigate to="/" replace />;
     }
 
@@ -65,7 +65,6 @@ function App() {
     <div className="app">
       {showNavbar && <Navbar isLoggedIn={isLoggedIn} />}
       <ScrollToTop /> {/* Add this component */}
-      {showNavbar && <Navbar isLoggedIn={isLoggedIn} />}
       <UserStatsProvider>
         <ToastProvider>
           <Routes>
@@ -81,7 +80,7 @@ function App() {
             />
             {/* Protected Routes */}
             <Route
-              path="/loggedin"
+              path="/dashboard"
               element={
                 <ProtectedRoute>
                   <LoggedIn setIsLoggedIn={handleLogout} />
@@ -89,16 +88,23 @@ function App() {
               }
             />
             <Route
-              path="/loggedin/recipes"
+              path="/dashboard/recipes"
               element={
                 <ProtectedRoute>
                   <Recipe />
                 </ProtectedRoute>
               }
             />
-            <Route path="/loggedin/recipe/:id" element={<RecipeDetail />} />
             <Route
-              path="/loggedin/meal-plans"
+              path="/dashboard/recipe/:id"
+              element={
+                <ProtectedRoute>
+                  <RecipeDetail />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/dashboard/meal-plans"
               element={
                 <ProtectedRoute>
                   <MealPlan />
@@ -106,16 +112,15 @@ function App() {
               }
             />
             <Route
-              path="/loggedin/nutritional-tips"
+              path="/dashboard/nutritional-tips"
               element={
                 <ProtectedRoute>
                   <NutritionTipsPage />
                 </ProtectedRoute>
               }
             />
-            // Add this route in your protected routes section
             <Route
-              path="/loggedin/profile"
+              path="/dashboard/profile"
               element={
                 <ProtectedRoute>
                   <ProfilePage setIsLoggedIn={setIsLoggedIn} />
@@ -123,7 +128,7 @@ function App() {
               }
             />
             <Route
-              path="/loggedin/*"
+              path="/dashboard/*"
               element={
                 <ProtectedRoute>
                   <LoggedIn setIsLoggedIn={handleLogout} />

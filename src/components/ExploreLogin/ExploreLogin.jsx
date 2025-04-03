@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { assets } from "../../assets/assets";
-import "./ExploreLogin.css";
 
 function ExploreLogin() {
   // State to track hover for each card
@@ -30,7 +29,7 @@ function ExploreLogin() {
                 is designed to provide sustained energy and essential nutrients
                 to power you through the morning.
               </p>
-              <Link to="/loggedin/recipes">
+              <Link to="/dashboard/recipes">
                 <button>Browse Recipes</button>
               </Link>
             </div>
@@ -46,7 +45,7 @@ function ExploreLogin() {
                 and healthy fats to keep you energized and focused throughout
                 your busy day.
               </p>
-              <Link to="/loggedin/recipes">
+              <Link to="/dashboard/recipes">
                 <button>Browse Recipes</button>
               </Link>
             </div>
@@ -62,7 +61,7 @@ function ExploreLogin() {
                 satisfying and nutritious, designed to support your body's
                 overnight recovery.
               </p>
-              <Link to="/loggedin/recipes">
+              <Link to="/dashboard/recipes">
                 <button>Browse Recipes</button>
               </Link>
             </div>
@@ -113,7 +112,7 @@ function ExploreLogin() {
                 control, and sustainable eating habits to help you achieve your
                 goals effectively.
               </p>
-              <Link to="/loggedin/meal-plans">
+              <Link to="/dashboard/meal-plans">
                 <button>Go to Meal Plan</button>
               </Link>
             </div>
@@ -134,7 +133,7 @@ function ExploreLogin() {
                 high-protein meals and nutrient-rich food to support your
                 fitness journey.
               </p>
-              <Link to="/loggedin/meal-plans">
+              <Link to="/dashboard/meal-plans">
                 <button>Go to Meal Plan</button>
               </Link>
             </div>
@@ -154,7 +153,7 @@ function ExploreLogin() {
                 Our wellness diet plan promotes overall health with a focus on
                 nutrient-dense foods, ensuring you feel your best every day.
               </p>
-              <Link to="/loggedin/meal-plans">
+              <Link to="/dashboard/meal-plans">
                 <button>Go to Meal Plan</button>
               </Link>
             </div>

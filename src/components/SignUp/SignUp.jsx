@@ -12,7 +12,7 @@ function SignUp({ setIsLoggedIn }) {
     setIsLoggedIn(true);
 
     // Navigate to logged in page
-    navigate("/loggedin", { replace: true });
+    navigate("/dashboard", { replace: true });
   };
 
   return (

@@ -56,7 +56,7 @@ function UserDropdown({ setIsLoggedIn, isOpen, onClose }) {
         <div className="dropdown-menu">
           <button
             onClick={() => {
-              navigate("/loggedin/profile");
+              navigate("/dashboard/profile");
               onClose();
             }}
           >
@@ -67,7 +67,7 @@ function UserDropdown({ setIsLoggedIn, isOpen, onClose }) {
           <button
             onClick={() => {
               // Navigate to profile page with saved-recipes tab active
-              navigate("/loggedin/profile", {
+              navigate("/dashboard/profile", {
                 state: { activeTab: "saved-recipes" },
               });
               onClose();
