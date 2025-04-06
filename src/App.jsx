@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import {
   Routes,
   Route,
@@ -19,6 +19,8 @@ import ProfilePage from "./pages/Profilepage/ProfilePage";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 import { ToastProvider } from "./contexts/ToastContext";
 import { UserStatsProvider } from "./contexts/UserStatsContext/UserStatsContext";
+import { AuthProvider } from "./contexts/AuthContext";
+import PropTypes from "prop-types";
 
 function App() {
   // Initialize state from localStorage
@@ -53,7 +55,6 @@ function App() {
     if (!isLoggedIn && location.pathname.includes("/dashboard")) {
       return <Navigate to="/" replace />;
     }
-
     return isLoggedIn ? (
       children
     ) : (
@@ -61,84 +62,90 @@ function App() {
     );
   };
 
+  ProtectedRoute.propTypes = {
+    children: PropTypes.node.isRequired,
+  };
+
   return (
-    <div className="app">
-      {showNavbar && <Navbar isLoggedIn={isLoggedIn} />}
-      <ScrollToTop /> {/* Add this component */}
-      <UserStatsProvider>
-        <ToastProvider>
-          <Routes>
-            {/* Public Routes */}
-            <Route path="/" element={<Home />} />
-            <Route
-              path="/signup"
-              element={<SignUpPage setIsLoggedIn={setIsLoggedIn} />}
-            />
-            <Route
-              path="/signin"
-              element={<SignInPage setIsLoggedIn={setIsLoggedIn} />}
-            />
-            {/* Protected Routes */}
-            <Route
-              path="/dashboard"
-              element={
-                <ProtectedRoute>
-                  <LoggedIn setIsLoggedIn={handleLogout} />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/dashboard/recipes"
-              element={
-                <ProtectedRoute>
-                  <Recipe />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/dashboard/recipe/:id"
-              element={
-                <ProtectedRoute>
-                  <RecipeDetail />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/dashboard/meal-plans"
-              element={
-                <ProtectedRoute>
-                  <MealPlan />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/dashboard/nutritional-tips"
-              element={
-                <ProtectedRoute>
-                  <NutritionTipsPage />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/dashboard/profile"
-              element={
-                <ProtectedRoute>
-                  <ProfilePage setIsLoggedIn={setIsLoggedIn} />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/dashboard/*"
-              element={
-                <ProtectedRoute>
-                  <LoggedIn setIsLoggedIn={handleLogout} />
-                </ProtectedRoute>
-              }
-            />
-          </Routes>
-        </ToastProvider>
-      </UserStatsProvider>
-    </div>
+    <AuthProvider>
+      <div className="app">
+        {showNavbar && <Navbar isLoggedIn={isLoggedIn} />}
+        <ScrollToTop /> {/* Add this component */}
+        <UserStatsProvider>
+          <ToastProvider>
+            <Routes>
+              {/* Public Routes */}
+              <Route path="/" element={<Home />} />
+              <Route
+                path="/signup"
+                element={<SignUpPage setIsLoggedIn={setIsLoggedIn} />}
+              />
+              <Route
+                path="/signin"
+                element={<SignInPage setIsLoggedIn={setIsLoggedIn} />}
+              />
+              {/* Protected Routes */}
+              <Route
+                path="/dashboard"
+                element={
+                  <ProtectedRoute>
+                    <LoggedIn setIsLoggedIn={handleLogout} />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/dashboard/recipes"
+                element={
+                  <ProtectedRoute>
+                    <Recipe />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/dashboard/recipe/:id"
+                element={
+                  <ProtectedRoute>
+                    <RecipeDetail />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/dashboard/meal-plans"
+                element={
+                  <ProtectedRoute>
+                    <MealPlan />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/dashboard/nutritional-tips"
+                element={
+                  <ProtectedRoute>
+                    <NutritionTipsPage />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/dashboard/profile"
+                element={
+                  <ProtectedRoute>
+                    <ProfilePage setIsLoggedIn={setIsLoggedIn} />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/dashboard/*"
+                element={
+                  <ProtectedRoute>
+                    <LoggedIn setIsLoggedIn={handleLogout} />
+                  </ProtectedRoute>
+                }
+              />
+            </Routes>
+          </ToastProvider>
+        </UserStatsProvider>
+      </div>
+    </AuthProvider>
   );
 }
 

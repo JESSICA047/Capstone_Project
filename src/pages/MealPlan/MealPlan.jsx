@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+// import { useNavigate } from "react-router-dom";
 import NavbarLogin from "../../components/NavbarLogin/NavbarLogin";
 import FooterLogin from "../../components/FooterLogin/FooterLogin";
 import PlanFilter from "../../components/PlanFilter/PlanFilter";
@@ -8,12 +8,31 @@ import { recipes } from "../../assets/assets";
 import { useToast } from "../../contexts/ToastContext";
 import { useUserStats } from "../../contexts/UserStatsContext/UserStatsContext";
 import "./MealPlan.css";
+import PropTypes from "prop-types";
 
-const MealPlan = () => {
-  const navigate = useNavigate();
+const MealPlan = ({ setIsLoggedIn }) => {
+  // const navigate = useNavigate();
   const { updateStat } = useUserStats();
   const { showToast } = useToast();
-  const [selectedDay, setSelectedDay] = useState("Monday");
+  const daysOfWeek = [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
+  ];
+
+  // Get current day of week
+  const getCurrentDay = () => {
+    const today = new Date().getDay(); // 0 is Sunday, 1 is Monday, etc.
+    // Convert JS day format to our array index (0=Monday, 6=Sunday)
+    const dayIndex = today === 0 ? 6 : today - 1;
+    return daysOfWeek[dayIndex];
+  };
+
+  const [selectedDay, setSelectedDay] = useState(getCurrentDay());
   const [selectedPlan, setSelectedPlan] = useState("All");
   const [showMealSelector, setShowMealSelector] = useState(false);
   const [showNutrition, setShowNutrition] = useState(false);
@@ -26,19 +45,13 @@ const MealPlan = () => {
     carbs: 0,
     fats: 0,
   });
+
   const [planChanged, setPlanChanged] = useState(false);
   const [lastSelectedPlan, setLastSelectedPlan] = useState(null);
   const [showTemplateSelector, setShowTemplateSelector] = useState(false);
-
-  const daysOfWeek = [
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-    "Sunday",
-  ];
+  const [showPlanConfirmation, setShowPlanConfirmation] = useState(false);
+  const [pendingPlanChange, setPendingPlanChange] = useState(null);
+  const [showClearConfirmation, setShowClearConfirmation] = useState(false);
 
   const mealTypes = ["Breakfast", "Lunch", "Dinner", "Snack"];
 
@@ -130,7 +143,7 @@ const MealPlan = () => {
       setMealPlan(emptyMealPlan);
       setShowTemplateSelector(true);
     }
-  }, []);
+  }, [emptyMealPlan]);
 
   // Calculate and update daily nutrition whenever the selected day or meal plan changes
   useEffect(() => {
@@ -284,6 +297,12 @@ const MealPlan = () => {
     return newMealPlan;
   };
 
+  // Function to check if we should load a new plan
+  const shouldLoadNewPlan = (newPlan) => {
+    // Return true if it's a completely different plan or we haven't modified the current one
+    return newPlan !== lastSelectedPlan || !planChanged;
+  };
+
   // Handle plan selection
   const handlePlanChange = (plan) => {
     setSelectedPlan(plan);
@@ -292,26 +311,33 @@ const MealPlan = () => {
     if (plan === "All") return;
 
     // Check if we should load a new plan
-    const shouldLoadNewPlan = plan !== lastSelectedPlan || !planChanged;
 
-    if (shouldLoadNewPlan) {
+    if (shouldLoadNewPlan(plan)) {
       // Check if user wants to replace existing plan
       if (hasMealsPlanned && lastSelectedPlan !== null) {
-        if (
-          window.confirm(
-            `Load the ${plan} meal plan? This will replace your current plan.`
-          )
-        ) {
-          loadCuratedPlan(plan);
-        } else {
-          // Revert the selection if user cancels
-          setSelectedPlan(lastSelectedPlan);
-        }
+        // Show the confirmation modal instead of using window.confirm
+        setPendingPlanChange(plan);
+        setShowPlanConfirmation(true);
       } else {
         // Load plan if there's no existing plan
         loadCuratedPlan(plan);
       }
     }
+  };
+
+  // Confirm plan change from the modal
+  const confirmPlanChange = () => {
+    if (pendingPlanChange) {
+      loadCuratedPlan(pendingPlanChange);
+      setShowPlanConfirmation(false);
+    }
+  };
+
+  // Cancel plan change from the modal
+  const cancelPlanChange = () => {
+    // Revert the selection if user cancels
+    setSelectedPlan(lastSelectedPlan);
+    setShowPlanConfirmation(false);
   };
 
   // Load a curated meal plan
@@ -359,16 +385,24 @@ const MealPlan = () => {
   };
 
   // Clear the entire meal plan
+  // Clear the entire meal plan
   const handleClearMealPlan = () => {
-    if (
-      window.confirm("Are you sure you want to clear your entire meal plan?")
-    ) {
-      setMealPlan(emptyMealPlan);
-      setLastSelectedPlan(null);
-      setPlanChanged(false);
-      localStorage.removeItem("mealPlan");
-      showToast("Meal plan has been cleared", "info");
-    }
+    setShowClearConfirmation(true);
+  };
+
+  // Confirm clear plan from the modal
+  const confirmClearPlan = () => {
+    setMealPlan(emptyMealPlan);
+    setLastSelectedPlan(null);
+    setPlanChanged(false);
+    localStorage.removeItem("mealPlan");
+    showToast("Meal plan has been cleared", "info");
+    setShowClearConfirmation(false);
+  };
+
+  // Cancel clear plan from the modal
+  const cancelClearPlan = () => {
+    setShowClearConfirmation(false);
   };
 
   // Filter recipes for the meal selector
@@ -412,7 +446,7 @@ const MealPlan = () => {
 
   return (
     <div className="meal-plan-page">
-      <NavbarLogin />
+      <NavbarLogin setIsLoggedIn={setIsLoggedIn} />
       <div className="meal-plan-header">
         <img
           src={headerImage}
@@ -826,9 +860,59 @@ const MealPlan = () => {
           </div>
         </div>
       )}
+
+      {/* Plan Change Confirmation Modal */}
+      {showPlanConfirmation && (
+        <div className="meal-selector-modal">
+          <div className="modal-content">
+            <h2>Change Meal Plan?</h2>
+            <p className="modal-subtitle">
+              Load the {pendingPlanChange} meal plan? This will replace your
+              current plan.
+            </p>
+            <div className="modal-actions">
+              <button className="confirm-button" onClick={confirmPlanChange}>
+                Load New Plan
+              </button>
+              <button className="close-modal-button" onClick={cancelPlanChange}>
+                Keep Current Plan
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Clear Plan Confirmation Modal */}
+      {showClearConfirmation && (
+        <div className="meal-selector-modal">
+          <div className="modal-content">
+            <h2>Clear Meal Plan?</h2>
+            <p className="modal-subtitle">
+              Are you sure you want to clear your entire meal plan? This action
+              cannot be undone.
+            </p>
+            <div className="modal-actions">
+              <button
+                className="confirm-button warning"
+                onClick={confirmClearPlan}
+              >
+                Clear Plan
+              </button>
+              <button className="close-modal-button" onClick={cancelClearPlan}>
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
       <FooterLogin />
     </div>
   );
+};
+
+// Add prop validation
+MealPlan.propTypes = {
+  setIsLoggedIn: PropTypes.func.isRequired,
 };
 
 export default MealPlan;

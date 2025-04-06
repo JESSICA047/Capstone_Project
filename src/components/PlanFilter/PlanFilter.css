@@ -41,23 +41,23 @@
 }
 
 .plan-option:hover {
-    border-color: #1a73e8;
+    border-color: #2e7d32;
     background: #f8f9fa;
     transform: translateY(-2px);
 }
 
 .plan-option.active {
-    border-color: #1a73e8;
+    border-color: #2e7d32;
     background: #e8f0fe;
-    color: #1a73e8;
+    color: #1ae84e;
     font-weight: 600;
-    box-shadow: 0 2px 8px rgba(26, 115, 232, 0.15);
+    box-shadow: 0 2px 8px rgba(26, 232, 71, 0.15);
 }
 
 /* Plan info banner */
 .plan-info-banner {
     background-color: #e3f2fd;
-    border-left: 4px solid #2196f3;
+    border-left: 4px solid #21f344;
     padding: 12px 15px;
     margin-bottom: 20px;
     border-radius: 0 8px 8px 0;
@@ -66,19 +66,19 @@
 .plan-info-banner h3 {
     margin-top: 0;
     margin-bottom: 6px;
-    color: #1565c0;
+    color: #15c031;
     font-size: 1.1rem;
 }
 
 .plan-info-banner p {
     margin: 0;
-    color: #546e7a;
+    color: #547a5c;
     font-size: 0.9rem;
     line-height: 1.5;
 }
 
 .plan-info-banner p em {
-    color: #0d47a1;
+    color: #0da157;
     font-style: italic;
 }
 

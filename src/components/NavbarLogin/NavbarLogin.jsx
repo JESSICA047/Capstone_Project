@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { assets } from "../../assets/assets";
 import UserDropdown from "../UserDropdown/UserDropdown";
 import "./NavbarLogin.css";
 
-function NavbarLogin({ setIsLoggedIn }) {
+function NavbarLogin() {
   const navigate = useNavigate();
   const location = useLocation();
   const [menu, setMenu] = useState("home");
@@ -165,7 +165,6 @@ function NavbarLogin({ setIsLoggedIn }) {
             {/* Changed from "User" to dynamic userName */}
           </p>
           <UserDropdown
-            setIsLoggedIn={setIsLoggedIn}
             isOpen={isDropdownOpen}
             onClose={() => setIsDropdownOpen(false)}
           />

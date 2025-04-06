@@ -148,14 +148,12 @@
 }
 
 .login-navbar-right span {
-  color: #2ecc71;
-  /* Changed to green */
   font-weight: 600;
 }
 
 /* Add hover effect */
 .login-navbar-right:hover {
-  background-color: #e8f5e9;
+  background-color: #bef1c3;
   /* Changed to light green */
 }
 

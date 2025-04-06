@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import PropTypes from "prop-types";
 import "./Navbar.css";
 
 function Navbar({ isLoggedIn }) {
@@ -160,5 +161,8 @@ function Navbar({ isLoggedIn }) {
     </nav>
   );
 }
+Navbar.propTypes = {
+  isLoggedIn: PropTypes.bool.isRequired,
+};
 
 export default Navbar;
