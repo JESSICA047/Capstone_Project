@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 // import { useNavigate } from "react-router-dom";
 import NavbarLogin from "../../components/NavbarLogin/NavbarLogin";
 import FooterLogin from "../../components/FooterLogin/FooterLogin";
@@ -73,14 +73,16 @@ const MealPlan = ({ setIsLoggedIn }) => {
     },
   ];
 
-  // Initialize empty meal plan
-  const emptyMealPlan = daysOfWeek.reduce((acc, day) => {
-    acc[day] = {};
-    mealTypes.forEach((type) => {
-      acc[day][type] = null;
-    });
-    return acc;
-  }, {});
+  // Create memoized version of emptyMealPlan
+  const emptyMealPlan = useMemo(() => {
+    return daysOfWeek.reduce((acc, day) => {
+      acc[day] = {};
+      mealTypes.forEach((type) => {
+        acc[day][type] = null;
+      });
+      return acc;
+    }, {});
+  }, [daysOfWeek, mealTypes]); // Only recreate if these arrays change
 
   // Handle saving a recipe to favorites
   const handleSaveRecipe = (recipe) => {
@@ -143,7 +145,7 @@ const MealPlan = ({ setIsLoggedIn }) => {
       setMealPlan(emptyMealPlan);
       setShowTemplateSelector(true);
     }
-  }, [emptyMealPlan]);
+  }, []);
 
   // Calculate and update daily nutrition whenever the selected day or meal plan changes
   useEffect(() => {
