@@ -35,11 +35,6 @@
     margin-top: 1rem;
 }
 
-.signup-container .left h3 {
-    font-size: 1.2rem;
-    margin-top: 1rem;
-}
-
 .signup-btn {
     width: 80%;
     padding: 12px;
@@ -71,12 +66,12 @@
     opacity: 0.8;
 }
 
-.signup-container .left h3 {
+.signup-container .left p {
     margin-top: 1rem;
     font-size: 1rem;
 }
 
-.signup-container .left h3 a {
+.signup-container .left p a {
     color: black;
     text-decoration: none;
     font-weight: bold;

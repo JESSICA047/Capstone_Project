@@ -19,7 +19,6 @@ const RecipeDetail = () => {
   if (!recipe) {
     return <div className="recipe-not-found">Recipe not found</div>;
   }
-  
 
   const handleAddToMealPlan = (mealPlanData) => {
     try {
@@ -200,7 +199,7 @@ const RecipeDetail = () => {
               className="add-to-meal-plan-btn"
               onClick={() => setShowMealPlanModal(true)}
             >
-              <i className="fas fa-plus"></i> Add to Meal Plan
+              <i className="fa fa-plus"></i> Add to Meal Plan
             </button>
             <button className="save-recipe-button" onClick={handleSaveRecipe}>
               <i className="fa fa-heart" aria-hidden="true"></i> Save

@@ -1,6 +1,6 @@
-import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { assets } from "../../assets/assets";
+import PropTypes from "prop-types";
 import "./SignUp.css";
 
 function SignUp({ setIsLoggedIn }) {
@@ -36,9 +36,9 @@ function SignUp({ setIsLoggedIn }) {
           <img src={assets.instagram} alt="" />
           <img src={assets.facebook} alt="" />
         </div>
-        <h3>
+        <p>
           Already have an account? <Link to="/signin">Sign In</Link>
-        </h3>
+        </p>
       </div>
       <div className="right">
         <img src={assets.signup} alt="" />
@@ -51,5 +51,8 @@ function SignUp({ setIsLoggedIn }) {
     </div>
   );
 }
+SignUp.propTypes = {
+  setIsLoggedIn: PropTypes.func.isRequired,
+};
 
 export default SignUp;

@@ -1,265 +1,245 @@
 .recipe-item {
-    background-color: white;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
+  background-color: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .recipe-item:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.12);
+  transform: translateY(-8px);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.12);
 }
 
 .recipe-image-container {
-    position: relative;
-    width: 100%;
-    height: 200px;
-    overflow: hidden;
-    cursor: pointer;
-    transition: opacity 0.2s;
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: opacity 0.2s;
 }
 
 .recipe-image-container {
-    cursor: pointer;
-    transition: opacity 0.2s;
+  cursor: pointer;
+  transition: opacity 0.2s;
 }
 
 .recipe-image-container:hover {
-    opacity: 0.9;
+  opacity: 0.9;
 }
 
 .recipe-name {
-    cursor: pointer;
-    transition: color 0.2s;
+  cursor: pointer;
+  transition: color 0.2s;
 }
 
 .recipe-name:hover {
-    color: #2ecc71;
-}
-
-.view-recipe-button {
-    display: inline-block;
-    background: linear-gradient(45deg, #2ecc71, #1abc9c);
-    color: white;
-    padding: 0.6rem 1.2rem;
-    border-radius: 6px;
-    font-weight: 500;
-    text-decoration: none;
-    transition: background-color 0.2s;
-    cursor: pointer;
-    border: none;
+  color: #2ecc71;
 }
 
 .view-recipe-button:hover {
-    background-color: #2ecc71;
-    scale: (2.05);
-
+  background-color: #2ecc71;
+  scale: (2.05);
 }
 
 .add-to-meal-plan-button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.4rem;
-    background: linear-gradient(45deg, #2ecc71, #1abc9c);
-    color: #fff;
-    padding: 0.6rem 1.2rem;
-    border-radius: 6px;
-    font-weight: 500;
-    border: none;
-    transition: background-color 0.2s;
-    cursor: pointer;
+  gap: 0.4rem;
+  background: linear-gradient(45deg, #2ecc71, #1abc9c);
+  color: black;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  font-weight: 500;
+  border: none;
+  transition: background-color 0.2s;
+  cursor: pointer;
 }
 
 .add-to-meal-plan-button:hover {
-    background-color: #e9ecef;
-    /* color: #212529; */
-    transform:scale(2.05);
+  background-color: #e9ecef;
+  /* color: #212529; */
+  /* transform: scale(2.05); */
 }
 
 .recipe-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
 }
 
 .recipe-item:hover .recipe-image {
-    transform: scale(1.08);
+  transform: scale(1.08);
 }
 
 .recipe-time {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    background-color: rgba(0, 0, 0, 0.7);
-    color: white;
-    font-size: 0.8rem;
-    font-weight: 600;
-    padding: 0.4rem 0.8rem;
-    border-radius: 20px;
-    backdrop-filter: blur(4px);
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  backdrop-filter: blur(4px);
 }
 
 .recipe-info {
-    padding: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
 
 .recipe-name {
-    font-size: 1.3rem;
-    font-weight: 600;
-    margin-bottom: 0.8rem;
-    color: #212529;
-    line-height: 1.4;
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+  color: #212529;
+  line-height: 1.4;
 }
 
 .recipe-description {
-    color: #6c757d;
-    font-size: 0.95rem;
-    line-height: 1.5;
-    margin-bottom: 1.2rem;
-    flex-grow: 1;
+  color: #6c757d;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-bottom: 1.2rem;
+  flex-grow: 1;
 }
 
 .recipe-nutrition {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.6rem;
-    margin-bottom: 1.2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 1.2rem;
 }
 
 .nutrition-pill {
-    background-color: #f8f9fa;
-    padding: 0.5rem 0.8rem;
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-    font-size: 0.85rem;
+  background-color: #f8f9fa;
+  padding: 0.5rem 0.8rem;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
 }
 
 .nutrition-value {
-    font-weight: 600;
-    color: #212529;
+  font-weight: 600;
+  color: #212529;
 }
 
 .nutrition-label {
-    color: #6c757d;
+  color: #6c757d;
 }
 
 .recipe-categories {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-bottom: 1.2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.2rem;
 }
 
 .category-tag {
-    background-color: #e9ecef;
-    color: #495057;
-    font-size: 0.8rem;
-    font-weight: 500;
-    padding: 0.35rem 0.8rem;
-    border-radius: 20px;
-    transition: background-color 0.2s;
+  background-color: #e9ecef;
+  color: #495057;
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 0.35rem 0.8rem;
+  border-radius: 20px;
+  transition: background-color 0.2s;
 }
 
 .category-tag:hover {
-    background-color: #dee2e6;
+  background-color: #dee2e6;
 }
 
 .more-tag {
-    background-color: #e2e3e5;
-    color: #41464b;
+  background-color: #e2e3e5;
+  color: #41464b;
 }
 
 .recipe-actions {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
 }
 
 .view-recipe-button {
-    padding: 0.6rem 1.2rem;
-    background-color: #28a745;
-    color: white;
-    border: none;
-    font-weight: 500;
-    border-radius: 6px;
-    cursor: pointer;
-    text-decoration: none;
-    transition: background-color 0.2s;
-    display: inline-block;
-    text-align: center;
+  padding: 0.6rem 1.2rem;
+  background: linear-gradient(45deg, #2ecc71, #1abc9c);
+  color: black;
+  border: none;
+  font-weight: 500;
+  border-radius: 6px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.2s;
+  display: inline-block;
+  text-align: center;
 }
 
 .view-recipe-button:hover {
-    background-color: #218838;
+  background-color: #218838;
 }
 
 .add-to-meal-plan-button,
 .save-recipe-button {
-    /* width: 40px; */
-    /* height: 40px; */
-    /* border-radius: 50%; */
-    border: none;
-    background-color: #2ecc71;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: background-color 0.2s, color 0.2s;
+  border: none;
+  background-color: #2ecc71;
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
 }
 
 .add-to-meal-plan-button:hover {
-    background-color: #28a745;
-    color: white;
+  background-color: #28a745;
+  color: black;
 }
 
 .save-recipe-button:hover {
-    background-color: #fd7e14;
-    color: white;
+  background-color: #fd7e14;
+  color: white;
 }
 
 .save-recipe-button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.4rem;
-    background-color: #f8f9fa;
-    color: #dc3545;
-    padding: 0.6rem 1.2rem;
-    border-radius: 6px;
-    font-weight: 500;
-    border: none;
-    transition: background-color 0.2s, color 0.2s;
-    cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  background-color: #f8f9fa;
+  color: #dc3545;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  font-weight: 500;
+  border: none;
+  transition: background-color 0.2s, color 0.2s;
+  cursor: pointer;
 }
 
 .save-recipe-button:hover {
-    background-color: #dc3545;
-    color: black;
+  background-color: #dc3545;
+  color: black;
 }
 
 @media (max-width: 576px) {
-    .recipe-info {
-        padding: 1.2rem;
-    }
+  .recipe-info {
+    padding: 1.2rem;
+  }
 
-    .recipe-name {
-        font-size: 1.2rem;
-    }
+  .recipe-name {
+    font-size: 1.2rem;
+  }
 
-    .recipe-description {
-        font-size: 0.9rem;
-    }
+  .recipe-description {
+    font-size: 0.9rem;
+  }
 }

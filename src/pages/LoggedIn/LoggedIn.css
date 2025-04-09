@@ -211,13 +211,13 @@ body {
 
 .cta-button.primary {
     background: linear-gradient(45deg, #2ecc71, #1abc9c);
-    color: white;
+    color: black;
 }
 
 .cta-button.secondary {
     background: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(10px);
-    color: white;
+    color: black;
     border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
@@ -253,7 +253,6 @@ body {
     border-radius: 12px;
     font-size: 1rem;
     font-weight: 600;
-    color: #555;
     cursor: pointer;
     transition: all 0.3s;
     display: flex;
@@ -264,7 +263,7 @@ body {
 
 .tab-button.active {
     background: linear-gradient(45deg, #2ecc71, #1abc9c);
-    color: white;
+    color: black;
     box-shadow: 0 5px 15px rgba(46, 204, 113, 0.25);
 }
 
@@ -1074,7 +1073,7 @@ body {
 
 .view-plan-button {
     background: linear-gradient(45deg, #2ecc71, #1abc9c);
-    color: white;
+    color: black;
     border: none;
     padding: 15px 25px;
     font-size: 1rem;
@@ -1107,7 +1106,7 @@ body {
     top: 20px;
     right: 20px;
     background: #2ecc71;
-    color: white;
+    color: black;
     padding: 5px 15px;
     border-radius: 20px;
     font-size: 0.8rem;

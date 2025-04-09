@@ -263,8 +263,9 @@
 
 .day-button.active {
   background-color: #2ecc71;
-  color: white;
-  border-color: #2ecc71;
+  color: black;
+  /* scale: 1.1; */
+  /* border-color: #2ecc71; */
 }
 
 .day-button:hover:not(.active) {
@@ -371,7 +372,7 @@
 
 .meal-plan-tag {
   background-color: #2ecc71;
-  color: white;
+  color: black;
   padding: 0.3rem 0.6rem;
   border-radius: 999px;
   font-size: 0.75rem;

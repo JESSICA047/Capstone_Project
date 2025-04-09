@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import NavbarLogin from "../../components/NavbarLogin/NavbarLogin";
@@ -15,7 +16,7 @@ function LoggedIn({ setIsLoggedIn }) {
   const [userName, setUserName] = useState("");
   const [activeSection, setActiveSection] = useState("explore");
   const [showWelcome, setShowWelcome] = useState(true);
-  const { userStats, updateStat } = useUserStats();
+  const { userStats, updateStat, setUserStats } = useUserStats();
 
   // Update the useEffect hook that handles the welcome animation:
 
@@ -71,15 +72,6 @@ function LoggedIn({ setIsLoggedIn }) {
       localStorage.setItem("userStats", JSON.stringify(newStats));
       return newStats;
     });
-  };
-
-  // Export these functions to be used in other components
-  const incrementMealsPlanned = () => {
-    updateUserStat("mealsPlanned", userStats.mealsPlanned + 1);
-  };
-
-  const incrementRecipesBookmarked = () => {
-    updateUserStat("recipesBookmarked", userStats.recipesBookmarked + 1);
   };
 
   return (
@@ -347,6 +339,9 @@ const NutritionSection = () => {
       </div>
     </div>
   );
+};
+LoggedIn.propTypes = {
+  setIsLoggedIn: PropTypes.func.isRequired,
 };
 
 export default LoggedIn;
