@@ -39,7 +39,6 @@
   box-sizing: border-box;
 }
 
-
 .footer-center,
 .footer-right {
   flex: 1;
@@ -87,6 +86,7 @@
 }
 
 /* Footer Center Links */
+
 .footer-center ul {
   list-style: none;
   padding: 0;
