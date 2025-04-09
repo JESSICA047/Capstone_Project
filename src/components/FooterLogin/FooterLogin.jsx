@@ -1,4 +1,3 @@
-import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "./FooterLogin.css";
 import { assets } from "../../assets/assets";
@@ -38,11 +37,10 @@ function FooterLogin() {
               Join our community today and start cooking your way to a
               healthier, happier you.
             </p>
-          </div>
-          <div className="footer-socials">
-            <img src={assets.facebook} alt="facebook" />
-            <img src={assets.instagram} alt="instagram" />
-            <img src={assets.twitter} alt="twitter" />
+            <p>
+              FitFare is your ultimate companion for achieving your health goals
+              while enjoying every bite of your journey.
+            </p>
           </div>
         </div>
         <div className="footer-center">
@@ -72,10 +70,25 @@ function FooterLogin() {
             >
               Nutritional Tips
             </li>
+            <li
+              onClick={() => handleFooterNavigation("/contact")}
+              style={{ cursor: "pointer" }}
+            >
+              Contact Us
+            </li>
           </ul>
         </div>
         <div className="footer-right">
           <h3>Contact Us</h3>
+          <p>Email: support@fitfare.com</p>
+          <p>Phone: +233 (54) 123-4567</p>
+          <p>Address: 123 Healthy Way, Wellness City, Ho </p>
+          <p>Follow us on social media for the latest updates!</p>
+          <div className="footer-socials">
+            <img src={assets.facebook} alt="facebook" />
+            <img src={assets.instagram} alt="instagram" />
+            <img src={assets.twitter} alt="twitter" />
+          </div>
         </div>
       </div>
       <div className="footer-bottom">
