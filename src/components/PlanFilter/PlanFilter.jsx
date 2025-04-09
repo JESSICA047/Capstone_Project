@@ -1,6 +1,6 @@
-import React from "react";
 import { recipes_list } from "../../assets/assets";
 import "./PlanFilter.css";
+import PropTypes from "prop-types";
 
 // PlanFilter Component
 const PlanFilter = ({ selectedPlan, onPlanChange }) => {
@@ -139,6 +139,10 @@ export const generateCuratedMealPlan = (planType) => {
   });
 
   return mealPlan;
+};
+PlanFilter.propTypes = {
+  selectedPlan: PropTypes.string.isRequired,
+  onPlanChange: PropTypes.func.isRequired,
 };
 
 export default PlanFilter;

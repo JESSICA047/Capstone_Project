@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { recipes_list } from "../../assets/assets";
 import NavbarLogin from "../NavbarLogin/NavbarLogin";
