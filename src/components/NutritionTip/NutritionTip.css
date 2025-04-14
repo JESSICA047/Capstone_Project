@@ -36,7 +36,7 @@
     top: 15px;
     left: 15px;
     background-color: #2ecc71;
-    color: white;
+    color: black;
     padding: 0.3rem 0.8rem;
     border-radius: 20px;
     font-size: 0.8rem;
@@ -87,8 +87,8 @@
 }
 
 .tip-source {
-    font-weight: 500;
-    color: #1a73e8;
+    color: #000;
+    font-style: italic;
 }
 
 .read-more-btn {
